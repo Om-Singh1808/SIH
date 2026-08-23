@@ -1,0 +1,43 @@
+# RetailSense edge rules - defaults (mirrors retailsense_contracts.config.RulesConfig).
+#
+# This file is meant to be edited live on stage: every number below is the
+# default baked into the contracts, with a one-line explanation of what it does.
+# Load it with ``retailsense_edgerules.load_rules_yaml(path)``; unknown keys are
+# rejected (RulesConfig is ``extra="forbid"``) so typos fail loudly.
+#
+# A top-level ``rules:`` mapping is also accepted, so a whole store.yaml can be
+# passed to the same loader.
+
+# ---- Shelf / on-shelf availability --------------------------------------
+shelf_partial_coverage: 0.80   # coverage below this (fraction of calibrated full) => "partial"
+shelf_empty_coverage: 0.25     # coverage below this => "empty"
+persistence_scans: 3           # consecutive empty scans before an empty state (and a shelf_gap alert) is declared
+max_persistence_scans: 6       # ceiling for the adaptive persistence raised by false-positive feedback
+
+# ---- Queue --------------------------------------------------------------
+queue_long_count: 4            # N: people in the queue zone that count as "long"
+queue_long_s: 60               # T: the count must stay >= N for this many seconds before queue_long is raised
+queue_resolve_s: 30            # hysteresis: count must stay < N-1 for this long before queue_long resolves
+queue_forecast_threshold: 6    # queue_forecast raises when the predicted count at the horizon reaches this
+queue_forecast_horizon_min: 15 # which forecast horizon ("5","10","15","30") the rule looks at
+queue_min_age_s: 5.0           # a track must be in the queue zone this long before it counts (analytics)
+queue_window_s: 600            # window for arrival/service rate estimation (analytics)
+snapshot_interval_s: 10        # queue.snapshot cadence (analytics)
+occupancy_interval_s: 10       # zone.occupancy cadence (analytics)
+heat_flush_s: 60               # heatmap tile flush cadence (analytics)
+
+# ---- Device health ------------------------------------------------------
+camera_down_s: 15              # no frame for this long => camera "stale" => camera_down (HIGH)
+black_frame_std: 3.0           # frame pixel std below this => "black" (lens covered / no signal)
+
+# ---- Sync ---------------------------------------------------------------
+sync_backlog_warn: 1000        # outbox rows that, while the link is down, justify a sync_backlog INFO alert
+sync_backlog_after_s: 300      # ... but only once the link has been down this long (short blips are silent)
+
+# ---- Shrink (cloud reconcile) ------------------------------------------
+shrink_min_units: 3            # visual vs system delta must be at least this many units ...
+shrink_min_inr: 200            # ... and worth at least this much before shrink_suspect is raised
+
+# ---- Misc ---------------------------------------------------------------
+occlusion_skip_overlap: 0.30   # skip a shelf scan when a person covers more than this fraction of the polygon
+footfall_spike_factor: 2.5     # footfall_spike when the 15-min in-count >= factor x rolling baseline

@@ -1,0 +1,22 @@
+{
+  "name": "retailsense-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "RetailSense: rupee-quantified shelf, queue and footfall intelligence from existing CCTV. Python services + SenseBoard (Vite/React) dashboard.",
+  "workspaces": [
+    "apps/senseboard"
+  ],
+  "scripts": {
+    "setup": "python -m retailsense setup",
+    "demo": "python -m retailsense demo",
+    "dev": "npm run dev --workspace apps/senseboard",
+    "build": "npm run build --workspace apps/senseboard",
+    "test": "npm run test --workspace apps/senseboard -- --run",
+    "types": "python -m retailsense types",
+    "lint": "python -m retailsense lint"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "license": "MIT"
+}

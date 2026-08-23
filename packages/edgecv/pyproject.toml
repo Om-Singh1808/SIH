@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailsense-edgecv"
+version = "1.0.0"
+description = "RetailSense edge capture + perception: frame sources, person detectors (synthetic HSV / ONNX YOLO / ultralytics), ByteTrack-lite tracker, homography, preview annotation, CV pipeline and OTA model manager."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "retailsense-contracts>=1.0.0",
+    "numpy>=1.24",
+    "opencv-python>=4.8",
+    "scipy>=1.10",
+]
+
+[project.optional-dependencies]
+onnx = ["onnxruntime>=1.16"]
+dev = ["pytest>=8", "ruff", "onnx>=1.14", "onnxruntime>=1.16"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["retailsense_edgecv*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B006", "UP007"]

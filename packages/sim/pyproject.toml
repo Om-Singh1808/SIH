@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailsense-sim"
+version = "1.0.0"
+description = "RetailSense synthetic store: agent-based shoppers, synthetic video, scenarios, chaos, history generator and headless fake edges."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "retailsense-contracts>=1.0.0",
+    "numpy>=1.24",
+    "opencv-python-headless>=4.8; python_version >= '3.11'",
+    "pandas>=2",
+    "httpx>=0.25",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff", "pyarrow"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["retailsense_sim*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B006", "UP007"]

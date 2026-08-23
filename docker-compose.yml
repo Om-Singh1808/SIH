@@ -1,0 +1,92 @@
+# RetailSense docker-compose (P1). The stage demo does NOT use Docker (see tools/demo.py);
+# this file is the "deploy it for real" path: SenseCloud + SenseEdge + SenseBoard + Tally mock,
+# with optional profiles:
+#   --profile broker   Mosquitto MQTT 5 broker; set RS_UPLINK=mqtt for the edge
+#   --profile pg       TimescaleDB instead of SQLite for SenseCloud
+#
+#   docker compose up --build                                        # sqlite, http uplink
+#   SENSECLOUD_DB_URL=postgresql+psycopg://rs:rs@pg:5432/retailsense \
+#   RS_UPLINK=mqtt docker compose --profile broker --profile pg up   # mqtt + postgres
+name: retailsense
+
+x-common-env: &common-env
+  PYTHONIOENCODING: utf-8
+  PYTHONUNBUFFERED: "1"
+
+services:
+  cloud:
+    build: { context: ., dockerfile: deploy/cloud.Dockerfile }
+    image: retailsense/sensecloud:latest
+    ports: ["8000:8000"]
+    environment:
+      <<: *common-env
+      SENSECLOUD_PORT: "8000"
+      SENSECLOUD_DEV: "1"
+      SENSECLOUD_SEED_HISTORY: "1"
+      SENSECLOUD_NOTIFIER: simulator
+      SENSECLOUD_DB_URL: ${SENSECLOUD_DB_URL:-sqlite:////data/sensecloud.db}
+      SENSECLOUD_MQTT_HOST: ${SENSECLOUD_MQTT_HOST:-}
+    volumes: ["cloud-data:/data"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request as u; u.urlopen('http://localhost:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  tally-mock:
+    build: { context: ., dockerfile: deploy/cloud.Dockerfile }
+    image: retailsense/sensecloud:latest
+    command: ["python", "-m", "retailsense_integrations.tally_mock", "--port", "9000"]
+    ports: ["9000:9000"]
+    environment: *common-env
+
+  edge:
+    build: { context: ., dockerfile: deploy/edge.Dockerfile }
+    image: retailsense/senseedge:latest
+    depends_on:
+      cloud: { condition: service_healthy }
+    ports: ["8001:8001"]
+    environment:
+      <<: *common-env
+      RS_CONFIG: /app/packages/contracts/retailsense_contracts/examples/store_demo.yaml
+      RS_EDGE_PORT: "8001"
+      RS_CLOUD_URL: http://cloud:8000
+      RS_DB_PATH: /data/senseedge.db
+      RS_CLOCK_FACTOR: "10"
+      RS_DETECTOR: ${RS_DETECTOR:-auto}
+      RS_UPLINK: ${RS_UPLINK:-http}
+      RS_MQTT_HOST: mosquitto
+    volumes: ["edge-data:/data", "./models:/app/models:ro"]
+    # Real camera on Linux: add  devices: ["/dev/video0:/dev/video0"]  and RS_CAMERA=webcam:0
+
+  board:
+    build: { context: ., dockerfile: deploy/board.Dockerfile }
+    image: retailsense/senseboard:latest
+    depends_on: [cloud, edge]
+    ports: ["8080:80"]
+
+  # ---- optional: MQTT 5 broker --------------------------------------------------------
+  mosquitto:
+    image: eclipse-mosquitto:2
+    profiles: ["broker"]
+    ports: ["1883:1883", "9001:9001"]
+    volumes:
+      - ./deploy/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - mosquitto-data:/mosquitto/data
+
+  # ---- optional: Postgres/Timescale for SenseCloud -----------------------------------
+  pg:
+    image: timescale/timescaledb:latest-pg16
+    profiles: ["pg"]
+    environment:
+      POSTGRES_USER: rs
+      POSTGRES_PASSWORD: rs
+      POSTGRES_DB: retailsense
+    ports: ["5432:5432"]
+    volumes: ["pg-data:/var/lib/postgresql/data"]
+
+volumes:
+  cloud-data: {}
+  edge-data: {}
+  mosquitto-data: {}
+  pg-data: {}

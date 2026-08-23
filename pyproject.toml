@@ -1,0 +1,80 @@
+# Root project: NO package code here - only the monorepo-wide pytest/ruff config, the
+# `retailsense` CLI package and the [dev] extras a judge needs to run everything.
+# Each package/app under packages/* and apps/* has its own pyproject.toml and tests/.
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailsense"
+version = "1.0.0"
+description = "RetailSense monorepo front door: `python -m retailsense demo|setup|test|...`"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["retailsense-contracts"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.23",
+    "httpx>=0.27",
+    "ruff>=0.5",
+    "pandas>=2",
+    "fastapi>=0.110",
+    "uvicorn>=0.29",
+    "websockets>=12",
+    "pyyaml>=6",
+]
+gpu = ["onnxruntime-gpu"]
+
+[project.scripts]
+retailsense = "retailsense.__main__:main"
+
+[tool.setuptools]
+packages = ["retailsense"]
+
+# ---------------------------------------------------------------------------------
+# pytest: running `python -m pytest` at the root executes every package's suite plus
+# the integration tests in tests/.  Markers: slow (subprocess demo), gpu (CUDA EP).
+# ---------------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    "packages/contracts/tests",
+    "packages/sim/tests",
+    "packages/edgecv/tests",
+    "packages/edgeshelf/tests",
+    "packages/edgeanalytics/tests",
+    "packages/edgequeue/tests",
+    "packages/edgerules/tests",
+    "packages/edgestore/tests",
+    "packages/edgeuplink/tests",
+    "packages/forecasting/tests",
+    "packages/integrations/tests",
+    "apps/senseedge/tests",
+    "apps/sensecloud/tests",
+]
+addopts = "-q -p no:cacheprovider --import-mode=importlib"
+markers = [
+    "slow: spawns the full demo as subprocesses (minutes); excluded in CI via -m 'not slow'",
+    "gpu: needs CUDA onnxruntime; excluded in CI",
+    "integration: cross-package tests in tests/ (skip when real packages are absent)",
+]
+asyncio_mode = "auto"
+filterwarnings = ["ignore::DeprecationWarning"]
+norecursedirs = ["node_modules", "dist", "var", ".git", "models", "docs"]
+
+# ---------------------------------------------------------------------------------
+# ruff: one style for every agent's package.
+# ---------------------------------------------------------------------------------
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = ["node_modules", "dist", "var", "docs", "models", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B006", "UP007"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["B011"]

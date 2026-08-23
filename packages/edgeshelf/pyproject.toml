@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailsense-edgeshelf"
+version = "1.0.0"
+description = "RetailSense edge shelf monitoring: classical coverage estimation, persistence-filtered shelf state machine, OSA, thumbnails and SKU identification."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = [
+    "retailsense-contracts>=1.0.0",
+    "numpy>=1.24",
+    "pydantic>=2,<3",
+]
+
+[project.optional-dependencies]
+# JPEG thumbnails need an encoder; either works, both are lazy-imported.
+thumbs = ["opencv-python-headless>=4.8"]
+# CLIP SKU identification (P2) needs onnxruntime + exported weights.
+clip = ["onnxruntime>=1.16"]
+dev = ["pytest>=8", "ruff", "opencv-python-headless>=4.8"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["retailsense_edgeshelf*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B006", "UP007"]

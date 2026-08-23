@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retailsense-edgestore"
+version = "1.0.0"
+description = "RetailSense edge store: SQLite WAL event log with transactional outbox, seq/HLC stamping, state views, KPI-today and retention."
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["retailsense-contracts>=1.0.0", "sqlalchemy>=2,<3"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["retailsense_edgestore*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E501", "B008", "B006", "UP007"]
