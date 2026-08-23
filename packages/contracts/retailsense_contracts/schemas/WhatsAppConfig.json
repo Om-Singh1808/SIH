@@ -1,0 +1,67 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "mode": {
+      "default": "simulator",
+      "enum": [
+        "simulator",
+        "cloud_api",
+        "telegram",
+        "none"
+      ],
+      "type": "string"
+    },
+    "to": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "phone_number_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "token_env": {
+      "default": "WHATSAPP_TOKEN",
+      "type": "string"
+    },
+    "telegram_chat_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "telegram_token_env": {
+      "default": "TELEGRAM_TOKEN",
+      "type": "string"
+    }
+  },
+  "title": "WhatsAppConfig",
+  "type": "object",
+  "required": [
+    "mode",
+    "to",
+    "phone_number_id",
+    "token_env",
+    "telegram_chat_id",
+    "telegram_token_env"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

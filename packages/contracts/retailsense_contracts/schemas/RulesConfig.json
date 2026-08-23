@@ -1,0 +1,120 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "shelf_partial_coverage": {
+      "default": 0.8,
+      "type": "number"
+    },
+    "shelf_empty_coverage": {
+      "default": 0.25,
+      "type": "number"
+    },
+    "persistence_scans": {
+      "default": 3,
+      "type": "integer"
+    },
+    "max_persistence_scans": {
+      "default": 6,
+      "type": "integer"
+    },
+    "queue_long_count": {
+      "default": 4,
+      "type": "integer"
+    },
+    "queue_long_s": {
+      "default": 60,
+      "type": "number"
+    },
+    "queue_resolve_s": {
+      "default": 30,
+      "type": "number"
+    },
+    "queue_forecast_threshold": {
+      "default": 6,
+      "type": "integer"
+    },
+    "queue_forecast_horizon_min": {
+      "default": 15,
+      "type": "integer"
+    },
+    "queue_min_age_s": {
+      "default": 5.0,
+      "type": "number"
+    },
+    "queue_window_s": {
+      "default": 600,
+      "type": "integer"
+    },
+    "snapshot_interval_s": {
+      "default": 10,
+      "type": "number"
+    },
+    "occupancy_interval_s": {
+      "default": 10,
+      "type": "number"
+    },
+    "heat_flush_s": {
+      "default": 60,
+      "type": "number"
+    },
+    "camera_down_s": {
+      "default": 15,
+      "type": "number"
+    },
+    "black_frame_std": {
+      "default": 3.0,
+      "type": "number"
+    },
+    "sync_backlog_warn": {
+      "default": 1000,
+      "type": "integer"
+    },
+    "sync_backlog_after_s": {
+      "default": 300,
+      "type": "number"
+    },
+    "shrink_min_units": {
+      "default": 3,
+      "type": "integer"
+    },
+    "shrink_min_inr": {
+      "default": 200,
+      "type": "number"
+    },
+    "occlusion_skip_overlap": {
+      "default": 0.3,
+      "type": "number"
+    },
+    "footfall_spike_factor": {
+      "default": 2.5,
+      "type": "number"
+    }
+  },
+  "title": "RulesConfig",
+  "type": "object",
+  "required": [
+    "shelf_partial_coverage",
+    "shelf_empty_coverage",
+    "persistence_scans",
+    "max_persistence_scans",
+    "queue_long_count",
+    "queue_long_s",
+    "queue_resolve_s",
+    "queue_forecast_threshold",
+    "queue_forecast_horizon_min",
+    "queue_min_age_s",
+    "queue_window_s",
+    "snapshot_interval_s",
+    "occupancy_interval_s",
+    "heat_flush_s",
+    "camera_down_s",
+    "black_frame_std",
+    "sync_backlog_warn",
+    "sync_backlog_after_s",
+    "shrink_min_units",
+    "shrink_min_inr",
+    "occlusion_skip_overlap",
+    "footfall_spike_factor"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

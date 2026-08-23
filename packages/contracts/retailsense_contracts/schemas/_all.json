@@ -1,0 +1,5653 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "RetailSenseContracts",
+  "description": "Index of every RetailSense contract model (contracts v1.0.0).",
+  "type": "object",
+  "properties": {
+    "AckAction": {
+      "$ref": "#/$defs/AckAction"
+    },
+    "AckBy": {
+      "$ref": "#/$defs/AckBy"
+    },
+    "Alert": {
+      "$ref": "#/$defs/Alert"
+    },
+    "AlertAckRequest": {
+      "$ref": "#/$defs/AlertAckRequest"
+    },
+    "AlertAcked": {
+      "$ref": "#/$defs/AlertAcked"
+    },
+    "AlertDetails": {
+      "$ref": "#/$defs/AlertDetails"
+    },
+    "AlertKind": {
+      "$ref": "#/$defs/AlertKind"
+    },
+    "AlertRaised": {
+      "$ref": "#/$defs/AlertRaised"
+    },
+    "AlertResolved": {
+      "$ref": "#/$defs/AlertResolved"
+    },
+    "AlertStatus": {
+      "$ref": "#/$defs/AlertStatus"
+    },
+    "Anchor": {
+      "$ref": "#/$defs/Anchor"
+    },
+    "CameraAlertDetails": {
+      "$ref": "#/$defs/CameraAlertDetails"
+    },
+    "CameraConfig": {
+      "$ref": "#/$defs/CameraConfig"
+    },
+    "CameraHealth": {
+      "$ref": "#/$defs/CameraHealth"
+    },
+    "ChainRank": {
+      "$ref": "#/$defs/ChainRank"
+    },
+    "ChainRankRow": {
+      "$ref": "#/$defs/ChainRankRow"
+    },
+    "ChaosRequest": {
+      "$ref": "#/$defs/ChaosRequest"
+    },
+    "Command": {
+      "$ref": "#/$defs/Command"
+    },
+    "ConfigApplied": {
+      "$ref": "#/$defs/ConfigApplied"
+    },
+    "Counter": {
+      "$ref": "#/$defs/Counter"
+    },
+    "DailyReport": {
+      "$ref": "#/$defs/DailyReport"
+    },
+    "DailySummary": {
+      "$ref": "#/$defs/DailySummary"
+    },
+    "DeliveryReceipt": {
+      "$ref": "#/$defs/DeliveryReceipt"
+    },
+    "DemoConfig": {
+      "$ref": "#/$defs/DemoConfig"
+    },
+    "DetectorKind": {
+      "$ref": "#/$defs/DetectorKind"
+    },
+    "DeviceAlertDetails": {
+      "$ref": "#/$defs/DeviceAlertDetails"
+    },
+    "DeviceConfig": {
+      "$ref": "#/$defs/DeviceConfig"
+    },
+    "DeviceHeartbeat": {
+      "$ref": "#/$defs/DeviceHeartbeat"
+    },
+    "DeviceStatus": {
+      "$ref": "#/$defs/DeviceStatus"
+    },
+    "Direction": {
+      "$ref": "#/$defs/Direction"
+    },
+    "DwellSample": {
+      "$ref": "#/$defs/DwellSample"
+    },
+    "ErrorResponse": {
+      "$ref": "#/$defs/ErrorResponse"
+    },
+    "Event": {
+      "$ref": "#/$defs/Event"
+    },
+    "EventClass": {
+      "$ref": "#/$defs/EventClass"
+    },
+    "EventType": {
+      "$ref": "#/$defs/EventType"
+    },
+    "FitReport": {
+      "$ref": "#/$defs/FitReport"
+    },
+    "FleetView": {
+      "$ref": "#/$defs/FleetView"
+    },
+    "Floorplan": {
+      "$ref": "#/$defs/Floorplan"
+    },
+    "FootfallAlertDetails": {
+      "$ref": "#/$defs/FootfallAlertDetails"
+    },
+    "FootfallCrossing": {
+      "$ref": "#/$defs/FootfallCrossing"
+    },
+    "FootfallForecast": {
+      "$ref": "#/$defs/FootfallForecast"
+    },
+    "FootfallForecastDay": {
+      "$ref": "#/$defs/FootfallForecastDay"
+    },
+    "HealthStatus": {
+      "$ref": "#/$defs/HealthStatus"
+    },
+    "HeatCell": {
+      "$ref": "#/$defs/HeatCell"
+    },
+    "HeatmapResponse": {
+      "$ref": "#/$defs/HeatmapResponse"
+    },
+    "HeatmapTile": {
+      "$ref": "#/$defs/HeatmapTile"
+    },
+    "HeatmapTiles": {
+      "$ref": "#/$defs/HeatmapTiles"
+    },
+    "HomographyConfig": {
+      "$ref": "#/$defs/HomographyConfig"
+    },
+    "ImpactConfig": {
+      "$ref": "#/$defs/ImpactConfig"
+    },
+    "ImpactInr": {
+      "$ref": "#/$defs/ImpactInr"
+    },
+    "IngestAck": {
+      "$ref": "#/$defs/IngestAck"
+    },
+    "IngestBatch": {
+      "$ref": "#/$defs/IngestBatch"
+    },
+    "IntegrationsConfig": {
+      "$ref": "#/$defs/IntegrationsConfig"
+    },
+    "IntegrationsStatus": {
+      "$ref": "#/$defs/IntegrationsStatus"
+    },
+    "KpiDaily": {
+      "$ref": "#/$defs/KpiDaily"
+    },
+    "KpiRange": {
+      "$ref": "#/$defs/KpiRange"
+    },
+    "KpiToday": {
+      "$ref": "#/$defs/KpiToday"
+    },
+    "Lang": {
+      "$ref": "#/$defs/Lang"
+    },
+    "Line": {
+      "$ref": "#/$defs/Line"
+    },
+    "LineKind": {
+      "$ref": "#/$defs/LineKind"
+    },
+    "LinkRequest": {
+      "$ref": "#/$defs/LinkRequest"
+    },
+    "LinkState": {
+      "$ref": "#/$defs/LinkState"
+    },
+    "ManifestPublishRequest": {
+      "$ref": "#/$defs/ManifestPublishRequest"
+    },
+    "ModelEntry": {
+      "$ref": "#/$defs/ModelEntry"
+    },
+    "ModelIO": {
+      "$ref": "#/$defs/ModelIO"
+    },
+    "ModelManifest": {
+      "$ref": "#/$defs/ModelManifest"
+    },
+    "ModelStatus": {
+      "$ref": "#/$defs/ModelStatus"
+    },
+    "MqttConfig": {
+      "$ref": "#/$defs/MqttConfig"
+    },
+    "Observation": {
+      "$ref": "#/$defs/Observation"
+    },
+    "OndcAck": {
+      "$ref": "#/$defs/OndcAck"
+    },
+    "OndcConfig": {
+      "$ref": "#/$defs/OndcConfig"
+    },
+    "OndcPublishRequest": {
+      "$ref": "#/$defs/OndcPublishRequest"
+    },
+    "OrderRequested": {
+      "$ref": "#/$defs/OrderRequested"
+    },
+    "Origin": {
+      "$ref": "#/$defs/Origin"
+    },
+    "OutboundMessage": {
+      "$ref": "#/$defs/OutboundMessage"
+    },
+    "Payload": {
+      "$ref": "#/$defs/Payload"
+    },
+    "PrivacyConfig": {
+      "$ref": "#/$defs/PrivacyConfig"
+    },
+    "PrivacyManifest": {
+      "$ref": "#/$defs/PrivacyManifest"
+    },
+    "QueueAlertDetails": {
+      "$ref": "#/$defs/QueueAlertDetails"
+    },
+    "QueueForecast": {
+      "$ref": "#/$defs/QueueForecast"
+    },
+    "QueueSnapshot": {
+      "$ref": "#/$defs/QueueSnapshot"
+    },
+    "QueueView": {
+      "$ref": "#/$defs/QueueView"
+    },
+    "ReconcileReport": {
+      "$ref": "#/$defs/ReconcileReport"
+    },
+    "ReconcileRow": {
+      "$ref": "#/$defs/ReconcileRow"
+    },
+    "ReorderSuggestion": {
+      "$ref": "#/$defs/ReorderSuggestion"
+    },
+    "RetentionPolicy": {
+      "$ref": "#/$defs/RetentionPolicy"
+    },
+    "RolloutPolicy": {
+      "$ref": "#/$defs/RolloutPolicy"
+    },
+    "RolloutRequest": {
+      "$ref": "#/$defs/RolloutRequest"
+    },
+    "RulesConfig": {
+      "$ref": "#/$defs/RulesConfig"
+    },
+    "SKU": {
+      "$ref": "#/$defs/SKU"
+    },
+    "ScenarioRequest": {
+      "$ref": "#/$defs/ScenarioRequest"
+    },
+    "ScenarioStatus": {
+      "$ref": "#/$defs/ScenarioStatus"
+    },
+    "Series": {
+      "$ref": "#/$defs/Series"
+    },
+    "SeriesPoint": {
+      "$ref": "#/$defs/SeriesPoint"
+    },
+    "Severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "ShelfPolygon": {
+      "$ref": "#/$defs/ShelfPolygon"
+    },
+    "ShelfReference": {
+      "$ref": "#/$defs/ShelfReference"
+    },
+    "ShelfScan": {
+      "$ref": "#/$defs/ShelfScan"
+    },
+    "ShelfState": {
+      "$ref": "#/$defs/ShelfState"
+    },
+    "ShelfStateChange": {
+      "$ref": "#/$defs/ShelfStateChange"
+    },
+    "ShelfStateView": {
+      "$ref": "#/$defs/ShelfStateView"
+    },
+    "ShelvesUpdate": {
+      "$ref": "#/$defs/ShelvesUpdate"
+    },
+    "ShrinkAlertDetails": {
+      "$ref": "#/$defs/ShrinkAlertDetails"
+    },
+    "SimTruth": {
+      "$ref": "#/$defs/SimTruth"
+    },
+    "SkuEnrolResponse": {
+      "$ref": "#/$defs/SkuEnrolResponse"
+    },
+    "StockReconciled": {
+      "$ref": "#/$defs/StockReconciled"
+    },
+    "StockoutAlert": {
+      "$ref": "#/$defs/StockoutAlert"
+    },
+    "Store": {
+      "$ref": "#/$defs/Store"
+    },
+    "StoreConfig": {
+      "$ref": "#/$defs/StoreConfig"
+    },
+    "StoreInfo": {
+      "$ref": "#/$defs/StoreInfo"
+    },
+    "SyncAlertDetails": {
+      "$ref": "#/$defs/SyncAlertDetails"
+    },
+    "SyncStatus": {
+      "$ref": "#/$defs/SyncStatus"
+    },
+    "TallyConfig": {
+      "$ref": "#/$defs/TallyConfig"
+    },
+    "UplinkConfig": {
+      "$ref": "#/$defs/UplinkConfig"
+    },
+    "UplinkMode": {
+      "$ref": "#/$defs/UplinkMode"
+    },
+    "WhatsAppConfig": {
+      "$ref": "#/$defs/WhatsAppConfig"
+    },
+    "WhatsAppReply": {
+      "$ref": "#/$defs/WhatsAppReply"
+    },
+    "WsKind": {
+      "$ref": "#/$defs/WsKind"
+    },
+    "WsMessage": {
+      "$ref": "#/$defs/WsMessage"
+    },
+    "Zone": {
+      "$ref": "#/$defs/Zone"
+    },
+    "ZoneKind": {
+      "$ref": "#/$defs/ZoneKind"
+    },
+    "ZoneOccupancy": {
+      "$ref": "#/$defs/ZoneOccupancy"
+    },
+    "ZonesUpdate": {
+      "$ref": "#/$defs/ZonesUpdate"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "AckAction": {
+      "description": "What the shopkeeper did. On WhatsApp digit *i* maps to ``Alert.actions[i-1]``.",
+      "enum": [
+        "restocked",
+        "order",
+        "false_positive",
+        "opened_counter",
+        "ignore",
+        "checked",
+        "investigate"
+      ],
+      "title": "AckAction",
+      "type": "string"
+    },
+    "AckBy": {
+      "enum": [
+        "whatsapp",
+        "whatsapp_sim",
+        "board",
+        "auto",
+        "telegram"
+      ],
+      "title": "AckBy",
+      "type": "string"
+    },
+    "Alert": {
+      "additionalProperties": false,
+      "properties": {
+        "alert_id": {
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/$defs/Origin"
+        },
+        "kind": {
+          "$ref": "#/$defs/AlertKind"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "status": {
+          "$ref": "#/$defs/AlertStatus",
+          "default": "open"
+        },
+        "subject_id": {
+          "type": "string"
+        },
+        "title_en": {
+          "type": "string"
+        },
+        "title_hi": {
+          "type": "string"
+        },
+        "message_en": {
+          "type": "string"
+        },
+        "message_hi": {
+          "type": "string"
+        },
+        "details": {
+          "$ref": "#/$defs/AlertDetails"
+        },
+        "impact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "actions": {
+          "items": {
+            "$ref": "#/$defs/AckAction"
+          },
+          "type": "array"
+        },
+        "raised_ts": {
+          "type": "number"
+        },
+        "acked_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "resolved_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ack_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AckAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ack_by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AckBy"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "alert_id",
+        "store_id",
+        "device_id",
+        "origin",
+        "kind",
+        "severity",
+        "status",
+        "subject_id",
+        "title_en",
+        "title_hi",
+        "message_en",
+        "message_hi",
+        "details",
+        "impact",
+        "actions",
+        "raised_ts",
+        "acked_ts",
+        "resolved_ts",
+        "ack_action",
+        "ack_by"
+      ],
+      "title": "Alert",
+      "type": "object"
+    },
+    "AlertAckRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/AckAction"
+        },
+        "by": {
+          "$ref": "#/$defs/AckBy",
+          "default": "board"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "action",
+        "by",
+        "note"
+      ],
+      "title": "AlertAckRequest",
+      "type": "object"
+    },
+    "AlertAcked": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "alert.acked",
+          "default": "alert.acked",
+          "type": "string"
+        },
+        "alert_id": {
+          "type": "string"
+        },
+        "action": {
+          "$ref": "#/$defs/AckAction"
+        },
+        "by": {
+          "$ref": "#/$defs/AckBy"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "alert_id",
+        "action",
+        "by",
+        "note"
+      ],
+      "title": "AlertAcked",
+      "type": "object"
+    },
+    "AlertDetails": {
+      "title": "AlertDetails",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/StockoutAlert"
+        },
+        {
+          "$ref": "#/$defs/QueueAlertDetails"
+        },
+        {
+          "$ref": "#/$defs/CameraAlertDetails"
+        },
+        {
+          "$ref": "#/$defs/SyncAlertDetails"
+        },
+        {
+          "$ref": "#/$defs/DeviceAlertDetails"
+        },
+        {
+          "$ref": "#/$defs/ShrinkAlertDetails"
+        },
+        {
+          "$ref": "#/$defs/FootfallAlertDetails"
+        }
+      ]
+    },
+    "AlertKind": {
+      "enum": [
+        "shelf_gap",
+        "queue_long",
+        "queue_forecast",
+        "camera_down",
+        "sync_backlog",
+        "device_offline",
+        "shrink_suspect",
+        "footfall_spike"
+      ],
+      "title": "AlertKind",
+      "type": "string"
+    },
+    "AlertRaised": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "alert.raised",
+          "default": "alert.raised",
+          "type": "string"
+        },
+        "alert": {
+          "$ref": "#/$defs/Alert"
+        }
+      },
+      "required": [
+        "type",
+        "alert"
+      ],
+      "title": "AlertRaised",
+      "type": "object"
+    },
+    "AlertResolved": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "alert.resolved",
+          "default": "alert.resolved",
+          "type": "string"
+        },
+        "alert_id": {
+          "type": "string"
+        },
+        "reason": {
+          "enum": [
+            "condition_cleared",
+            "restocked_observed",
+            "false_positive",
+            "superseded",
+            "timeout",
+            "device_back"
+          ],
+          "type": "string"
+        },
+        "final_gap_minutes": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "impact_final": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "recovered": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "alert_id",
+        "reason",
+        "final_gap_minutes",
+        "impact_final",
+        "recovered"
+      ],
+      "title": "AlertResolved",
+      "type": "object"
+    },
+    "AlertStatus": {
+      "enum": [
+        "open",
+        "acked",
+        "resolved"
+      ],
+      "title": "AlertStatus",
+      "type": "string"
+    },
+    "Anchor": {
+      "description": "Which point of a track's bbox represents the person on the floor.",
+      "enum": [
+        "bottom_center",
+        "center"
+      ],
+      "title": "Anchor",
+      "type": "string"
+    },
+    "CameraAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "last_frame_age_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "camera_id",
+        "status",
+        "last_frame_age_s"
+      ],
+      "title": "CameraAlertDetails",
+      "type": "object"
+    },
+    "CameraConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "width": {
+          "default": 640,
+          "type": "integer"
+        },
+        "height": {
+          "default": 360,
+          "type": "integer"
+        },
+        "fps_sample": {
+          "default": 4.0,
+          "type": "number"
+        },
+        "detector": {
+          "$ref": "#/$defs/DetectorKind",
+          "default": "auto"
+        },
+        "anchor": {
+          "$ref": "#/$defs/Anchor",
+          "default": "bottom_center"
+        },
+        "shelf_scan_interval_s": {
+          "default": 60.0,
+          "type": "number"
+        },
+        "homography": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HomographyConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "preview_blur_people": {
+          "default": true,
+          "type": "boolean"
+        },
+        "loop_file": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "camera_id",
+        "source",
+        "width",
+        "height",
+        "fps_sample",
+        "detector",
+        "anchor",
+        "shelf_scan_interval_s",
+        "homography",
+        "preview_blur_people",
+        "loop_file"
+      ],
+      "title": "CameraConfig",
+      "type": "object"
+    },
+    "CameraHealth": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "stale",
+            "black",
+            "error"
+          ],
+          "type": "string"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "last_frame_age_s": {
+          "type": "number"
+        },
+        "detector": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "camera_id",
+        "status",
+        "fps",
+        "last_frame_age_s",
+        "detector"
+      ],
+      "title": "CameraHealth",
+      "type": "object"
+    },
+    "ChainRank": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/$defs/ChainRankRow"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "metric",
+        "date",
+        "rows"
+      ],
+      "title": "ChainRank",
+      "type": "object"
+    },
+    "ChainRankRow": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "footfall_in": {
+          "type": "integer"
+        },
+        "normalised": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "store_id",
+        "name",
+        "value",
+        "rank",
+        "footfall_in",
+        "normalised"
+      ],
+      "title": "ChainRankRow",
+      "type": "object"
+    },
+    "ChaosRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "freeze",
+            "drop",
+            "blackout",
+            "noise"
+          ],
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "seconds": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "p": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "kind",
+        "enabled",
+        "seconds",
+        "p"
+      ],
+      "title": "ChaosRequest",
+      "type": "object"
+    },
+    "Command": {
+      "additionalProperties": false,
+      "description": "Cloud -> device instruction, piggybacked on IngestAck (HTTP) or cmd topic (MQTT).",
+      "properties": {
+        "command_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ack_alert",
+            "apply_config",
+            "set_link",
+            "set_scenario",
+            "model_update",
+            "ping"
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "created_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "command_id",
+        "device_id",
+        "kind",
+        "payload",
+        "created_ts"
+      ],
+      "title": "Command",
+      "type": "object"
+    },
+    "ConfigApplied": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "config.applied",
+          "default": "config.applied",
+          "type": "string"
+        },
+        "config_version": {
+          "type": "integer"
+        },
+        "config_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "config_version",
+        "config_hash"
+      ],
+      "title": "ConfigApplied",
+      "type": "object"
+    },
+    "Counter": {
+      "additionalProperties": false,
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "queue_zone_id": {
+          "type": "string"
+        },
+        "counter_line_id": {
+          "type": "string"
+        },
+        "max_queue": {
+          "default": 8,
+          "type": "integer"
+        },
+        "default_service_s": {
+          "default": 45.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "counter_id",
+        "name",
+        "queue_zone_id",
+        "counter_line_id",
+        "max_queue",
+        "default_service_s"
+      ],
+      "title": "Counter",
+      "type": "object"
+    },
+    "DailyReport": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "kpis": {
+          "$ref": "#/$defs/KpiDaily"
+        },
+        "top_alerts": {
+          "items": {
+            "$ref": "#/$defs/Alert"
+          },
+          "type": "array"
+        },
+        "gap_minutes_by_shelf": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "queue_by_hour": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "forecast_mae": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "whatsapp_text_hi": {
+          "type": "string"
+        },
+        "whatsapp_text_en": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "store_id",
+        "date",
+        "kpis",
+        "top_alerts",
+        "gap_minutes_by_shelf",
+        "queue_by_hour",
+        "forecast_mae",
+        "whatsapp_text_hi",
+        "whatsapp_text_en"
+      ],
+      "title": "DailyReport",
+      "type": "object"
+    },
+    "DailySummary": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "lang": {
+          "$ref": "#/$defs/Lang"
+        },
+        "text": {
+          "type": "string"
+        },
+        "kpis": {
+          "$ref": "#/$defs/KpiToday"
+        }
+      },
+      "required": [
+        "store_id",
+        "date",
+        "lang",
+        "text",
+        "kpis"
+      ],
+      "title": "DailySummary",
+      "type": "object"
+    },
+    "DeliveryReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "message_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "sent",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "message_id",
+        "status",
+        "detail"
+      ],
+      "title": "DeliveryReceipt",
+      "type": "object"
+    },
+    "DemoConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "clock_factor": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "default_scenario": {
+          "default": "baseline",
+          "type": "string"
+        },
+        "start_time": {
+          "default": "17:00",
+          "type": "string"
+        },
+        "seed_history_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "auto_calibrate_first_scan": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "title": "DemoConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "clock_factor",
+        "default_scenario",
+        "start_time",
+        "seed_history_days",
+        "auto_calibrate_first_scan"
+      ]
+    },
+    "DetectorKind": {
+      "enum": [
+        "auto",
+        "synthetic",
+        "onnx",
+        "ultralytics",
+        "fake"
+      ],
+      "title": "DetectorKind",
+      "type": "string"
+    },
+    "DeviceAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "last_seen_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "device_id",
+        "last_seen_ts"
+      ],
+      "title": "DeviceAlertDetails",
+      "type": "object"
+    },
+    "DeviceConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "token": {
+          "default": "demo-token",
+          "type": "string"
+        },
+        "edge_port": {
+          "default": 8001,
+          "type": "integer"
+        },
+        "cloud_url": {
+          "default": "http://localhost:8000",
+          "type": "string"
+        },
+        "db_path": {
+          "default": "var/senseedge.db",
+          "type": "string"
+        },
+        "uplink": {
+          "$ref": "#/$defs/UplinkConfig",
+          "default": {
+            "mode": "http",
+            "batch_size": 500,
+            "interval_s": 2.0,
+            "heartbeat_s": 10.0,
+            "max_outbox_rows": 50000,
+            "mqtt": {
+              "host": "localhost",
+              "password": null,
+              "port": 1883,
+              "session_expiry_s": 604800,
+              "username": null,
+              "ws_port": 9001
+            }
+          }
+        }
+      },
+      "required": [
+        "device_id",
+        "token",
+        "edge_port",
+        "cloud_url",
+        "db_path",
+        "uplink"
+      ],
+      "title": "DeviceConfig",
+      "type": "object"
+    },
+    "DeviceHeartbeat": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "device.heartbeat",
+          "default": "device.heartbeat",
+          "type": "string"
+        },
+        "uptime_s": {
+          "type": "number"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "infer_ms_p50": {
+          "type": "number"
+        },
+        "infer_ms_p95": {
+          "type": "number"
+        },
+        "detector": {
+          "type": "string"
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "backlog": {
+          "type": "integer"
+        },
+        "link": {
+          "$ref": "#/$defs/LinkState"
+        },
+        "cameras": {
+          "items": {
+            "$ref": "#/$defs/CameraHealth"
+          },
+          "type": "array"
+        },
+        "contracts_version": {
+          "type": "string"
+        },
+        "clock_factor": {
+          "default": 1.0,
+          "type": "number"
+        },
+        "sim_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cpu_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "mem_mb": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "uptime_s",
+        "fps",
+        "infer_ms_p50",
+        "infer_ms_p95",
+        "detector",
+        "model_version",
+        "backlog",
+        "link",
+        "cameras",
+        "contracts_version",
+        "clock_factor",
+        "sim_ts",
+        "cpu_pct",
+        "mem_mb"
+      ],
+      "title": "DeviceHeartbeat",
+      "type": "object"
+    },
+    "DeviceStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "online",
+            "offline",
+            "never"
+          ],
+          "type": "string"
+        },
+        "last_seen_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "model_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assigned_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "version_drift": {
+          "type": "boolean"
+        },
+        "fps": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "backlog": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "link": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LinkState"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uptime_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "device_id",
+        "store_id",
+        "status",
+        "last_seen_ts",
+        "model_version",
+        "assigned_version",
+        "version_drift",
+        "fps",
+        "backlog",
+        "link",
+        "uptime_s"
+      ],
+      "title": "DeviceStatus",
+      "type": "object"
+    },
+    "Direction": {
+      "description": "Line-crossing direction; see geometry.side_of_line for the normative rule.",
+      "enum": [
+        "in",
+        "out"
+      ],
+      "title": "Direction",
+      "type": "string"
+    },
+    "DwellSample": {
+      "additionalProperties": false,
+      "description": "A finished visit to a zone. Deliberately carries no track id (privacy).",
+      "properties": {
+        "type": {
+          "const": "dwell.sample",
+          "default": "dwell.sample",
+          "type": "string"
+        },
+        "zone_id": {
+          "type": "string"
+        },
+        "dwell_s": {
+          "type": "number"
+        },
+        "entered_ts": {
+          "type": "number"
+        },
+        "exited_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "zone_id",
+        "dwell_s",
+        "entered_ts",
+        "exited_ts"
+      ],
+      "title": "DwellSample",
+      "type": "object"
+    },
+    "ErrorResponse": {
+      "additionalProperties": false,
+      "description": "Uniform error body (FastAPI ``detail`` compatible).",
+      "properties": {
+        "detail": {
+          "type": "string"
+        },
+        "code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "detail",
+        "code"
+      ],
+      "title": "ErrorResponse",
+      "type": "object"
+    },
+    "Event": {
+      "additionalProperties": false,
+      "description": "The wire/storage envelope. Immutable once stamped.",
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ts": {
+          "type": "number"
+        },
+        "hlc": {
+          "type": "string"
+        },
+        "seq": {
+          "type": "integer"
+        },
+        "type": {
+          "$ref": "#/$defs/EventType"
+        },
+        "cls": {
+          "$ref": "#/$defs/EventClass"
+        },
+        "version": {
+          "default": 1,
+          "type": "integer"
+        },
+        "payload": {
+          "$ref": "#/$defs/Payload"
+        },
+        "created_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "event_id",
+        "store_id",
+        "device_id",
+        "camera_id",
+        "ts",
+        "hlc",
+        "seq",
+        "type",
+        "cls",
+        "version",
+        "payload",
+        "created_ts"
+      ],
+      "title": "Event",
+      "type": "object"
+    },
+    "EventClass": {
+      "description": "Storage/sync class of an event; drives outbox expiry + eviction (topics.EXPIRY_S).",
+      "enum": [
+        "telemetry",
+        "aggregate",
+        "alert",
+        "txn",
+        "config"
+      ],
+      "title": "EventClass",
+      "type": "string"
+    },
+    "EventType": {
+      "title": "EventType",
+      "type": "string",
+      "enum": [
+        "footfall.crossing",
+        "zone.occupancy",
+        "dwell.sample",
+        "heatmap.tiles",
+        "queue.snapshot",
+        "queue.forecast",
+        "shelf.scan",
+        "shelf.state",
+        "alert.raised",
+        "alert.acked",
+        "alert.resolved",
+        "device.heartbeat",
+        "stock.reconciled",
+        "order.requested",
+        "config.applied",
+        "sim.truth"
+      ]
+    },
+    "FitReport": {
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "trained_ts": {
+          "type": "number"
+        },
+        "n_rows": {
+          "type": "integer"
+        },
+        "mae_holdout": {
+          "type": "number"
+        },
+        "mae_baseline": {
+          "type": "number"
+        },
+        "features": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "horizons": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "model",
+        "target",
+        "trained_ts",
+        "n_rows",
+        "mae_holdout",
+        "mae_baseline",
+        "features",
+        "horizons"
+      ],
+      "title": "FitReport",
+      "type": "object"
+    },
+    "FleetView": {
+      "additionalProperties": false,
+      "properties": {
+        "devices": {
+          "items": {
+            "$ref": "#/$defs/DeviceStatus"
+          },
+          "type": "array"
+        },
+        "online": {
+          "type": "integer"
+        },
+        "offline": {
+          "type": "integer"
+        },
+        "manifest_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "devices",
+        "online",
+        "offline",
+        "manifest_version"
+      ],
+      "title": "FleetView",
+      "type": "object"
+    },
+    "Floorplan": {
+      "additionalProperties": false,
+      "properties": {
+        "width_px": {
+          "default": 640,
+          "type": "integer"
+        },
+        "height_px": {
+          "default": 360,
+          "type": "integer"
+        },
+        "scale_m_per_px": {
+          "default": 0.02,
+          "type": "number"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "heat_cell_px": {
+          "default": 20,
+          "type": "integer"
+        }
+      },
+      "title": "Floorplan",
+      "type": "object",
+      "required": [
+        "width_px",
+        "height_px",
+        "scale_m_per_px",
+        "image",
+        "heat_cell_px"
+      ]
+    },
+    "FootfallAlertDetails": {
+      "additionalProperties": false,
+      "description": "Details for kind=footfall_spike (P1).",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "baseline": {
+          "type": "number"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "window_min": {
+          "default": 15,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "baseline",
+        "factor",
+        "window_min"
+      ],
+      "title": "FootfallAlertDetails",
+      "type": "object"
+    },
+    "FootfallCrossing": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "footfall.crossing",
+          "default": "footfall.crossing",
+          "type": "string"
+        },
+        "line_id": {
+          "type": "string"
+        },
+        "line_kind": {
+          "$ref": "#/$defs/LineKind"
+        },
+        "direction": {
+          "$ref": "#/$defs/Direction"
+        },
+        "count": {
+          "default": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "type",
+        "line_id",
+        "line_kind",
+        "direction",
+        "count"
+      ],
+      "title": "FootfallCrossing",
+      "type": "object"
+    },
+    "FootfallForecast": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "made_ts": {
+          "type": "number"
+        },
+        "days": {
+          "items": {
+            "$ref": "#/$defs/FootfallForecastDay"
+          },
+          "type": "array"
+        },
+        "mae_holdout": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "store_id",
+        "made_ts",
+        "days",
+        "mae_holdout"
+      ],
+      "title": "FootfallForecast",
+      "type": "object"
+    },
+    "FootfallForecastDay": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "predicted": {
+          "type": "number"
+        },
+        "lower": {
+          "type": "number"
+        },
+        "upper": {
+          "type": "number"
+        },
+        "is_festival": {
+          "type": "boolean"
+        },
+        "festival_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "days_to_festival": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "predicted",
+        "lower",
+        "upper",
+        "is_festival",
+        "festival_name",
+        "days_to_festival"
+      ],
+      "title": "FootfallForecastDay",
+      "type": "object"
+    },
+    "HealthStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "ok",
+            "degraded",
+            "starting"
+          ],
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "uptime_s": {
+          "type": "number"
+        },
+        "contracts_version": {
+          "type": "string"
+        },
+        "detector": {
+          "type": "string"
+        },
+        "model_version": {
+          "type": "string"
+        },
+        "cameras": {
+          "items": {
+            "$ref": "#/$defs/CameraHealth"
+          },
+          "type": "array"
+        },
+        "sync": {
+          "$ref": "#/$defs/SyncStatus"
+        },
+        "sim_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "clock_factor": {
+          "type": "number"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "infer_ms_p50": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "status",
+        "store_id",
+        "device_id",
+        "uptime_s",
+        "contracts_version",
+        "detector",
+        "model_version",
+        "cameras",
+        "sync",
+        "sim_ts",
+        "clock_factor",
+        "fps",
+        "infer_ms_p50"
+      ],
+      "title": "HealthStatus",
+      "type": "object"
+    },
+    "HeatCell": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "dwell_s": {
+          "type": "number"
+        },
+        "visits": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "dwell_s",
+        "visits"
+      ],
+      "title": "HeatCell",
+      "type": "object"
+    },
+    "HeatmapResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cell_px": {
+          "type": "integer"
+        },
+        "width_cells": {
+          "type": "integer"
+        },
+        "height_cells": {
+          "type": "integer"
+        },
+        "from_ts": {
+          "type": "number"
+        },
+        "to_ts": {
+          "type": "number"
+        },
+        "cells": {
+          "items": {
+            "$ref": "#/$defs/HeatCell"
+          },
+          "type": "array"
+        },
+        "max_dwell_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "camera_id",
+        "cell_px",
+        "width_cells",
+        "height_cells",
+        "from_ts",
+        "to_ts",
+        "cells",
+        "max_dwell_s"
+      ],
+      "title": "HeatmapResponse",
+      "type": "object"
+    },
+    "HeatmapTile": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_x": {
+          "type": "integer"
+        },
+        "cell_y": {
+          "type": "integer"
+        },
+        "hour_bucket": {
+          "type": "integer"
+        },
+        "dwell_s": {
+          "type": "number"
+        },
+        "visits": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cell_x",
+        "cell_y",
+        "hour_bucket",
+        "dwell_s",
+        "visits"
+      ],
+      "title": "HeatmapTile",
+      "type": "object"
+    },
+    "HeatmapTiles": {
+      "additionalProperties": false,
+      "description": "Deltas since the last flush, in floorplan cell coordinates.",
+      "properties": {
+        "type": {
+          "const": "heatmap.tiles",
+          "default": "heatmap.tiles",
+          "type": "string"
+        },
+        "cell_px": {
+          "type": "integer"
+        },
+        "width_cells": {
+          "type": "integer"
+        },
+        "height_cells": {
+          "type": "integer"
+        },
+        "tiles": {
+          "items": {
+            "$ref": "#/$defs/HeatmapTile"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "type",
+        "cell_px",
+        "width_cells",
+        "height_cells",
+        "tiles"
+      ],
+      "title": "HeatmapTiles",
+      "type": "object"
+    },
+    "HomographyConfig": {
+      "additionalProperties": false,
+      "description": ">= 4 image/floor point pairs; ``None`` on the camera means identity.",
+      "properties": {
+        "image_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "floor_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "image_points",
+        "floor_points"
+      ],
+      "title": "HomographyConfig",
+      "type": "object"
+    },
+    "ImpactConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "lost_sale_factor": {
+          "default": 0.31,
+          "type": "number"
+        },
+        "lost_sale_source": {
+          "default": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
+          "type": "string"
+        },
+        "queue_abandon_factor": {
+          "default": 0.32,
+          "type": "number"
+        },
+        "queue_abandon_source": {
+          "default": "Retail queue studies: 32% abandon after long lines; tolerance 5-8 min",
+          "type": "string"
+        },
+        "atv_inr": {
+          "default": 180.0,
+          "type": "number"
+        },
+        "baseline_unattended_gap_min": {
+          "default": 120.0,
+          "type": "number"
+        }
+      },
+      "title": "ImpactConfig",
+      "type": "object",
+      "required": [
+        "lost_sale_factor",
+        "lost_sale_source",
+        "queue_abandon_factor",
+        "queue_abandon_source",
+        "atv_inr",
+        "baseline_unattended_gap_min"
+      ]
+    },
+    "ImpactInr": {
+      "additionalProperties": false,
+      "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+      "properties": {
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "basis",
+        "factor",
+        "source"
+      ],
+      "title": "ImpactInr",
+      "type": "object"
+    },
+    "IngestAck": {
+      "additionalProperties": false,
+      "properties": {
+        "batch_id": {
+          "type": "string"
+        },
+        "accepted": {
+          "type": "integer"
+        },
+        "duplicates": {
+          "type": "integer"
+        },
+        "rejected": {
+          "items": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "last_seq": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "seq_ok": {
+          "type": "boolean"
+        },
+        "seq_gaps": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "commands": {
+          "items": {
+            "$ref": "#/$defs/Command"
+          },
+          "type": "array"
+        },
+        "server_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "batch_id",
+        "accepted",
+        "duplicates",
+        "rejected",
+        "last_seq",
+        "seq_ok",
+        "seq_gaps",
+        "commands",
+        "server_ts"
+      ],
+      "title": "IngestAck",
+      "type": "object"
+    },
+    "IngestBatch": {
+      "additionalProperties": false,
+      "properties": {
+        "batch_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "sent_ts": {
+          "type": "number"
+        },
+        "cursor": {
+          "type": "integer"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/$defs/Event"
+          },
+          "maxItems": 500,
+          "type": "array"
+        },
+        "backlog": {
+          "type": "integer"
+        },
+        "contracts_version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "batch_id",
+        "device_id",
+        "store_id",
+        "sent_ts",
+        "cursor",
+        "events",
+        "backlog",
+        "contracts_version"
+      ],
+      "title": "IngestBatch",
+      "type": "object"
+    },
+    "IntegrationsConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "tally": {
+          "$ref": "#/$defs/TallyConfig",
+          "default": {
+            "enabled": false,
+            "url": "http://localhost:9000",
+            "company": null
+          }
+        },
+        "ondc": {
+          "$ref": "#/$defs/OndcConfig",
+          "default": {
+            "enabled": false,
+            "gateway_url": "http://localhost:8000/mock/ondc",
+            "bpp_id": "demo.bpp",
+            "signing": "none"
+          }
+        },
+        "whatsapp": {
+          "$ref": "#/$defs/WhatsAppConfig",
+          "default": {
+            "mode": "simulator",
+            "to": null,
+            "phone_number_id": null,
+            "token_env": "WHATSAPP_TOKEN",
+            "telegram_chat_id": null,
+            "telegram_token_env": "TELEGRAM_TOKEN"
+          }
+        }
+      },
+      "title": "IntegrationsConfig",
+      "type": "object",
+      "required": [
+        "tally",
+        "ondc",
+        "whatsapp"
+      ]
+    },
+    "IntegrationsStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "tally": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "ondc": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "whatsapp": {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      },
+      "required": [
+        "tally",
+        "ondc",
+        "whatsapp"
+      ],
+      "title": "IntegrationsStatus",
+      "type": "object"
+    },
+    "KpiDaily": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "footfall_in": {
+          "type": "integer"
+        },
+        "footfall_out": {
+          "type": "integer"
+        },
+        "visual_transactions": {
+          "type": "integer"
+        },
+        "conversion_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "atv_inr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "osa_pct": {
+          "type": "number"
+        },
+        "gap_minutes_total": {
+          "type": "number"
+        },
+        "avg_wait_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_wait_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "abandoned": {
+          "type": "integer"
+        },
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "recovered_inr": {
+          "type": "number"
+        },
+        "shrink_inr": {
+          "type": "number"
+        },
+        "alerts_total": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "store_id",
+        "date",
+        "footfall_in",
+        "footfall_out",
+        "visual_transactions",
+        "conversion_pct",
+        "atv_inr",
+        "osa_pct",
+        "gap_minutes_total",
+        "avg_wait_s",
+        "max_wait_s",
+        "abandoned",
+        "lost_sales_inr",
+        "recovered_inr",
+        "shrink_inr",
+        "alerts_total"
+      ],
+      "title": "KpiDaily",
+      "type": "object"
+    },
+    "KpiRange": {
+      "additionalProperties": false,
+      "properties": {
+        "today": {
+          "$ref": "#/$defs/KpiToday"
+        },
+        "daily": {
+          "items": {
+            "$ref": "#/$defs/KpiDaily"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "today",
+        "daily"
+      ],
+      "title": "KpiRange",
+      "type": "object"
+    },
+    "KpiToday": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "as_of_ts": {
+          "type": "number"
+        },
+        "footfall_in": {
+          "type": "integer"
+        },
+        "footfall_out": {
+          "type": "integer"
+        },
+        "occupancy_now": {
+          "type": "integer"
+        },
+        "visual_transactions": {
+          "type": "integer"
+        },
+        "conversion_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "atv_inr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "osa_pct": {
+          "type": "number"
+        },
+        "gap_minutes_total": {
+          "type": "number"
+        },
+        "avg_wait_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "max_wait_s": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "abandoned": {
+          "type": "integer"
+        },
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "recovered_inr": {
+          "type": "number"
+        },
+        "alerts_open": {
+          "type": "integer"
+        },
+        "alerts_today": {
+          "type": "integer"
+        },
+        "deltas": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "store_id",
+        "date",
+        "as_of_ts",
+        "footfall_in",
+        "footfall_out",
+        "occupancy_now",
+        "visual_transactions",
+        "conversion_pct",
+        "atv_inr",
+        "osa_pct",
+        "gap_minutes_total",
+        "avg_wait_s",
+        "max_wait_s",
+        "abandoned",
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "recovered_inr",
+        "alerts_open",
+        "alerts_today",
+        "deltas"
+      ],
+      "title": "KpiToday",
+      "type": "object"
+    },
+    "Lang": {
+      "enum": [
+        "hi",
+        "en"
+      ],
+      "title": "Lang",
+      "type": "string"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "description": "Directed line; +1 side (left of start->end, y down) is IN. See geometry.py.",
+      "properties": {
+        "line_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/LineKind"
+        },
+        "start": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "end": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "line_id",
+        "camera_id",
+        "kind",
+        "start",
+        "end",
+        "name"
+      ],
+      "title": "Line",
+      "type": "object"
+    },
+    "LineKind": {
+      "enum": [
+        "entrance",
+        "counter",
+        "custom"
+      ],
+      "title": "LineKind",
+      "type": "string"
+    },
+    "LinkRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/LinkState"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "title": "LinkRequest",
+      "type": "object"
+    },
+    "LinkState": {
+      "enum": [
+        "up",
+        "down"
+      ],
+      "title": "LinkState",
+      "type": "string"
+    },
+    "ManifestPublishRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "manifest": {
+          "$ref": "#/$defs/ModelManifest"
+        }
+      },
+      "required": [
+        "manifest"
+      ],
+      "title": "ManifestPublishRequest",
+      "type": "object"
+    },
+    "ModelEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "task": {
+          "enum": [
+            "person_detect",
+            "shelf_gap",
+            "sku_embed"
+          ],
+          "type": "string"
+        },
+        "format": {
+          "enum": [
+            "onnx",
+            "pt",
+            "tflite"
+          ],
+          "type": "string"
+        },
+        "file": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "size_bytes": {
+          "type": "integer"
+        },
+        "input": {
+          "$ref": "#/$defs/ModelIO"
+        },
+        "output_format": {
+          "enum": [
+            "yolov8",
+            "yolox",
+            "synthetic",
+            "none"
+          ],
+          "type": "string"
+        },
+        "classes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "license": {
+          "type": "string"
+        },
+        "min_runtime": {
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "version",
+        "task",
+        "format",
+        "file",
+        "sha256",
+        "size_bytes",
+        "input",
+        "output_format",
+        "classes",
+        "source_url",
+        "license",
+        "min_runtime",
+        "notes"
+      ],
+      "title": "ModelEntry",
+      "type": "object"
+    },
+    "ModelIO": {
+      "additionalProperties": false,
+      "properties": {
+        "shape": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "default": "NCHW",
+          "type": "string"
+        },
+        "normalize": {
+          "default": "0-1",
+          "type": "string"
+        },
+        "letterbox": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "shape",
+        "layout",
+        "normalize",
+        "letterbox"
+      ],
+      "title": "ModelIO",
+      "type": "object"
+    },
+    "ModelManifest": {
+      "additionalProperties": false,
+      "properties": {
+        "manifest_version": {
+          "default": 1,
+          "type": "integer"
+        },
+        "version": {
+          "type": "string"
+        },
+        "generated_ts": {
+          "type": "number"
+        },
+        "models": {
+          "items": {
+            "$ref": "#/$defs/ModelEntry"
+          },
+          "type": "array"
+        },
+        "rollout": {
+          "$ref": "#/$defs/RolloutPolicy",
+          "default": {
+            "channel": "stable",
+            "canary_pct": 10,
+            "abort_failure_pct": 5,
+            "pinned_devices": {}
+          }
+        }
+      },
+      "required": [
+        "manifest_version",
+        "version",
+        "generated_ts",
+        "models",
+        "rollout"
+      ],
+      "title": "ModelManifest",
+      "type": "object"
+    },
+    "ModelStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "local": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ModelManifest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "remote": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ModelManifest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "active_model_id": {
+          "type": "string"
+        },
+        "active_version": {
+          "type": "string"
+        },
+        "update_available": {
+          "type": "boolean"
+        },
+        "assigned_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "local",
+        "remote",
+        "active_model_id",
+        "active_version",
+        "update_available",
+        "assigned_version"
+      ],
+      "title": "ModelStatus",
+      "type": "object"
+    },
+    "MqttConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "default": "localhost",
+          "type": "string"
+        },
+        "port": {
+          "default": 1883,
+          "type": "integer"
+        },
+        "ws_port": {
+          "default": 9001,
+          "type": "integer"
+        },
+        "username": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "password": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "session_expiry_s": {
+          "default": 604800,
+          "type": "integer"
+        }
+      },
+      "title": "MqttConfig",
+      "type": "object",
+      "required": [
+        "host",
+        "port",
+        "ws_port",
+        "username",
+        "password",
+        "session_expiry_s"
+      ]
+    },
+    "Observation": {
+      "additionalProperties": false,
+      "description": "What a producer hands to ``EdgeStore.append()``; not yet stamped.",
+      "properties": {
+        "type": {
+          "$ref": "#/$defs/EventType"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "camera_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "payload": {
+          "$ref": "#/$defs/Payload"
+        }
+      },
+      "required": [
+        "type",
+        "ts",
+        "camera_id",
+        "payload"
+      ],
+      "title": "Observation",
+      "type": "object"
+    },
+    "OndcAck": {
+      "additionalProperties": false,
+      "properties": {
+        "ok": {
+          "type": "boolean"
+        },
+        "message_id": {
+          "type": "string"
+        },
+        "item_id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "signed": {
+          "default": false,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ok",
+        "message_id",
+        "item_id",
+        "available",
+        "ts",
+        "signed"
+      ],
+      "title": "OndcAck",
+      "type": "object"
+    },
+    "OndcConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "gateway_url": {
+          "default": "http://localhost:8000/mock/ondc",
+          "type": "string"
+        },
+        "bpp_id": {
+          "default": "demo.bpp",
+          "type": "string"
+        },
+        "signing": {
+          "default": "none",
+          "enum": [
+            "none",
+            "ed25519"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "OndcConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "gateway_url",
+        "bpp_id",
+        "signing"
+      ]
+    },
+    "OndcPublishRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "available": {
+          "type": "boolean"
+        },
+        "qty": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "sku_id",
+        "available",
+        "qty"
+      ],
+      "title": "OndcPublishRequest",
+      "type": "object"
+    },
+    "OrderRequested": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "order.requested",
+          "default": "order.requested",
+          "type": "string"
+        },
+        "sku_id": {
+          "type": "string"
+        },
+        "qty": {
+          "type": "integer"
+        },
+        "channel": {
+          "$ref": "#/$defs/AckBy"
+        },
+        "alert_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "est_cost_inr": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "sku_id",
+        "qty",
+        "channel",
+        "alert_id",
+        "est_cost_inr"
+      ],
+      "title": "OrderRequested",
+      "type": "object"
+    },
+    "Origin": {
+      "enum": [
+        "edge",
+        "cloud"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "OutboundMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "message_id": {
+          "type": "string"
+        },
+        "channel": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "buttons": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "alert_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "created_ts": {
+          "type": "number"
+        },
+        "status": {
+          "enum": [
+            "queued",
+            "sent",
+            "delivered",
+            "failed"
+          ],
+          "type": "string"
+        },
+        "delivered_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "message_id",
+        "channel",
+        "to",
+        "text",
+        "buttons",
+        "alert_id",
+        "store_id",
+        "created_ts",
+        "status",
+        "delivered_ts"
+      ],
+      "title": "OutboundMessage",
+      "type": "object"
+    },
+    "Payload": {
+      "title": "Payload",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/FootfallCrossing"
+        },
+        {
+          "$ref": "#/$defs/ZoneOccupancy"
+        },
+        {
+          "$ref": "#/$defs/DwellSample"
+        },
+        {
+          "$ref": "#/$defs/HeatmapTiles"
+        },
+        {
+          "$ref": "#/$defs/QueueSnapshot"
+        },
+        {
+          "$ref": "#/$defs/QueueForecast"
+        },
+        {
+          "$ref": "#/$defs/ShelfScan"
+        },
+        {
+          "$ref": "#/$defs/ShelfStateChange"
+        },
+        {
+          "$ref": "#/$defs/AlertRaised"
+        },
+        {
+          "$ref": "#/$defs/AlertAcked"
+        },
+        {
+          "$ref": "#/$defs/AlertResolved"
+        },
+        {
+          "$ref": "#/$defs/DeviceHeartbeat"
+        },
+        {
+          "$ref": "#/$defs/StockReconciled"
+        },
+        {
+          "$ref": "#/$defs/OrderRequested"
+        },
+        {
+          "$ref": "#/$defs/ConfigApplied"
+        },
+        {
+          "$ref": "#/$defs/SimTruth"
+        }
+      ],
+      "discriminator": {
+        "propertyName": "type"
+      }
+    },
+    "PrivacyConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "preview_blur_people": {
+          "default": true,
+          "type": "boolean"
+        },
+        "shelf_thumbnails": {
+          "default": true,
+          "type": "boolean"
+        },
+        "retention": {
+          "$ref": "#/$defs/RetentionPolicy",
+          "default": {
+            "telemetry_hours": 24,
+            "aggregate_days": 30,
+            "thumbnails_days": 7,
+            "heatmap_days": 90,
+            "alerts_days": 365,
+            "sent_outbox_hours": 24
+          }
+        },
+        "statement": {
+          "default": "No face recognition; no raw video persisted; track IDs never leave the edge.",
+          "type": "string"
+        }
+      },
+      "title": "PrivacyConfig",
+      "type": "object",
+      "required": [
+        "preview_blur_people",
+        "shelf_thumbnails",
+        "retention",
+        "statement"
+      ]
+    },
+    "PrivacyManifest": {
+      "additionalProperties": false,
+      "description": "Machine-readable statement of what RetailSense does and does not collect.",
+      "properties": {
+        "face_recognition": {
+          "default": false,
+          "type": "boolean"
+        },
+        "raw_video_persisted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "track_ids_leave_edge": {
+          "default": false,
+          "type": "boolean"
+        },
+        "biometric_templates": {
+          "default": false,
+          "type": "boolean"
+        },
+        "shelf_thumbnails": {
+          "default": true,
+          "type": "boolean"
+        },
+        "thumbnail_max_px": {
+          "default": 96,
+          "type": "integer"
+        },
+        "thumbnail_scope": {
+          "default": "shelf polygon only; never includes people",
+          "type": "string"
+        },
+        "preview_blur_people": {
+          "default": true,
+          "type": "boolean"
+        },
+        "data_leaving_edge": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "retention": {
+          "$ref": "#/$defs/RetentionPolicy",
+          "default": {
+            "telemetry_hours": 24,
+            "aggregate_days": 30,
+            "thumbnails_days": 7,
+            "heatmap_days": 90,
+            "alerts_days": 365,
+            "sent_outbox_hours": 24
+          }
+        },
+        "lawful_basis": {
+          "default": "Legitimate business purpose of the store owner (DPDP Act 2023, s.7); no personal data of shoppers is retained.",
+          "type": "string"
+        },
+        "statement": {
+          "default": "No face recognition; no raw video persisted; track IDs never leave the edge.",
+          "type": "string"
+        }
+      },
+      "title": "PrivacyManifest",
+      "type": "object",
+      "required": [
+        "face_recognition",
+        "raw_video_persisted",
+        "track_ids_leave_edge",
+        "biometric_templates",
+        "shelf_thumbnails",
+        "thumbnail_max_px",
+        "thumbnail_scope",
+        "preview_blur_people",
+        "data_leaving_edge",
+        "retention",
+        "lawful_basis",
+        "statement"
+      ]
+    },
+    "QueueAlertDetails": {
+      "additionalProperties": false,
+      "description": "Details for kind=queue_long / queue_forecast.",
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "counter_name": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "est_wait_s": {
+          "type": "number"
+        },
+        "forecast": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "horizon_min": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "threshold": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "counter_id",
+        "counter_name",
+        "count",
+        "est_wait_s",
+        "forecast",
+        "horizon_min",
+        "threshold"
+      ],
+      "title": "QueueAlertDetails",
+      "type": "object"
+    },
+    "QueueForecast": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "queue.forecast",
+          "default": "queue.forecast",
+          "type": "string"
+        },
+        "counter_id": {
+          "type": "string"
+        },
+        "made_ts": {
+          "type": "number"
+        },
+        "horizons": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "type": "object"
+        },
+        "model": {
+          "enum": [
+            "edge_trend",
+            "cloud_gbm"
+          ],
+          "type": "string"
+        },
+        "mae_recent": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "counter_id",
+        "made_ts",
+        "horizons",
+        "model",
+        "mae_recent"
+      ],
+      "title": "QueueForecast",
+      "type": "object"
+    },
+    "QueueSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "queue.snapshot",
+          "default": "queue.snapshot",
+          "type": "string"
+        },
+        "counter_id": {
+          "type": "string"
+        },
+        "zone_id": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "avg_dwell_s": {
+          "type": "number"
+        },
+        "max_dwell_s": {
+          "type": "number"
+        },
+        "arrival_rate_pm": {
+          "type": "number"
+        },
+        "service_rate_pm": {
+          "type": "number"
+        },
+        "est_wait_s": {
+          "type": "number"
+        },
+        "method": {
+          "enum": [
+            "little_service",
+            "observed_wait",
+            "default_service"
+          ],
+          "type": "string"
+        },
+        "served_window": {
+          "type": "integer"
+        },
+        "abandoned_window": {
+          "type": "integer"
+        },
+        "window_s": {
+          "default": 300,
+          "type": "integer"
+        },
+        "served_total": {
+          "type": "integer"
+        },
+        "abandoned_total": {
+          "type": "integer"
+        },
+        "long_since_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "counter_id",
+        "zone_id",
+        "count",
+        "avg_dwell_s",
+        "max_dwell_s",
+        "arrival_rate_pm",
+        "service_rate_pm",
+        "est_wait_s",
+        "method",
+        "served_window",
+        "abandoned_window",
+        "window_s",
+        "served_total",
+        "abandoned_total",
+        "long_since_ts"
+      ],
+      "title": "QueueSnapshot",
+      "type": "object"
+    },
+    "QueueView": {
+      "additionalProperties": false,
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "snapshot": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QueueSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "forecast": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/QueueForecast"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "open_alert_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "counter_id",
+        "name",
+        "snapshot",
+        "forecast",
+        "open_alert_id"
+      ],
+      "title": "QueueView",
+      "type": "object"
+    },
+    "ReconcileReport": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        },
+        "rows": {
+          "items": {
+            "$ref": "#/$defs/ReconcileRow"
+          },
+          "type": "array"
+        },
+        "shrink_inr_total": {
+          "type": "number"
+        },
+        "alerts_raised": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "store_id",
+        "ts",
+        "source",
+        "rows",
+        "shrink_inr_total",
+        "alerts_raised"
+      ],
+      "title": "ReconcileReport",
+      "type": "object"
+    },
+    "ReconcileRow": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shelf_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "visual_units": {
+          "type": "integer"
+        },
+        "system_units": {
+          "type": "integer"
+        },
+        "delta_units": {
+          "type": "integer"
+        },
+        "delta_inr": {
+          "type": "number"
+        },
+        "flagged": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sku_id",
+        "name",
+        "shelf_id",
+        "visual_units",
+        "system_units",
+        "delta_units",
+        "delta_inr",
+        "flagged"
+      ],
+      "title": "ReconcileRow",
+      "type": "object"
+    },
+    "ReorderSuggestion": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "name_en": {
+          "type": "string"
+        },
+        "name_hi": {
+          "type": "string"
+        },
+        "system_units": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "visual_units": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "forecast_units_lead": {
+          "type": "number"
+        },
+        "safety_stock": {
+          "type": "number"
+        },
+        "suggest_qty": {
+          "type": "integer"
+        },
+        "est_cost_inr": {
+          "type": "number"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sku_id",
+        "name_en",
+        "name_hi",
+        "system_units",
+        "visual_units",
+        "forecast_units_lead",
+        "safety_stock",
+        "suggest_qty",
+        "est_cost_inr",
+        "reason"
+      ],
+      "title": "ReorderSuggestion",
+      "type": "object"
+    },
+    "RetentionPolicy": {
+      "additionalProperties": false,
+      "description": "How long each data class lives before the purge job deletes it.",
+      "properties": {
+        "telemetry_hours": {
+          "default": 24,
+          "type": "integer"
+        },
+        "aggregate_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "thumbnails_days": {
+          "default": 7,
+          "type": "integer"
+        },
+        "heatmap_days": {
+          "default": 90,
+          "type": "integer"
+        },
+        "alerts_days": {
+          "default": 365,
+          "type": "integer"
+        },
+        "sent_outbox_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "title": "RetentionPolicy",
+      "type": "object",
+      "required": [
+        "telemetry_hours",
+        "aggregate_days",
+        "thumbnails_days",
+        "heatmap_days",
+        "alerts_days",
+        "sent_outbox_hours"
+      ]
+    },
+    "RolloutPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "channel": {
+          "default": "stable",
+          "enum": [
+            "canary",
+            "stable"
+          ],
+          "type": "string"
+        },
+        "canary_pct": {
+          "default": 10,
+          "type": "integer"
+        },
+        "abort_failure_pct": {
+          "default": 5,
+          "type": "integer"
+        },
+        "pinned_devices": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "title": "RolloutPolicy",
+      "type": "object",
+      "required": [
+        "channel",
+        "canary_pct",
+        "abort_failure_pct",
+        "pinned_devices"
+      ]
+    },
+    "RolloutRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "canary_pct": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "model_id",
+        "version",
+        "canary_pct"
+      ],
+      "title": "RolloutRequest",
+      "type": "object"
+    },
+    "RulesConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "shelf_partial_coverage": {
+          "default": 0.8,
+          "type": "number"
+        },
+        "shelf_empty_coverage": {
+          "default": 0.25,
+          "type": "number"
+        },
+        "persistence_scans": {
+          "default": 3,
+          "type": "integer"
+        },
+        "max_persistence_scans": {
+          "default": 6,
+          "type": "integer"
+        },
+        "queue_long_count": {
+          "default": 4,
+          "type": "integer"
+        },
+        "queue_long_s": {
+          "default": 60,
+          "type": "number"
+        },
+        "queue_resolve_s": {
+          "default": 30,
+          "type": "number"
+        },
+        "queue_forecast_threshold": {
+          "default": 6,
+          "type": "integer"
+        },
+        "queue_forecast_horizon_min": {
+          "default": 15,
+          "type": "integer"
+        },
+        "queue_min_age_s": {
+          "default": 5.0,
+          "type": "number"
+        },
+        "queue_window_s": {
+          "default": 600,
+          "type": "integer"
+        },
+        "snapshot_interval_s": {
+          "default": 10,
+          "type": "number"
+        },
+        "occupancy_interval_s": {
+          "default": 10,
+          "type": "number"
+        },
+        "heat_flush_s": {
+          "default": 60,
+          "type": "number"
+        },
+        "camera_down_s": {
+          "default": 15,
+          "type": "number"
+        },
+        "black_frame_std": {
+          "default": 3.0,
+          "type": "number"
+        },
+        "sync_backlog_warn": {
+          "default": 1000,
+          "type": "integer"
+        },
+        "sync_backlog_after_s": {
+          "default": 300,
+          "type": "number"
+        },
+        "shrink_min_units": {
+          "default": 3,
+          "type": "integer"
+        },
+        "shrink_min_inr": {
+          "default": 200,
+          "type": "number"
+        },
+        "occlusion_skip_overlap": {
+          "default": 0.3,
+          "type": "number"
+        },
+        "footfall_spike_factor": {
+          "default": 2.5,
+          "type": "number"
+        }
+      },
+      "title": "RulesConfig",
+      "type": "object",
+      "required": [
+        "shelf_partial_coverage",
+        "shelf_empty_coverage",
+        "persistence_scans",
+        "max_persistence_scans",
+        "queue_long_count",
+        "queue_long_s",
+        "queue_resolve_s",
+        "queue_forecast_threshold",
+        "queue_forecast_horizon_min",
+        "queue_min_age_s",
+        "queue_window_s",
+        "snapshot_interval_s",
+        "occupancy_interval_s",
+        "heat_flush_s",
+        "camera_down_s",
+        "black_frame_std",
+        "sync_backlog_warn",
+        "sync_backlog_after_s",
+        "shrink_min_units",
+        "shrink_min_inr",
+        "occlusion_skip_overlap",
+        "footfall_spike_factor"
+      ]
+    },
+    "SKU": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "name_en": {
+          "type": "string"
+        },
+        "name_hi": {
+          "type": "string"
+        },
+        "mrp_inr": {
+          "type": "number"
+        },
+        "margin_pct": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "velocity_units_per_hr": {
+          "type": "number"
+        },
+        "units_per_facing": {
+          "default": 4,
+          "type": "integer"
+        },
+        "lead_time_days": {
+          "default": 2,
+          "type": "integer"
+        },
+        "tally_item_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ondc_item_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "enrolled_images": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sku_id",
+        "name_en",
+        "name_hi",
+        "mrp_inr",
+        "margin_pct",
+        "velocity_units_per_hr",
+        "units_per_facing",
+        "lead_time_days",
+        "tally_item_name",
+        "ondc_item_id",
+        "enrolled_images"
+      ],
+      "title": "SKU",
+      "type": "object"
+    },
+    "ScenarioRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "params"
+      ],
+      "title": "ScenarioRequest",
+      "type": "object"
+    },
+    "ScenarioStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "active": {
+          "type": "string"
+        },
+        "since_ts": {
+          "type": "number"
+        },
+        "params": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "available": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "clock_factor": {
+          "type": "number"
+        },
+        "sim_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "active",
+        "since_ts",
+        "params",
+        "available",
+        "clock_factor",
+        "sim_ts"
+      ],
+      "title": "ScenarioStatus",
+      "type": "object"
+    },
+    "Series": {
+      "additionalProperties": false,
+      "properties": {
+        "metric": {
+          "type": "string"
+        },
+        "bucket_s": {
+          "type": "integer"
+        },
+        "points": {
+          "items": {
+            "$ref": "#/$defs/SeriesPoint"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "metric",
+        "bucket_s",
+        "points"
+      ],
+      "title": "Series",
+      "type": "object"
+    },
+    "SeriesPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "ts": {
+          "type": "number"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "ts",
+        "value"
+      ],
+      "title": "SeriesPoint",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warn",
+        "high",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "ShelfPolygon": {
+      "additionalProperties": false,
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "polygon": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "capacity_facings": {
+          "default": 8,
+          "type": "integer"
+        },
+        "min_facings": {
+          "default": 2,
+          "type": "integer"
+        },
+        "facing_width_px": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reference": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ShelfReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "shelf_id",
+        "camera_id",
+        "name",
+        "polygon",
+        "sku_id",
+        "capacity_facings",
+        "min_facings",
+        "facing_width_px",
+        "reference"
+      ],
+      "title": "ShelfPolygon",
+      "type": "object"
+    },
+    "ShelfReference": {
+      "additionalProperties": false,
+      "description": "Calibration snapshot of a full shelf (what 100 % coverage looks like).",
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "calibrated_ts": {
+          "type": "number"
+        },
+        "raw_coverage_full": {
+          "type": "number"
+        },
+        "backing_bgr": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "method": {
+          "default": "classical",
+          "type": "string"
+        }
+      },
+      "required": [
+        "shelf_id",
+        "calibrated_ts",
+        "raw_coverage_full",
+        "backing_bgr",
+        "profile",
+        "method"
+      ],
+      "title": "ShelfReference",
+      "type": "object"
+    },
+    "ShelfScan": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "shelf.scan",
+          "default": "shelf.scan",
+          "type": "string"
+        },
+        "shelf_id": {
+          "type": "string"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "coverage": {
+          "type": "number"
+        },
+        "facings": {
+          "type": "integer"
+        },
+        "capacity_facings": {
+          "type": "integer"
+        },
+        "state_raw": {
+          "$ref": "#/$defs/ShelfState"
+        },
+        "occluded": {
+          "default": false,
+          "type": "boolean"
+        },
+        "method": {
+          "default": "classical",
+          "type": "string"
+        },
+        "thumb_b64": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "shelf_id",
+        "sku_id",
+        "coverage",
+        "facings",
+        "capacity_facings",
+        "state_raw",
+        "occluded",
+        "method",
+        "thumb_b64"
+      ],
+      "title": "ShelfScan",
+      "type": "object"
+    },
+    "ShelfState": {
+      "enum": [
+        "stocked",
+        "partial",
+        "empty",
+        "unknown"
+      ],
+      "title": "ShelfState",
+      "type": "string"
+    },
+    "ShelfStateChange": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "shelf.state",
+          "default": "shelf.state",
+          "type": "string"
+        },
+        "shelf_id": {
+          "type": "string"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "from_state": {
+          "$ref": "#/$defs/ShelfState"
+        },
+        "to_state": {
+          "$ref": "#/$defs/ShelfState"
+        },
+        "gap_started_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "gap_minutes": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "consecutive_empty_scans": {
+          "type": "integer"
+        },
+        "impact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "type",
+        "shelf_id",
+        "sku_id",
+        "from_state",
+        "to_state",
+        "gap_started_ts",
+        "gap_minutes",
+        "consecutive_empty_scans",
+        "impact"
+      ],
+      "title": "ShelfStateChange",
+      "type": "object"
+    },
+    "ShelfStateView": {
+      "additionalProperties": false,
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sku_name": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/ShelfState"
+        },
+        "coverage": {
+          "type": "number"
+        },
+        "facings": {
+          "type": "integer"
+        },
+        "capacity_facings": {
+          "type": "integer"
+        },
+        "min_facings": {
+          "type": "integer"
+        },
+        "consecutive_empty_scans": {
+          "type": "integer"
+        },
+        "persistence_required": {
+          "type": "integer"
+        },
+        "gap_started_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "gap_minutes": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_scan_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "occluded": {
+          "type": "boolean"
+        },
+        "impact_open": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "has_reference": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "shelf_id",
+        "name",
+        "sku_id",
+        "sku_name",
+        "state",
+        "coverage",
+        "facings",
+        "capacity_facings",
+        "min_facings",
+        "consecutive_empty_scans",
+        "persistence_required",
+        "gap_started_ts",
+        "gap_minutes",
+        "last_scan_ts",
+        "occluded",
+        "impact_open",
+        "has_reference"
+      ],
+      "title": "ShelfStateView",
+      "type": "object"
+    },
+    "ShelvesUpdate": {
+      "additionalProperties": false,
+      "properties": {
+        "shelves": {
+          "items": {
+            "$ref": "#/$defs/ShelfPolygon"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "shelves"
+      ],
+      "title": "ShelvesUpdate",
+      "type": "object"
+    },
+    "ShrinkAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "sku_name": {
+          "type": "string"
+        },
+        "visual_units": {
+          "type": "integer"
+        },
+        "system_units": {
+          "type": "integer"
+        },
+        "delta_units": {
+          "type": "integer"
+        },
+        "delta_inr": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "sku_id",
+        "sku_name",
+        "visual_units",
+        "system_units",
+        "delta_units",
+        "delta_inr"
+      ],
+      "title": "ShrinkAlertDetails",
+      "type": "object"
+    },
+    "SimTruth": {
+      "additionalProperties": false,
+      "description": "Ground truth emitted by the synthetic store so tests can assert accuracy.",
+      "properties": {
+        "type": {
+          "const": "sim.truth",
+          "default": "sim.truth",
+          "type": "string"
+        },
+        "in_store": {
+          "type": "integer"
+        },
+        "queue_counts": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "shelf_units": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "shelf_facings": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "served_total": {
+          "type": "integer"
+        },
+        "abandoned_total": {
+          "type": "integer"
+        },
+        "footfall_in_total": {
+          "type": "integer"
+        },
+        "scenario": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "in_store",
+        "queue_counts",
+        "shelf_units",
+        "shelf_facings",
+        "served_total",
+        "abandoned_total",
+        "footfall_in_total",
+        "scenario"
+      ],
+      "title": "SimTruth",
+      "type": "object"
+    },
+    "SkuEnrolResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "enrolled": {
+          "type": "integer"
+        },
+        "backend": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sku_id",
+        "enrolled",
+        "backend"
+      ],
+      "title": "SkuEnrolResponse",
+      "type": "object"
+    },
+    "StockReconciled": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "stock.reconciled",
+          "default": "stock.reconciled",
+          "type": "string"
+        },
+        "sku_id": {
+          "type": "string"
+        },
+        "shelf_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "visual_units": {
+          "type": "integer"
+        },
+        "system_units": {
+          "type": "integer"
+        },
+        "delta_units": {
+          "type": "integer"
+        },
+        "delta_inr": {
+          "type": "number"
+        },
+        "source": {
+          "enum": [
+            "tally",
+            "zoho",
+            "manual",
+            "mock"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "sku_id",
+        "shelf_id",
+        "visual_units",
+        "system_units",
+        "delta_units",
+        "delta_inr",
+        "source"
+      ],
+      "title": "StockReconciled",
+      "type": "object"
+    },
+    "StockoutAlert": {
+      "additionalProperties": false,
+      "description": "Details for kind=shelf_gap.",
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sku_name": {
+          "type": "string"
+        },
+        "gap_minutes": {
+          "type": "number"
+        },
+        "coverage": {
+          "type": "number"
+        },
+        "facings": {
+          "type": "integer"
+        },
+        "min_facings": {
+          "type": "integer"
+        },
+        "consecutive_empty_scans": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "shelf_id",
+        "sku_id",
+        "sku_name",
+        "gap_minutes",
+        "coverage",
+        "facings",
+        "min_facings",
+        "consecutive_empty_scans"
+      ],
+      "title": "StockoutAlert",
+      "type": "object"
+    },
+    "Store": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        },
+        "lang": {
+          "$ref": "#/$defs/Lang"
+        },
+        "tz": {
+          "type": "string"
+        },
+        "device_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "registered_ts": {
+          "type": "number"
+        },
+        "config": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StoreConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "store_id",
+        "name",
+        "tier",
+        "lang",
+        "tz",
+        "device_ids",
+        "registered_ts",
+        "config"
+      ],
+      "title": "Store",
+      "type": "object"
+    },
+    "StoreConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "default": 1,
+          "type": "integer"
+        },
+        "config_version": {
+          "default": 1,
+          "type": "integer"
+        },
+        "store": {
+          "$ref": "#/$defs/StoreInfo"
+        },
+        "device": {
+          "$ref": "#/$defs/DeviceConfig"
+        },
+        "floorplan": {
+          "$ref": "#/$defs/Floorplan",
+          "default": {
+            "width_px": 640,
+            "height_px": 360,
+            "scale_m_per_px": 0.02,
+            "image": null,
+            "heat_cell_px": 20
+          }
+        },
+        "cameras": {
+          "items": {
+            "$ref": "#/$defs/CameraConfig"
+          },
+          "type": "array"
+        },
+        "zones": {
+          "items": {
+            "$ref": "#/$defs/Zone"
+          },
+          "type": "array"
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/$defs/Line"
+          },
+          "type": "array"
+        },
+        "counters": {
+          "items": {
+            "$ref": "#/$defs/Counter"
+          },
+          "type": "array"
+        },
+        "shelves": {
+          "items": {
+            "$ref": "#/$defs/ShelfPolygon"
+          },
+          "type": "array"
+        },
+        "skus": {
+          "items": {
+            "$ref": "#/$defs/SKU"
+          },
+          "type": "array"
+        },
+        "rules": {
+          "$ref": "#/$defs/RulesConfig",
+          "default": {
+            "shelf_partial_coverage": 0.8,
+            "shelf_empty_coverage": 0.25,
+            "persistence_scans": 3,
+            "max_persistence_scans": 6,
+            "queue_long_count": 4,
+            "queue_long_s": 60.0,
+            "queue_resolve_s": 30.0,
+            "queue_forecast_threshold": 6,
+            "queue_forecast_horizon_min": 15,
+            "queue_min_age_s": 5.0,
+            "queue_window_s": 600,
+            "snapshot_interval_s": 10.0,
+            "occupancy_interval_s": 10.0,
+            "heat_flush_s": 60.0,
+            "camera_down_s": 15.0,
+            "black_frame_std": 3.0,
+            "sync_backlog_warn": 1000,
+            "sync_backlog_after_s": 300.0,
+            "shrink_min_units": 3,
+            "shrink_min_inr": 200.0,
+            "occlusion_skip_overlap": 0.3,
+            "footfall_spike_factor": 2.5
+          }
+        },
+        "impact": {
+          "$ref": "#/$defs/ImpactConfig",
+          "default": {
+            "lost_sale_factor": 0.31,
+            "lost_sale_source": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
+            "queue_abandon_factor": 0.32,
+            "queue_abandon_source": "Retail queue studies: 32% abandon after long lines; tolerance 5-8 min",
+            "atv_inr": 180.0,
+            "baseline_unattended_gap_min": 120.0
+          }
+        },
+        "privacy": {
+          "$ref": "#/$defs/PrivacyConfig",
+          "default": {
+            "preview_blur_people": true,
+            "shelf_thumbnails": true,
+            "retention": {
+              "aggregate_days": 30,
+              "alerts_days": 365,
+              "heatmap_days": 90,
+              "sent_outbox_hours": 24,
+              "telemetry_hours": 24,
+              "thumbnails_days": 7
+            },
+            "statement": "No face recognition; no raw video persisted; track IDs never leave the edge."
+          }
+        },
+        "integrations": {
+          "$ref": "#/$defs/IntegrationsConfig",
+          "default": {
+            "tally": {
+              "company": null,
+              "enabled": false,
+              "url": "http://localhost:9000"
+            },
+            "ondc": {
+              "bpp_id": "demo.bpp",
+              "enabled": false,
+              "gateway_url": "http://localhost:8000/mock/ondc",
+              "signing": "none"
+            },
+            "whatsapp": {
+              "mode": "simulator",
+              "phone_number_id": null,
+              "telegram_chat_id": null,
+              "telegram_token_env": "TELEGRAM_TOKEN",
+              "to": null,
+              "token_env": "WHATSAPP_TOKEN"
+            }
+          }
+        },
+        "demo": {
+          "$ref": "#/$defs/DemoConfig",
+          "default": {
+            "enabled": false,
+            "clock_factor": 10.0,
+            "default_scenario": "baseline",
+            "start_time": "17:00",
+            "seed_history_days": 30,
+            "auto_calibrate_first_scan": true
+          }
+        }
+      },
+      "required": [
+        "schema_version",
+        "config_version",
+        "store",
+        "device",
+        "floorplan",
+        "cameras",
+        "zones",
+        "lines",
+        "counters",
+        "shelves",
+        "skus",
+        "rules",
+        "impact",
+        "privacy",
+        "integrations",
+        "demo"
+      ],
+      "title": "StoreConfig",
+      "type": "object"
+    },
+    "StoreInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lang": {
+          "$ref": "#/$defs/Lang",
+          "default": "hi"
+        },
+        "tz": {
+          "default": "Asia/Kolkata",
+          "type": "string"
+        },
+        "tier": {
+          "default": "kirana",
+          "enum": [
+            "kirana",
+            "mini",
+            "chain"
+          ],
+          "type": "string"
+        },
+        "owner_whatsapp": {
+          "type": "string"
+        },
+        "open_hours": {
+          "default": [
+            "08:00",
+            "22:00"
+          ],
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "store_id",
+        "name",
+        "lang",
+        "tz",
+        "tier",
+        "owner_whatsapp",
+        "open_hours",
+        "address"
+      ],
+      "title": "StoreInfo",
+      "type": "object"
+    },
+    "SyncAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "backlog": {
+          "type": "integer"
+        },
+        "down_since_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "backlog",
+        "down_since_ts"
+      ],
+      "title": "SyncAlertDetails",
+      "type": "object"
+    },
+    "SyncStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "link": {
+          "$ref": "#/$defs/LinkState"
+        },
+        "uplink": {
+          "$ref": "#/$defs/UplinkMode"
+        },
+        "cloud_reachable": {
+          "type": "boolean"
+        },
+        "backlog": {
+          "type": "integer"
+        },
+        "backlog_by_class": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "last_ack_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_ack_seq": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replayed_since_restore": {
+          "type": "integer"
+        },
+        "replay_total_at_restore": {
+          "type": "integer"
+        },
+        "seq_ok": {
+          "type": "boolean"
+        },
+        "down_since_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "link",
+        "uplink",
+        "cloud_reachable",
+        "backlog",
+        "backlog_by_class",
+        "last_ack_ts",
+        "last_ack_seq",
+        "replayed_since_restore",
+        "replay_total_at_restore",
+        "seq_ok",
+        "down_since_ts"
+      ],
+      "title": "SyncStatus",
+      "type": "object"
+    },
+    "TallyConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "url": {
+          "default": "http://localhost:9000",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "TallyConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "url",
+        "company"
+      ]
+    },
+    "UplinkConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/UplinkMode",
+          "default": "http"
+        },
+        "batch_size": {
+          "default": 500,
+          "type": "integer"
+        },
+        "interval_s": {
+          "default": 2.0,
+          "type": "number"
+        },
+        "heartbeat_s": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "max_outbox_rows": {
+          "default": 50000,
+          "type": "integer"
+        },
+        "mqtt": {
+          "$ref": "#/$defs/MqttConfig",
+          "default": {
+            "host": "localhost",
+            "port": 1883,
+            "ws_port": 9001,
+            "username": null,
+            "password": null,
+            "session_expiry_s": 604800
+          }
+        }
+      },
+      "title": "UplinkConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "batch_size",
+        "interval_s",
+        "heartbeat_s",
+        "max_outbox_rows",
+        "mqtt"
+      ]
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    },
+    "WhatsAppConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "default": "simulator",
+          "enum": [
+            "simulator",
+            "cloud_api",
+            "telegram",
+            "none"
+          ],
+          "type": "string"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phone_number_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "token_env": {
+          "default": "WHATSAPP_TOKEN",
+          "type": "string"
+        },
+        "telegram_chat_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "telegram_token_env": {
+          "default": "TELEGRAM_TOKEN",
+          "type": "string"
+        }
+      },
+      "title": "WhatsAppConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "to",
+        "phone_number_id",
+        "token_env",
+        "telegram_chat_id",
+        "telegram_token_env"
+      ]
+    },
+    "WhatsAppReply": {
+      "additionalProperties": false,
+      "properties": {
+        "alert_id": {
+          "type": "string"
+        },
+        "digit": {
+          "type": "integer"
+        },
+        "from_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "alert_id",
+        "digit",
+        "from_number"
+      ],
+      "title": "WhatsAppReply",
+      "type": "object"
+    },
+    "WsKind": {
+      "title": "WsKind",
+      "type": "string",
+      "enum": [
+        "hello",
+        "event",
+        "alert",
+        "kpi",
+        "health",
+        "sync",
+        "scenario",
+        "notification",
+        "device",
+        "forecast"
+      ]
+    },
+    "WsMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/WsKind"
+        },
+        "ts": {
+          "type": "number"
+        },
+        "store_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "data": {
+          "additionalProperties": true,
+          "type": "object"
+        }
+      },
+      "required": [
+        "kind",
+        "ts",
+        "store_id",
+        "data"
+      ],
+      "title": "WsMessage",
+      "type": "object"
+    },
+    "Zone": {
+      "additionalProperties": false,
+      "properties": {
+        "zone_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ZoneKind"
+        },
+        "polygon": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "zone_id",
+        "camera_id",
+        "kind",
+        "polygon",
+        "name"
+      ],
+      "title": "Zone",
+      "type": "object"
+    },
+    "ZoneKind": {
+      "enum": [
+        "aisle",
+        "queue",
+        "entrance",
+        "counter",
+        "store",
+        "custom"
+      ],
+      "title": "ZoneKind",
+      "type": "string"
+    },
+    "ZoneOccupancy": {
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "zone.occupancy",
+          "default": "zone.occupancy",
+          "type": "string"
+        },
+        "zone_id": {
+          "type": "string"
+        },
+        "zone_kind": {
+          "$ref": "#/$defs/ZoneKind"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "window_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "type",
+        "zone_id",
+        "zone_kind",
+        "count",
+        "window_s"
+      ],
+      "title": "ZoneOccupancy",
+      "type": "object"
+    },
+    "ZonesUpdate": {
+      "additionalProperties": false,
+      "properties": {
+        "zones": {
+          "items": {
+            "$ref": "#/$defs/Zone"
+          },
+          "type": "array"
+        },
+        "lines": {
+          "items": {
+            "$ref": "#/$defs/Line"
+          },
+          "type": "array"
+        },
+        "counters": {
+          "items": {
+            "$ref": "#/$defs/Counter"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "zones",
+        "lines",
+        "counters"
+      ],
+      "title": "ZonesUpdate",
+      "type": "object"
+    }
+  }
+}

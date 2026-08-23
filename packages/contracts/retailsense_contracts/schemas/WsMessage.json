@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "$ref": "#/$defs/WsKind"
+    },
+    "ts": {
+      "type": "number"
+    },
+    "store_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "data": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  "required": [
+    "kind",
+    "ts",
+    "store_id",
+    "data"
+  ],
+  "title": "WsMessage",
+  "type": "object",
+  "$defs": {
+    "WsKind": {
+      "title": "WsKind",
+      "type": "string",
+      "enum": [
+        "hello",
+        "event",
+        "alert",
+        "kpi",
+        "health",
+        "sync",
+        "scenario",
+        "notification",
+        "device",
+        "forecast"
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

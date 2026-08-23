@@ -1,0 +1,102 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "footfall_in": {
+      "type": "integer"
+    },
+    "footfall_out": {
+      "type": "integer"
+    },
+    "visual_transactions": {
+      "type": "integer"
+    },
+    "conversion_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "atv_inr": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "osa_pct": {
+      "type": "number"
+    },
+    "gap_minutes_total": {
+      "type": "number"
+    },
+    "avg_wait_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "max_wait_s": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "abandoned": {
+      "type": "integer"
+    },
+    "lost_sales_inr": {
+      "type": "number"
+    },
+    "recovered_inr": {
+      "type": "number"
+    },
+    "shrink_inr": {
+      "type": "number"
+    },
+    "alerts_total": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "store_id",
+    "date",
+    "footfall_in",
+    "footfall_out",
+    "visual_transactions",
+    "conversion_pct",
+    "atv_inr",
+    "osa_pct",
+    "gap_minutes_total",
+    "avg_wait_s",
+    "max_wait_s",
+    "abandoned",
+    "lost_sales_inr",
+    "recovered_inr",
+    "shrink_inr",
+    "alerts_total"
+  ],
+  "title": "KpiDaily",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

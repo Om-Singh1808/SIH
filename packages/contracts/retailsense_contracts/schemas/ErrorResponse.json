@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "description": "Uniform error body (FastAPI ``detail`` compatible).",
+  "properties": {
+    "detail": {
+      "type": "string"
+    },
+    "code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "detail",
+    "code"
+  ],
+  "title": "ErrorResponse",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

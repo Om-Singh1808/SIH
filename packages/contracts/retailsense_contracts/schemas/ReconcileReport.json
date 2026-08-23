@@ -1,0 +1,87 @@
+{
+  "$defs": {
+    "ReconcileRow": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shelf_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "visual_units": {
+          "type": "integer"
+        },
+        "system_units": {
+          "type": "integer"
+        },
+        "delta_units": {
+          "type": "integer"
+        },
+        "delta_inr": {
+          "type": "number"
+        },
+        "flagged": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sku_id",
+        "name",
+        "shelf_id",
+        "visual_units",
+        "system_units",
+        "delta_units",
+        "delta_inr",
+        "flagged"
+      ],
+      "title": "ReconcileRow",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "ts": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    },
+    "rows": {
+      "items": {
+        "$ref": "#/$defs/ReconcileRow"
+      },
+      "type": "array"
+    },
+    "shrink_inr_total": {
+      "type": "number"
+    },
+    "alerts_raised": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "store_id",
+    "ts",
+    "source",
+    "rows",
+    "shrink_inr_total",
+    "alerts_raised"
+  ],
+  "title": "ReconcileReport",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

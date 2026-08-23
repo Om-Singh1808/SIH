@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "RetentionPolicy": {
+      "additionalProperties": false,
+      "description": "How long each data class lives before the purge job deletes it.",
+      "properties": {
+        "telemetry_hours": {
+          "default": 24,
+          "type": "integer"
+        },
+        "aggregate_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "thumbnails_days": {
+          "default": 7,
+          "type": "integer"
+        },
+        "heatmap_days": {
+          "default": 90,
+          "type": "integer"
+        },
+        "alerts_days": {
+          "default": 365,
+          "type": "integer"
+        },
+        "sent_outbox_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "title": "RetentionPolicy",
+      "type": "object",
+      "required": [
+        "telemetry_hours",
+        "aggregate_days",
+        "thumbnails_days",
+        "heatmap_days",
+        "alerts_days",
+        "sent_outbox_hours"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "preview_blur_people": {
+      "default": true,
+      "type": "boolean"
+    },
+    "shelf_thumbnails": {
+      "default": true,
+      "type": "boolean"
+    },
+    "retention": {
+      "$ref": "#/$defs/RetentionPolicy",
+      "default": {
+        "telemetry_hours": 24,
+        "aggregate_days": 30,
+        "thumbnails_days": 7,
+        "heatmap_days": 90,
+        "alerts_days": 365,
+        "sent_outbox_hours": 24
+      }
+    },
+    "statement": {
+      "default": "No face recognition; no raw video persisted; track IDs never leave the edge.",
+      "type": "string"
+    }
+  },
+  "title": "PrivacyConfig",
+  "type": "object",
+  "required": [
+    "preview_blur_people",
+    "shelf_thumbnails",
+    "retention",
+    "statement"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

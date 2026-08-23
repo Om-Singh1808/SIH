@@ -1,0 +1,42 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "width_px": {
+      "default": 640,
+      "type": "integer"
+    },
+    "height_px": {
+      "default": 360,
+      "type": "integer"
+    },
+    "scale_m_per_px": {
+      "default": 0.02,
+      "type": "number"
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "heat_cell_px": {
+      "default": 20,
+      "type": "integer"
+    }
+  },
+  "title": "Floorplan",
+  "type": "object",
+  "required": [
+    "width_px",
+    "height_px",
+    "scale_m_per_px",
+    "image",
+    "heat_cell_px"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

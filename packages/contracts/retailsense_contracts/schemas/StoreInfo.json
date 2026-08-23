@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "Lang": {
+      "enum": [
+        "hi",
+        "en"
+      ],
+      "title": "Lang",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "lang": {
+      "$ref": "#/$defs/Lang",
+      "default": "hi"
+    },
+    "tz": {
+      "default": "Asia/Kolkata",
+      "type": "string"
+    },
+    "tier": {
+      "default": "kirana",
+      "enum": [
+        "kirana",
+        "mini",
+        "chain"
+      ],
+      "type": "string"
+    },
+    "owner_whatsapp": {
+      "type": "string"
+    },
+    "open_hours": {
+      "default": [
+        "08:00",
+        "22:00"
+      ],
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "address": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "store_id",
+    "name",
+    "lang",
+    "tz",
+    "tier",
+    "owner_whatsapp",
+    "open_hours",
+    "address"
+  ],
+  "title": "StoreInfo",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

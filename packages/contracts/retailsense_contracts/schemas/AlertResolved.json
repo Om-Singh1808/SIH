@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "ImpactInr": {
+      "additionalProperties": false,
+      "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+      "properties": {
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "basis",
+        "factor",
+        "source"
+      ],
+      "title": "ImpactInr",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "alert.resolved",
+      "default": "alert.resolved",
+      "type": "string"
+    },
+    "alert_id": {
+      "type": "string"
+    },
+    "reason": {
+      "enum": [
+        "condition_cleared",
+        "restocked_observed",
+        "false_positive",
+        "superseded",
+        "timeout",
+        "device_back"
+      ],
+      "type": "string"
+    },
+    "final_gap_minutes": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "impact_final": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImpactInr"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "recovered": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImpactInr"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "alert_id",
+    "reason",
+    "final_gap_minutes",
+    "impact_final",
+    "recovered"
+  ],
+  "title": "AlertResolved",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

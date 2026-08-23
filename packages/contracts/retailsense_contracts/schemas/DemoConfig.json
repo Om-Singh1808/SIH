@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "default": false,
+      "type": "boolean"
+    },
+    "clock_factor": {
+      "default": 10.0,
+      "type": "number"
+    },
+    "default_scenario": {
+      "default": "baseline",
+      "type": "string"
+    },
+    "start_time": {
+      "default": "17:00",
+      "type": "string"
+    },
+    "seed_history_days": {
+      "default": 30,
+      "type": "integer"
+    },
+    "auto_calibrate_first_scan": {
+      "default": true,
+      "type": "boolean"
+    }
+  },
+  "title": "DemoConfig",
+  "type": "object",
+  "required": [
+    "enabled",
+    "clock_factor",
+    "default_scenario",
+    "start_time",
+    "seed_history_days",
+    "auto_calibrate_first_scan"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

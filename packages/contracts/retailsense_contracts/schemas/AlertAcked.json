@@ -1,0 +1,67 @@
+{
+  "$defs": {
+    "AckAction": {
+      "description": "What the shopkeeper did. On WhatsApp digit *i* maps to ``Alert.actions[i-1]``.",
+      "enum": [
+        "restocked",
+        "order",
+        "false_positive",
+        "opened_counter",
+        "ignore",
+        "checked",
+        "investigate"
+      ],
+      "title": "AckAction",
+      "type": "string"
+    },
+    "AckBy": {
+      "enum": [
+        "whatsapp",
+        "whatsapp_sim",
+        "board",
+        "auto",
+        "telegram"
+      ],
+      "title": "AckBy",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "alert.acked",
+      "default": "alert.acked",
+      "type": "string"
+    },
+    "alert_id": {
+      "type": "string"
+    },
+    "action": {
+      "$ref": "#/$defs/AckAction"
+    },
+    "by": {
+      "$ref": "#/$defs/AckBy"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "alert_id",
+    "action",
+    "by",
+    "note"
+  ],
+  "title": "AlertAcked",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "message_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "sent",
+        "failed"
+      ],
+      "type": "string"
+    },
+    "detail": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "message_id",
+    "status",
+    "detail"
+  ],
+  "title": "DeliveryReceipt",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

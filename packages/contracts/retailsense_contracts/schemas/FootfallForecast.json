@@ -1,0 +1,89 @@
+{
+  "$defs": {
+    "FootfallForecastDay": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "predicted": {
+          "type": "number"
+        },
+        "lower": {
+          "type": "number"
+        },
+        "upper": {
+          "type": "number"
+        },
+        "is_festival": {
+          "type": "boolean"
+        },
+        "festival_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "days_to_festival": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "predicted",
+        "lower",
+        "upper",
+        "is_festival",
+        "festival_name",
+        "days_to_festival"
+      ],
+      "title": "FootfallForecastDay",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "store_id": {
+      "type": "string"
+    },
+    "made_ts": {
+      "type": "number"
+    },
+    "days": {
+      "items": {
+        "$ref": "#/$defs/FootfallForecastDay"
+      },
+      "type": "array"
+    },
+    "mae_holdout": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "store_id",
+    "made_ts",
+    "days",
+    "mae_holdout"
+  ],
+  "title": "FootfallForecast",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

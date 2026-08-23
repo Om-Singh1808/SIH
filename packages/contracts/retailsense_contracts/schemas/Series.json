@@ -1,0 +1,44 @@
+{
+  "$defs": {
+    "SeriesPoint": {
+      "additionalProperties": false,
+      "properties": {
+        "ts": {
+          "type": "number"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "ts",
+        "value"
+      ],
+      "title": "SeriesPoint",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "metric": {
+      "type": "string"
+    },
+    "bucket_s": {
+      "type": "integer"
+    },
+    "points": {
+      "items": {
+        "$ref": "#/$defs/SeriesPoint"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "metric",
+    "bucket_s",
+    "points"
+  ],
+  "title": "Series",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

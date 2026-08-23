@@ -1,0 +1,55 @@
+{
+  "additionalProperties": false,
+  "description": "Details for kind=queue_long / queue_forecast.",
+  "properties": {
+    "counter_id": {
+      "type": "string"
+    },
+    "counter_name": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "est_wait_s": {
+      "type": "number"
+    },
+    "forecast": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "horizon_min": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "threshold": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "counter_id",
+    "counter_name",
+    "count",
+    "est_wait_s",
+    "forecast",
+    "horizon_min",
+    "threshold"
+  ],
+  "title": "QueueAlertDetails",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

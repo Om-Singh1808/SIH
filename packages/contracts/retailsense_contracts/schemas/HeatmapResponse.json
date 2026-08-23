@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "HeatCell": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "integer"
+        },
+        "y": {
+          "type": "integer"
+        },
+        "dwell_s": {
+          "type": "number"
+        },
+        "visits": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x",
+        "y",
+        "dwell_s",
+        "visits"
+      ],
+      "title": "HeatCell",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "camera_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "cell_px": {
+      "type": "integer"
+    },
+    "width_cells": {
+      "type": "integer"
+    },
+    "height_cells": {
+      "type": "integer"
+    },
+    "from_ts": {
+      "type": "number"
+    },
+    "to_ts": {
+      "type": "number"
+    },
+    "cells": {
+      "items": {
+        "$ref": "#/$defs/HeatCell"
+      },
+      "type": "array"
+    },
+    "max_dwell_s": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "camera_id",
+    "cell_px",
+    "width_cells",
+    "height_cells",
+    "from_ts",
+    "to_ts",
+    "cells",
+    "max_dwell_s"
+  ],
+  "title": "HeatmapResponse",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

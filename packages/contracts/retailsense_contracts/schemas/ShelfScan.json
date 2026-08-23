@@ -1,0 +1,81 @@
+{
+  "$defs": {
+    "ShelfState": {
+      "enum": [
+        "stocked",
+        "partial",
+        "empty",
+        "unknown"
+      ],
+      "title": "ShelfState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "shelf.scan",
+      "default": "shelf.scan",
+      "type": "string"
+    },
+    "shelf_id": {
+      "type": "string"
+    },
+    "sku_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "coverage": {
+      "type": "number"
+    },
+    "facings": {
+      "type": "integer"
+    },
+    "capacity_facings": {
+      "type": "integer"
+    },
+    "state_raw": {
+      "$ref": "#/$defs/ShelfState"
+    },
+    "occluded": {
+      "default": false,
+      "type": "boolean"
+    },
+    "method": {
+      "default": "classical",
+      "type": "string"
+    },
+    "thumb_b64": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "shelf_id",
+    "sku_id",
+    "coverage",
+    "facings",
+    "capacity_facings",
+    "state_raw",
+    "occluded",
+    "method",
+    "thumb_b64"
+  ],
+  "title": "ShelfScan",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

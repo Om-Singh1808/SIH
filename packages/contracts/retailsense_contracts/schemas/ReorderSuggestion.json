@@ -1,0 +1,64 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "sku_id": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_hi": {
+      "type": "string"
+    },
+    "system_units": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "visual_units": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "forecast_units_lead": {
+      "type": "number"
+    },
+    "safety_stock": {
+      "type": "number"
+    },
+    "suggest_qty": {
+      "type": "integer"
+    },
+    "est_cost_inr": {
+      "type": "number"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sku_id",
+    "name_en",
+    "name_hi",
+    "system_units",
+    "visual_units",
+    "forecast_units_lead",
+    "safety_stock",
+    "suggest_qty",
+    "est_cost_inr",
+    "reason"
+  ],
+  "title": "ReorderSuggestion",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

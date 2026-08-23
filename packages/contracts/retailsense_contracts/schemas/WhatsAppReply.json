@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "alert_id": {
+      "type": "string"
+    },
+    "digit": {
+      "type": "integer"
+    },
+    "from_number": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "alert_id",
+    "digit",
+    "from_number"
+  ],
+  "title": "WhatsAppReply",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

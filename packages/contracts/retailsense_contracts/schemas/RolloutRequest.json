@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "model_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "canary_pct": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "model_id",
+    "version",
+    "canary_pct"
+  ],
+  "title": "RolloutRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

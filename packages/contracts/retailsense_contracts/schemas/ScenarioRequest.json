@@ -1,0 +1,19 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "type": "object"
+    }
+  },
+  "required": [
+    "name",
+    "params"
+  ],
+  "title": "ScenarioRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

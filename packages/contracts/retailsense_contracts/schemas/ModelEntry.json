@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "ModelIO": {
+      "additionalProperties": false,
+      "properties": {
+        "shape": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "layout": {
+          "default": "NCHW",
+          "type": "string"
+        },
+        "normalize": {
+          "default": "0-1",
+          "type": "string"
+        },
+        "letterbox": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "shape",
+        "layout",
+        "normalize",
+        "letterbox"
+      ],
+      "title": "ModelIO",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "model_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "task": {
+      "enum": [
+        "person_detect",
+        "shelf_gap",
+        "sku_embed"
+      ],
+      "type": "string"
+    },
+    "format": {
+      "enum": [
+        "onnx",
+        "pt",
+        "tflite"
+      ],
+      "type": "string"
+    },
+    "file": {
+      "type": "string"
+    },
+    "sha256": {
+      "type": "string"
+    },
+    "size_bytes": {
+      "type": "integer"
+    },
+    "input": {
+      "$ref": "#/$defs/ModelIO"
+    },
+    "output_format": {
+      "enum": [
+        "yolov8",
+        "yolox",
+        "synthetic",
+        "none"
+      ],
+      "type": "string"
+    },
+    "classes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "license": {
+      "type": "string"
+    },
+    "min_runtime": {
+      "type": "string"
+    },
+    "notes": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "required": [
+    "model_id",
+    "version",
+    "task",
+    "format",
+    "file",
+    "sha256",
+    "size_bytes",
+    "input",
+    "output_format",
+    "classes",
+    "source_url",
+    "license",
+    "min_runtime",
+    "notes"
+  ],
+  "title": "ModelEntry",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,180 @@
+{
+  "$defs": {
+    "Counter": {
+      "additionalProperties": false,
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "queue_zone_id": {
+          "type": "string"
+        },
+        "counter_line_id": {
+          "type": "string"
+        },
+        "max_queue": {
+          "default": 8,
+          "type": "integer"
+        },
+        "default_service_s": {
+          "default": 45.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "counter_id",
+        "name",
+        "queue_zone_id",
+        "counter_line_id",
+        "max_queue",
+        "default_service_s"
+      ],
+      "title": "Counter",
+      "type": "object"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "description": "Directed line; +1 side (left of start->end, y down) is IN. See geometry.py.",
+      "properties": {
+        "line_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/LineKind"
+        },
+        "start": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "end": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "line_id",
+        "camera_id",
+        "kind",
+        "start",
+        "end",
+        "name"
+      ],
+      "title": "Line",
+      "type": "object"
+    },
+    "LineKind": {
+      "enum": [
+        "entrance",
+        "counter",
+        "custom"
+      ],
+      "title": "LineKind",
+      "type": "string"
+    },
+    "Zone": {
+      "additionalProperties": false,
+      "properties": {
+        "zone_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ZoneKind"
+        },
+        "polygon": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "zone_id",
+        "camera_id",
+        "kind",
+        "polygon",
+        "name"
+      ],
+      "title": "Zone",
+      "type": "object"
+    },
+    "ZoneKind": {
+      "enum": [
+        "aisle",
+        "queue",
+        "entrance",
+        "counter",
+        "store",
+        "custom"
+      ],
+      "title": "ZoneKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/Zone"
+      },
+      "type": "array"
+    },
+    "lines": {
+      "items": {
+        "$ref": "#/$defs/Line"
+      },
+      "type": "array"
+    },
+    "counters": {
+      "items": {
+        "$ref": "#/$defs/Counter"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "zones",
+    "lines",
+    "counters"
+  ],
+  "title": "ZonesUpdate",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "description": "Details for kind=shelf_gap.",
+  "properties": {
+    "shelf_id": {
+      "type": "string"
+    },
+    "sku_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sku_name": {
+      "type": "string"
+    },
+    "gap_minutes": {
+      "type": "number"
+    },
+    "coverage": {
+      "type": "number"
+    },
+    "facings": {
+      "type": "integer"
+    },
+    "min_facings": {
+      "type": "integer"
+    },
+    "consecutive_empty_scans": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "shelf_id",
+    "sku_id",
+    "sku_name",
+    "gap_minutes",
+    "coverage",
+    "facings",
+    "min_facings",
+    "consecutive_empty_scans"
+  ],
+  "title": "StockoutAlert",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

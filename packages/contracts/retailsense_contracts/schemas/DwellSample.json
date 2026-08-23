@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "description": "A finished visit to a zone. Deliberately carries no track id (privacy).",
+  "properties": {
+    "type": {
+      "const": "dwell.sample",
+      "default": "dwell.sample",
+      "type": "string"
+    },
+    "zone_id": {
+      "type": "string"
+    },
+    "dwell_s": {
+      "type": "number"
+    },
+    "entered_ts": {
+      "type": "number"
+    },
+    "exited_ts": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "type",
+    "zone_id",
+    "dwell_s",
+    "entered_ts",
+    "exited_ts"
+  ],
+  "title": "DwellSample",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

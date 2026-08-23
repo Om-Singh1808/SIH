@@ -1,0 +1,163 @@
+{
+  "$defs": {
+    "MqttConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "default": "localhost",
+          "type": "string"
+        },
+        "port": {
+          "default": 1883,
+          "type": "integer"
+        },
+        "ws_port": {
+          "default": 9001,
+          "type": "integer"
+        },
+        "username": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "password": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "session_expiry_s": {
+          "default": 604800,
+          "type": "integer"
+        }
+      },
+      "title": "MqttConfig",
+      "type": "object",
+      "required": [
+        "host",
+        "port",
+        "ws_port",
+        "username",
+        "password",
+        "session_expiry_s"
+      ]
+    },
+    "UplinkConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/UplinkMode",
+          "default": "http"
+        },
+        "batch_size": {
+          "default": 500,
+          "type": "integer"
+        },
+        "interval_s": {
+          "default": 2.0,
+          "type": "number"
+        },
+        "heartbeat_s": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "max_outbox_rows": {
+          "default": 50000,
+          "type": "integer"
+        },
+        "mqtt": {
+          "$ref": "#/$defs/MqttConfig",
+          "default": {
+            "host": "localhost",
+            "port": 1883,
+            "ws_port": 9001,
+            "username": null,
+            "password": null,
+            "session_expiry_s": 604800
+          }
+        }
+      },
+      "title": "UplinkConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "batch_size",
+        "interval_s",
+        "heartbeat_s",
+        "max_outbox_rows",
+        "mqtt"
+      ]
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "device_id": {
+      "type": "string"
+    },
+    "token": {
+      "default": "demo-token",
+      "type": "string"
+    },
+    "edge_port": {
+      "default": 8001,
+      "type": "integer"
+    },
+    "cloud_url": {
+      "default": "http://localhost:8000",
+      "type": "string"
+    },
+    "db_path": {
+      "default": "var/senseedge.db",
+      "type": "string"
+    },
+    "uplink": {
+      "$ref": "#/$defs/UplinkConfig",
+      "default": {
+        "mode": "http",
+        "batch_size": 500,
+        "interval_s": 2.0,
+        "heartbeat_s": 10.0,
+        "max_outbox_rows": 50000,
+        "mqtt": {
+          "host": "localhost",
+          "password": null,
+          "port": 1883,
+          "session_expiry_s": 604800,
+          "username": null,
+          "ws_port": 9001
+        }
+      }
+    }
+  },
+  "required": [
+    "device_id",
+    "token",
+    "edge_port",
+    "cloud_url",
+    "db_path",
+    "uplink"
+  ],
+  "title": "DeviceConfig",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

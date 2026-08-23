@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "description": "How long each data class lives before the purge job deletes it.",
+  "properties": {
+    "telemetry_hours": {
+      "default": 24,
+      "type": "integer"
+    },
+    "aggregate_days": {
+      "default": 30,
+      "type": "integer"
+    },
+    "thumbnails_days": {
+      "default": 7,
+      "type": "integer"
+    },
+    "heatmap_days": {
+      "default": 90,
+      "type": "integer"
+    },
+    "alerts_days": {
+      "default": 365,
+      "type": "integer"
+    },
+    "sent_outbox_hours": {
+      "default": 24,
+      "type": "integer"
+    }
+  },
+  "title": "RetentionPolicy",
+  "type": "object",
+  "required": [
+    "telemetry_hours",
+    "aggregate_days",
+    "thumbnails_days",
+    "heatmap_days",
+    "alerts_days",
+    "sent_outbox_hours"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

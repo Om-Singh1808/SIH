@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "RetentionPolicy": {
+      "additionalProperties": false,
+      "description": "How long each data class lives before the purge job deletes it.",
+      "properties": {
+        "telemetry_hours": {
+          "default": 24,
+          "type": "integer"
+        },
+        "aggregate_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "thumbnails_days": {
+          "default": 7,
+          "type": "integer"
+        },
+        "heatmap_days": {
+          "default": 90,
+          "type": "integer"
+        },
+        "alerts_days": {
+          "default": 365,
+          "type": "integer"
+        },
+        "sent_outbox_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "title": "RetentionPolicy",
+      "type": "object",
+      "required": [
+        "telemetry_hours",
+        "aggregate_days",
+        "thumbnails_days",
+        "heatmap_days",
+        "alerts_days",
+        "sent_outbox_hours"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "description": "Machine-readable statement of what RetailSense does and does not collect.",
+  "properties": {
+    "face_recognition": {
+      "default": false,
+      "type": "boolean"
+    },
+    "raw_video_persisted": {
+      "default": false,
+      "type": "boolean"
+    },
+    "track_ids_leave_edge": {
+      "default": false,
+      "type": "boolean"
+    },
+    "biometric_templates": {
+      "default": false,
+      "type": "boolean"
+    },
+    "shelf_thumbnails": {
+      "default": true,
+      "type": "boolean"
+    },
+    "thumbnail_max_px": {
+      "default": 96,
+      "type": "integer"
+    },
+    "thumbnail_scope": {
+      "default": "shelf polygon only; never includes people",
+      "type": "string"
+    },
+    "preview_blur_people": {
+      "default": true,
+      "type": "boolean"
+    },
+    "data_leaving_edge": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "retention": {
+      "$ref": "#/$defs/RetentionPolicy",
+      "default": {
+        "telemetry_hours": 24,
+        "aggregate_days": 30,
+        "thumbnails_days": 7,
+        "heatmap_days": 90,
+        "alerts_days": 365,
+        "sent_outbox_hours": 24
+      }
+    },
+    "lawful_basis": {
+      "default": "Legitimate business purpose of the store owner (DPDP Act 2023, s.7); no personal data of shoppers is retained.",
+      "type": "string"
+    },
+    "statement": {
+      "default": "No face recognition; no raw video persisted; track IDs never leave the edge.",
+      "type": "string"
+    }
+  },
+  "title": "PrivacyManifest",
+  "type": "object",
+  "required": [
+    "face_recognition",
+    "raw_video_persisted",
+    "track_ids_leave_edge",
+    "biometric_templates",
+    "shelf_thumbnails",
+    "thumbnail_max_px",
+    "thumbnail_scope",
+    "preview_blur_people",
+    "data_leaving_edge",
+    "retention",
+    "lawful_basis",
+    "statement"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

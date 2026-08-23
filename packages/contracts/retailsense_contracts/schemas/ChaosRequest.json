@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "enum": [
+        "freeze",
+        "drop",
+        "blackout",
+        "noise"
+      ],
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "seconds": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "p": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "kind",
+    "enabled",
+    "seconds",
+    "p"
+  ],
+  "title": "ChaosRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

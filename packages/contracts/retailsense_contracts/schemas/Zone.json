@@ -1,0 +1,58 @@
+{
+  "$defs": {
+    "ZoneKind": {
+      "enum": [
+        "aisle",
+        "queue",
+        "entrance",
+        "counter",
+        "store",
+        "custom"
+      ],
+      "title": "ZoneKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "zone_id": {
+      "type": "string"
+    },
+    "camera_id": {
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/ZoneKind"
+    },
+    "polygon": {
+      "items": {
+        "items": {
+          "type": "number"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "zone_id",
+    "camera_id",
+    "kind",
+    "polygon",
+    "name"
+  ],
+  "title": "Zone",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

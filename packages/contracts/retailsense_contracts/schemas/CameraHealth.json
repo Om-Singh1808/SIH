@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "camera_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "stale",
+        "black",
+        "error"
+      ],
+      "type": "string"
+    },
+    "fps": {
+      "type": "number"
+    },
+    "last_frame_age_s": {
+      "type": "number"
+    },
+    "detector": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "camera_id",
+    "status",
+    "fps",
+    "last_frame_age_s",
+    "detector"
+  ],
+  "title": "CameraHealth",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

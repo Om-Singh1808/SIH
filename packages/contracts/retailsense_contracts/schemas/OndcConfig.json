@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "default": false,
+      "type": "boolean"
+    },
+    "gateway_url": {
+      "default": "http://localhost:8000/mock/ondc",
+      "type": "string"
+    },
+    "bpp_id": {
+      "default": "demo.bpp",
+      "type": "string"
+    },
+    "signing": {
+      "default": "none",
+      "enum": [
+        "none",
+        "ed25519"
+      ],
+      "type": "string"
+    }
+  },
+  "title": "OndcConfig",
+  "type": "object",
+  "required": [
+    "enabled",
+    "gateway_url",
+    "bpp_id",
+    "signing"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

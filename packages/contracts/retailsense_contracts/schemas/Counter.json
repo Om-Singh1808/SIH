@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "counter_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "queue_zone_id": {
+      "type": "string"
+    },
+    "counter_line_id": {
+      "type": "string"
+    },
+    "max_queue": {
+      "default": 8,
+      "type": "integer"
+    },
+    "default_service_s": {
+      "default": 45.0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "counter_id",
+    "name",
+    "queue_zone_id",
+    "counter_line_id",
+    "max_queue",
+    "default_service_s"
+  ],
+  "title": "Counter",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

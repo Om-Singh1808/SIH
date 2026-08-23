@@ -1,0 +1,53 @@
+{
+  "$defs": {
+    "Direction": {
+      "description": "Line-crossing direction; see geometry.side_of_line for the normative rule.",
+      "enum": [
+        "in",
+        "out"
+      ],
+      "title": "Direction",
+      "type": "string"
+    },
+    "LineKind": {
+      "enum": [
+        "entrance",
+        "counter",
+        "custom"
+      ],
+      "title": "LineKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "footfall.crossing",
+      "default": "footfall.crossing",
+      "type": "string"
+    },
+    "line_id": {
+      "type": "string"
+    },
+    "line_kind": {
+      "$ref": "#/$defs/LineKind"
+    },
+    "direction": {
+      "$ref": "#/$defs/Direction"
+    },
+    "count": {
+      "default": 1,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "type",
+    "line_id",
+    "line_kind",
+    "direction",
+    "count"
+  ],
+  "title": "FootfallCrossing",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

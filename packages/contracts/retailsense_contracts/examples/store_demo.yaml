@@ -1,0 +1,30 @@
+schema_version: 1
+store: {store_id: STR-DL-001, name: "Ramesh General Store", lang: hi, tz: Asia/Kolkata, tier: kirana, owner_whatsapp: "+919999900001"}
+device: {device_id: EDGE-001, token: demo-token-001, edge_port: 8001, cloud_url: "http://localhost:8000", db_path: var/senseedge.db,
+         uplink: {mode: http, batch_size: 500, interval_s: 2.0, heartbeat_s: 10}}
+floorplan: {width_px: 640, height_px: 360, scale_m_per_px: 0.02, heat_cell_px: 20}
+cameras:
+  - {camera_id: cam-synth, source: "synthetic:baseline", width: 640, height: 360, fps_sample: 4, detector: auto, anchor: center, shelf_scan_interval_s: 30, preview_blur_people: false}
+zones:
+  - {zone_id: store,   camera_id: cam-synth, kind: store, polygon: [[20,20],[620,20],[620,340],[20,340]]}
+  - {zone_id: aisle-1, camera_id: cam-synth, kind: aisle, name: "Biscuits & Dairy aisle", polygon: [[130,70],[430,70],[430,200],[130,200]]}
+  - {zone_id: aisle-2, camera_id: cam-synth, kind: aisle, name: "Oil aisle", polygon: [[70,130],[125,130],[125,300],[70,300]]}
+  - {zone_id: queue-1, camera_id: cam-synth, kind: queue, name: "Counter queue", polygon: [[540,98],[612,98],[612,300],[540,300]]}
+lines:
+  - {line_id: entrance,       camera_id: cam-synth, kind: entrance, start: [120,315], end: [60,315]}    # IN = moving up (y decreasing)
+  - {line_id: counter-1-line, camera_id: cam-synth, kind: counter,  start: [532,98],  end: [532,142]}   # IN = served, moving left out of queue head
+counters:
+  - {counter_id: counter-1, name: "Main counter", queue_zone_id: queue-1, counter_line_id: counter-1-line, max_queue: 8, default_service_s: 45}
+shelves:
+  - {shelf_id: shelf-A, camera_id: cam-synth, name: "Dairy",    polygon: [[130,30],[270,30],[270,62],[130,62]], sku_id: AMUL-TAAZA-500, capacity_facings: 9, min_facings: 2, facing_width_px: 15}
+  - {shelf_id: shelf-B, camera_id: cam-synth, name: "Biscuits", polygon: [[290,30],[430,30],[430,62],[290,62]], sku_id: PARLE-G-70,     capacity_facings: 9, min_facings: 2, facing_width_px: 15}
+  - {shelf_id: shelf-C, camera_id: cam-synth, name: "Oil",      polygon: [[30,130],[62,130],[62,300],[30,300]], sku_id: FORTUNE-OIL-1L, capacity_facings: 7, min_facings: 1, facing_width_px: 22}
+skus:
+  - {sku_id: AMUL-TAAZA-500, name_en: "Amul Taaza 500ml", name_hi: "अमूल ताज़ा 500ml", mrp_inr: 27, margin_pct: 8,  velocity_units_per_hr: 18, units_per_facing: 4, lead_time_days: 1, tally_item_name: "Amul Taaza 500ml", ondc_item_id: I-AMUL-500}
+  - {sku_id: PARLE-G-70,     name_en: "Parle-G 70g",      name_hi: "पारले-जी 70g",     mrp_inr: 10, margin_pct: 12, velocity_units_per_hr: 8,  units_per_facing: 4, lead_time_days: 2, tally_item_name: "Parle-G 70g",      ondc_item_id: I-PARLEG-70}
+  - {sku_id: FORTUNE-OIL-1L, name_en: "Fortune Sunflower Oil 1L", name_hi: "फॉर्च्यून तेल 1L", mrp_inr: 150, margin_pct: 6, velocity_units_per_hr: 2, units_per_facing: 2, lead_time_days: 3, tally_item_name: "Fortune Sunflower 1L", ondc_item_id: I-FORTUNE-1L}
+rules: {persistence_scans: 3, queue_long_count: 4, queue_long_s: 60, queue_forecast_threshold: 6}
+impact: {lost_sale_factor: 0.31, atv_inr: 180, baseline_unattended_gap_min: 120}
+privacy: {preview_blur_people: true, shelf_thumbnails: true}
+integrations: {tally: {enabled: true, url: "http://localhost:9000"}, ondc: {enabled: true, gateway_url: "http://localhost:8000/mock/ondc", bpp_id: ramesh-store.ondc.demo}, whatsapp: {mode: simulator, to: "+919999900001"}}
+demo: {enabled: true, clock_factor: 10, default_scenario: baseline, start_time: "17:00", seed_history_days: 30, auto_calibrate_first_scan: true}

@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "description": "Calibration snapshot of a full shelf (what 100 % coverage looks like).",
+  "properties": {
+    "shelf_id": {
+      "type": "string"
+    },
+    "calibrated_ts": {
+      "type": "number"
+    },
+    "raw_coverage_full": {
+      "type": "number"
+    },
+    "backing_bgr": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "profile": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "method": {
+      "default": "classical",
+      "type": "string"
+    }
+  },
+  "required": [
+    "shelf_id",
+    "calibrated_ts",
+    "raw_coverage_full",
+    "backing_bgr",
+    "profile",
+    "method"
+  ],
+  "title": "ShelfReference",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

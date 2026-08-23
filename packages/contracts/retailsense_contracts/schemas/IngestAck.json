@@ -1,0 +1,106 @@
+{
+  "$defs": {
+    "Command": {
+      "additionalProperties": false,
+      "description": "Cloud -> device instruction, piggybacked on IngestAck (HTTP) or cmd topic (MQTT).",
+      "properties": {
+        "command_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ack_alert",
+            "apply_config",
+            "set_link",
+            "set_scenario",
+            "model_update",
+            "ping"
+          ],
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "created_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "command_id",
+        "device_id",
+        "kind",
+        "payload",
+        "created_ts"
+      ],
+      "title": "Command",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "batch_id": {
+      "type": "string"
+    },
+    "accepted": {
+      "type": "integer"
+    },
+    "duplicates": {
+      "type": "integer"
+    },
+    "rejected": {
+      "items": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "last_seq": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "seq_ok": {
+      "type": "boolean"
+    },
+    "seq_gaps": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "commands": {
+      "items": {
+        "$ref": "#/$defs/Command"
+      },
+      "type": "array"
+    },
+    "server_ts": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "batch_id",
+    "accepted",
+    "duplicates",
+    "rejected",
+    "last_seq",
+    "seq_ok",
+    "seq_gaps",
+    "commands",
+    "server_ts"
+  ],
+  "title": "IngestAck",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

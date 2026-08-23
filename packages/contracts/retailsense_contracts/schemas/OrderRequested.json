@@ -1,0 +1,65 @@
+{
+  "$defs": {
+    "AckBy": {
+      "enum": [
+        "whatsapp",
+        "whatsapp_sim",
+        "board",
+        "auto",
+        "telegram"
+      ],
+      "title": "AckBy",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "order.requested",
+      "default": "order.requested",
+      "type": "string"
+    },
+    "sku_id": {
+      "type": "string"
+    },
+    "qty": {
+      "type": "integer"
+    },
+    "channel": {
+      "$ref": "#/$defs/AckBy"
+    },
+    "alert_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "est_cost_inr": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "sku_id",
+    "qty",
+    "channel",
+    "alert_id",
+    "est_cost_inr"
+  ],
+  "title": "OrderRequested",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

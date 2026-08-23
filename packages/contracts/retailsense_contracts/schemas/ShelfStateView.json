@@ -1,0 +1,155 @@
+{
+  "$defs": {
+    "ImpactInr": {
+      "additionalProperties": false,
+      "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+      "properties": {
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "basis",
+        "factor",
+        "source"
+      ],
+      "title": "ImpactInr",
+      "type": "object"
+    },
+    "ShelfState": {
+      "enum": [
+        "stocked",
+        "partial",
+        "empty",
+        "unknown"
+      ],
+      "title": "ShelfState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "shelf_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sku_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sku_name": {
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/$defs/ShelfState"
+    },
+    "coverage": {
+      "type": "number"
+    },
+    "facings": {
+      "type": "integer"
+    },
+    "capacity_facings": {
+      "type": "integer"
+    },
+    "min_facings": {
+      "type": "integer"
+    },
+    "consecutive_empty_scans": {
+      "type": "integer"
+    },
+    "persistence_required": {
+      "type": "integer"
+    },
+    "gap_started_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gap_minutes": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_scan_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "occluded": {
+      "type": "boolean"
+    },
+    "impact_open": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImpactInr"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "has_reference": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "shelf_id",
+    "name",
+    "sku_id",
+    "sku_name",
+    "state",
+    "coverage",
+    "facings",
+    "capacity_facings",
+    "min_facings",
+    "consecutive_empty_scans",
+    "persistence_required",
+    "gap_started_ts",
+    "gap_minutes",
+    "last_scan_ts",
+    "occluded",
+    "impact_open",
+    "has_reference"
+  ],
+  "title": "ShelfStateView",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

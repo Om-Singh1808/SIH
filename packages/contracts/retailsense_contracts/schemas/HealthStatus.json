@@ -1,0 +1,208 @@
+{
+  "$defs": {
+    "CameraHealth": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "stale",
+            "black",
+            "error"
+          ],
+          "type": "string"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "last_frame_age_s": {
+          "type": "number"
+        },
+        "detector": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "camera_id",
+        "status",
+        "fps",
+        "last_frame_age_s",
+        "detector"
+      ],
+      "title": "CameraHealth",
+      "type": "object"
+    },
+    "LinkState": {
+      "enum": [
+        "up",
+        "down"
+      ],
+      "title": "LinkState",
+      "type": "string"
+    },
+    "SyncStatus": {
+      "additionalProperties": false,
+      "properties": {
+        "link": {
+          "$ref": "#/$defs/LinkState"
+        },
+        "uplink": {
+          "$ref": "#/$defs/UplinkMode"
+        },
+        "cloud_reachable": {
+          "type": "boolean"
+        },
+        "backlog": {
+          "type": "integer"
+        },
+        "backlog_by_class": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "last_ack_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "last_ack_seq": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "replayed_since_restore": {
+          "type": "integer"
+        },
+        "replay_total_at_restore": {
+          "type": "integer"
+        },
+        "seq_ok": {
+          "type": "boolean"
+        },
+        "down_since_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "link",
+        "uplink",
+        "cloud_reachable",
+        "backlog",
+        "backlog_by_class",
+        "last_ack_ts",
+        "last_ack_seq",
+        "replayed_since_restore",
+        "replay_total_at_restore",
+        "seq_ok",
+        "down_since_ts"
+      ],
+      "title": "SyncStatus",
+      "type": "object"
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "ok",
+        "degraded",
+        "starting"
+      ],
+      "type": "string"
+    },
+    "store_id": {
+      "type": "string"
+    },
+    "device_id": {
+      "type": "string"
+    },
+    "uptime_s": {
+      "type": "number"
+    },
+    "contracts_version": {
+      "type": "string"
+    },
+    "detector": {
+      "type": "string"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "cameras": {
+      "items": {
+        "$ref": "#/$defs/CameraHealth"
+      },
+      "type": "array"
+    },
+    "sync": {
+      "$ref": "#/$defs/SyncStatus"
+    },
+    "sim_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "clock_factor": {
+      "type": "number"
+    },
+    "fps": {
+      "type": "number"
+    },
+    "infer_ms_p50": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "status",
+    "store_id",
+    "device_id",
+    "uptime_s",
+    "contracts_version",
+    "detector",
+    "model_version",
+    "cameras",
+    "sync",
+    "sim_ts",
+    "clock_factor",
+    "fps",
+    "infer_ms_p50"
+  ],
+  "title": "HealthStatus",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+  "properties": {
+    "lost_sales_inr": {
+      "type": "number"
+    },
+    "lost_margin_inr": {
+      "type": "number"
+    },
+    "basis": {
+      "type": "string"
+    },
+    "factor": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lost_sales_inr",
+    "lost_margin_inr",
+    "basis",
+    "factor",
+    "source"
+  ],
+  "title": "ImpactInr",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

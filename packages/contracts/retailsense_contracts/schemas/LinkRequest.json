@@ -1,0 +1,24 @@
+{
+  "$defs": {
+    "LinkState": {
+      "enum": [
+        "up",
+        "down"
+      ],
+      "title": "LinkState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "state": {
+      "$ref": "#/$defs/LinkState"
+    }
+  },
+  "required": [
+    "state"
+  ],
+  "title": "LinkRequest",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

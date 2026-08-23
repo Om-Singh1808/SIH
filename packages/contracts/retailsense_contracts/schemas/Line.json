@@ -1,0 +1,60 @@
+{
+  "$defs": {
+    "LineKind": {
+      "enum": [
+        "entrance",
+        "counter",
+        "custom"
+      ],
+      "title": "LineKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Directed line; +1 side (left of start->end, y down) is IN. See geometry.py.",
+  "properties": {
+    "line_id": {
+      "type": "string"
+    },
+    "camera_id": {
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/LineKind"
+    },
+    "start": {
+      "items": {
+        "type": "number"
+      },
+      "type": "array"
+    },
+    "end": {
+      "items": {
+        "type": "number"
+      },
+      "type": "array"
+    },
+    "name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "line_id",
+    "camera_id",
+    "kind",
+    "start",
+    "end",
+    "name"
+  ],
+  "title": "Line",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

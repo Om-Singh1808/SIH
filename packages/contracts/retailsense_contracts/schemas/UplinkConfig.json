@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "MqttConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "default": "localhost",
+          "type": "string"
+        },
+        "port": {
+          "default": 1883,
+          "type": "integer"
+        },
+        "ws_port": {
+          "default": 9001,
+          "type": "integer"
+        },
+        "username": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "password": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "session_expiry_s": {
+          "default": 604800,
+          "type": "integer"
+        }
+      },
+      "title": "MqttConfig",
+      "type": "object",
+      "required": [
+        "host",
+        "port",
+        "ws_port",
+        "username",
+        "password",
+        "session_expiry_s"
+      ]
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "mode": {
+      "$ref": "#/$defs/UplinkMode",
+      "default": "http"
+    },
+    "batch_size": {
+      "default": 500,
+      "type": "integer"
+    },
+    "interval_s": {
+      "default": 2.0,
+      "type": "number"
+    },
+    "heartbeat_s": {
+      "default": 10.0,
+      "type": "number"
+    },
+    "max_outbox_rows": {
+      "default": 50000,
+      "type": "integer"
+    },
+    "mqtt": {
+      "$ref": "#/$defs/MqttConfig",
+      "default": {
+        "host": "localhost",
+        "port": 1883,
+        "ws_port": 9001,
+        "username": null,
+        "password": null,
+        "session_expiry_s": 604800
+      }
+    }
+  },
+  "title": "UplinkConfig",
+  "type": "object",
+  "required": [
+    "mode",
+    "batch_size",
+    "interval_s",
+    "heartbeat_s",
+    "max_outbox_rows",
+    "mqtt"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

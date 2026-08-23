@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "lost_sale_factor": {
+      "default": 0.31,
+      "type": "number"
+    },
+    "lost_sale_source": {
+      "default": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
+      "type": "string"
+    },
+    "queue_abandon_factor": {
+      "default": 0.32,
+      "type": "number"
+    },
+    "queue_abandon_source": {
+      "default": "Retail queue studies: 32% abandon after long lines; tolerance 5-8 min",
+      "type": "string"
+    },
+    "atv_inr": {
+      "default": 180.0,
+      "type": "number"
+    },
+    "baseline_unattended_gap_min": {
+      "default": 120.0,
+      "type": "number"
+    }
+  },
+  "title": "ImpactConfig",
+  "type": "object",
+  "required": [
+    "lost_sale_factor",
+    "lost_sale_source",
+    "queue_abandon_factor",
+    "queue_abandon_source",
+    "atv_inr",
+    "baseline_unattended_gap_min"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

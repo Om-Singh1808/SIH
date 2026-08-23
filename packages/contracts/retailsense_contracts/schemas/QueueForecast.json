@@ -1,0 +1,51 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "queue.forecast",
+      "default": "queue.forecast",
+      "type": "string"
+    },
+    "counter_id": {
+      "type": "string"
+    },
+    "made_ts": {
+      "type": "number"
+    },
+    "horizons": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "type": "object"
+    },
+    "model": {
+      "enum": [
+        "edge_trend",
+        "cloud_gbm"
+      ],
+      "type": "string"
+    },
+    "mae_recent": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "counter_id",
+    "made_ts",
+    "horizons",
+    "model",
+    "mae_recent"
+  ],
+  "title": "QueueForecast",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

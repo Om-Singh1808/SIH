@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "model": {
+      "type": "string"
+    },
+    "target": {
+      "type": "string"
+    },
+    "trained_ts": {
+      "type": "number"
+    },
+    "n_rows": {
+      "type": "integer"
+    },
+    "mae_holdout": {
+      "type": "number"
+    },
+    "mae_baseline": {
+      "type": "number"
+    },
+    "features": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "horizons": {
+      "items": {
+        "type": "integer"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "model",
+    "target",
+    "trained_ts",
+    "n_rows",
+    "mae_holdout",
+    "mae_baseline",
+    "features",
+    "horizons"
+  ],
+  "title": "FitReport",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,173 @@
+{
+  "$defs": {
+    "OndcConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "gateway_url": {
+          "default": "http://localhost:8000/mock/ondc",
+          "type": "string"
+        },
+        "bpp_id": {
+          "default": "demo.bpp",
+          "type": "string"
+        },
+        "signing": {
+          "default": "none",
+          "enum": [
+            "none",
+            "ed25519"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "OndcConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "gateway_url",
+        "bpp_id",
+        "signing"
+      ]
+    },
+    "TallyConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "url": {
+          "default": "http://localhost:9000",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "TallyConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "url",
+        "company"
+      ]
+    },
+    "WhatsAppConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "default": "simulator",
+          "enum": [
+            "simulator",
+            "cloud_api",
+            "telegram",
+            "none"
+          ],
+          "type": "string"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phone_number_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "token_env": {
+          "default": "WHATSAPP_TOKEN",
+          "type": "string"
+        },
+        "telegram_chat_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "telegram_token_env": {
+          "default": "TELEGRAM_TOKEN",
+          "type": "string"
+        }
+      },
+      "title": "WhatsAppConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "to",
+        "phone_number_id",
+        "token_env",
+        "telegram_chat_id",
+        "telegram_token_env"
+      ]
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "tally": {
+      "$ref": "#/$defs/TallyConfig",
+      "default": {
+        "enabled": false,
+        "url": "http://localhost:9000",
+        "company": null
+      }
+    },
+    "ondc": {
+      "$ref": "#/$defs/OndcConfig",
+      "default": {
+        "enabled": false,
+        "gateway_url": "http://localhost:8000/mock/ondc",
+        "bpp_id": "demo.bpp",
+        "signing": "none"
+      }
+    },
+    "whatsapp": {
+      "$ref": "#/$defs/WhatsAppConfig",
+      "default": {
+        "mode": "simulator",
+        "to": null,
+        "phone_number_id": null,
+        "token_env": "WHATSAPP_TOKEN",
+        "telegram_chat_id": null,
+        "telegram_token_env": "TELEGRAM_TOKEN"
+      }
+    }
+  },
+  "title": "IntegrationsConfig",
+  "type": "object",
+  "required": [
+    "tally",
+    "ondc",
+    "whatsapp"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

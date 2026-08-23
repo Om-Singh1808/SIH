@@ -1,0 +1,67 @@
+{
+  "$defs": {
+    "HeatmapTile": {
+      "additionalProperties": false,
+      "properties": {
+        "cell_x": {
+          "type": "integer"
+        },
+        "cell_y": {
+          "type": "integer"
+        },
+        "hour_bucket": {
+          "type": "integer"
+        },
+        "dwell_s": {
+          "type": "number"
+        },
+        "visits": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cell_x",
+        "cell_y",
+        "hour_bucket",
+        "dwell_s",
+        "visits"
+      ],
+      "title": "HeatmapTile",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Deltas since the last flush, in floorplan cell coordinates.",
+  "properties": {
+    "type": {
+      "const": "heatmap.tiles",
+      "default": "heatmap.tiles",
+      "type": "string"
+    },
+    "cell_px": {
+      "type": "integer"
+    },
+    "width_cells": {
+      "type": "integer"
+    },
+    "height_cells": {
+      "type": "integer"
+    },
+    "tiles": {
+      "items": {
+        "$ref": "#/$defs/HeatmapTile"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "type",
+    "cell_px",
+    "width_cells",
+    "height_cells",
+    "tiles"
+  ],
+  "title": "HeatmapTiles",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

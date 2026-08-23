@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "sku_id": {
+      "type": "string"
+    },
+    "sku_name": {
+      "type": "string"
+    },
+    "visual_units": {
+      "type": "integer"
+    },
+    "system_units": {
+      "type": "integer"
+    },
+    "delta_units": {
+      "type": "integer"
+    },
+    "delta_inr": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "sku_id",
+    "sku_name",
+    "visual_units",
+    "system_units",
+    "delta_units",
+    "delta_inr"
+  ],
+  "title": "ShrinkAlertDetails",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

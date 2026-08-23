@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "x": {
+      "type": "integer"
+    },
+    "y": {
+      "type": "integer"
+    },
+    "dwell_s": {
+      "type": "number"
+    },
+    "visits": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "x",
+    "y",
+    "dwell_s",
+    "visits"
+  ],
+  "title": "HeatCell",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

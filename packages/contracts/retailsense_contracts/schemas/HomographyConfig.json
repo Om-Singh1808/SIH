@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "description": ">= 4 image/floor point pairs; ``None`` on the camera means identity.",
+  "properties": {
+    "image_points": {
+      "items": {
+        "items": {
+          "type": "number"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "floor_points": {
+      "items": {
+        "items": {
+          "type": "number"
+        },
+        "type": "array"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "image_points",
+    "floor_points"
+  ],
+  "title": "HomographyConfig",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

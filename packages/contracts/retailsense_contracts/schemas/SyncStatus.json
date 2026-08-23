@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "LinkState": {
+      "enum": [
+        "up",
+        "down"
+      ],
+      "title": "LinkState",
+      "type": "string"
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "link": {
+      "$ref": "#/$defs/LinkState"
+    },
+    "uplink": {
+      "$ref": "#/$defs/UplinkMode"
+    },
+    "cloud_reachable": {
+      "type": "boolean"
+    },
+    "backlog": {
+      "type": "integer"
+    },
+    "backlog_by_class": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "last_ack_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_ack_seq": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replayed_since_restore": {
+      "type": "integer"
+    },
+    "replay_total_at_restore": {
+      "type": "integer"
+    },
+    "seq_ok": {
+      "type": "boolean"
+    },
+    "down_since_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "link",
+    "uplink",
+    "cloud_reachable",
+    "backlog",
+    "backlog_by_class",
+    "last_ack_ts",
+    "last_ack_seq",
+    "replayed_since_restore",
+    "replay_total_at_restore",
+    "seq_ok",
+    "down_since_ts"
+  ],
+  "title": "SyncStatus",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

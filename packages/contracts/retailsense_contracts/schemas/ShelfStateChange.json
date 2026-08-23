@@ -1,0 +1,121 @@
+{
+  "$defs": {
+    "ImpactInr": {
+      "additionalProperties": false,
+      "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+      "properties": {
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "basis",
+        "factor",
+        "source"
+      ],
+      "title": "ImpactInr",
+      "type": "object"
+    },
+    "ShelfState": {
+      "enum": [
+        "stocked",
+        "partial",
+        "empty",
+        "unknown"
+      ],
+      "title": "ShelfState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "shelf.state",
+      "default": "shelf.state",
+      "type": "string"
+    },
+    "shelf_id": {
+      "type": "string"
+    },
+    "sku_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "from_state": {
+      "$ref": "#/$defs/ShelfState"
+    },
+    "to_state": {
+      "$ref": "#/$defs/ShelfState"
+    },
+    "gap_started_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "gap_minutes": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "consecutive_empty_scans": {
+      "type": "integer"
+    },
+    "impact": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ImpactInr"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "shelf_id",
+    "sku_id",
+    "from_state",
+    "to_state",
+    "gap_started_ts",
+    "gap_minutes",
+    "consecutive_empty_scans",
+    "impact"
+  ],
+  "title": "ShelfStateChange",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

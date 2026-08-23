@@ -1,0 +1,57 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "stock.reconciled",
+      "default": "stock.reconciled",
+      "type": "string"
+    },
+    "sku_id": {
+      "type": "string"
+    },
+    "shelf_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "visual_units": {
+      "type": "integer"
+    },
+    "system_units": {
+      "type": "integer"
+    },
+    "delta_units": {
+      "type": "integer"
+    },
+    "delta_inr": {
+      "type": "number"
+    },
+    "source": {
+      "enum": [
+        "tally",
+        "zoho",
+        "manual",
+        "mock"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "sku_id",
+    "shelf_id",
+    "visual_units",
+    "system_units",
+    "delta_units",
+    "delta_inr",
+    "source"
+  ],
+  "title": "StockReconciled",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

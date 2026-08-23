@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "enabled": {
+      "default": false,
+      "type": "boolean"
+    },
+    "url": {
+      "default": "http://localhost:9000",
+      "type": "string"
+    },
+    "company": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "title": "TallyConfig",
+  "type": "object",
+  "required": [
+    "enabled",
+    "url",
+    "company"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

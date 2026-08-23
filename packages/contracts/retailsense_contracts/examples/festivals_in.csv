@@ -1,0 +1,28 @@
+date,name,region,weight,verified
+2026-01-01,New Year,all,0.4,yes
+2026-01-14,Makar Sankranti / Pongal,all,0.7,yes
+2026-01-26,Republic Day,all,0.5,yes
+2026-03-03,Holika Dahan,north,0.6,yes
+2026-03-04,Holi,all,1.0,yes
+2026-03-20,Eid-ul-Fitr,all,0.9,no
+2026-03-26,Ram Navami,north,0.5,yes
+2026-04-14,Baisakhi / Vishu / Puthandu,all,0.6,yes
+2026-05-27,Eid-ul-Adha,all,0.7,no
+2026-08-15,Independence Day,all,0.5,yes
+2026-08-26,Onam (Thiruvonam),south,0.9,yes
+2026-08-28,Raksha Bandhan,north,0.8,yes
+2026-09-04,Janmashtami,all,0.7,yes
+2026-09-14,Ganesh Chaturthi,west,0.9,yes
+2026-10-02,Gandhi Jayanti,all,0.3,yes
+2026-10-11,Navratri begins,all,0.6,yes
+2026-10-20,Dussehra,all,0.9,yes
+2026-11-06,Dhanteras,all,0.9,yes
+2026-11-08,Diwali,all,1.0,yes
+2026-11-10,Bhai Dooj,north,0.6,yes
+2026-11-15,Chhath Puja,east,0.8,yes
+2026-11-24,Guru Nanak Jayanti,north,0.5,yes
+2026-12-25,Christmas,all,0.7,yes
+2027-01-01,New Year,all,0.4,yes
+2027-01-14,Makar Sankranti / Pongal,all,0.7,yes
+2027-01-26,Republic Day,all,0.5,yes
+2027-03-22,Holi,all,1.0,yes

@@ -1,0 +1,67 @@
+{
+  "$defs": {
+    "ChainRankRow": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "rank": {
+          "type": "integer"
+        },
+        "footfall_in": {
+          "type": "integer"
+        },
+        "normalised": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "store_id",
+        "name",
+        "value",
+        "rank",
+        "footfall_in",
+        "normalised"
+      ],
+      "title": "ChainRankRow",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "metric": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "rows": {
+      "items": {
+        "$ref": "#/$defs/ChainRankRow"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "metric",
+    "date",
+    "rows"
+  ],
+  "title": "ChainRank",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

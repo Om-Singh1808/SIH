@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "channel": {
+      "default": "stable",
+      "enum": [
+        "canary",
+        "stable"
+      ],
+      "type": "string"
+    },
+    "canary_pct": {
+      "default": 10,
+      "type": "integer"
+    },
+    "abort_failure_pct": {
+      "default": 5,
+      "type": "integer"
+    },
+    "pinned_devices": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "type": "object"
+    }
+  },
+  "title": "RolloutPolicy",
+  "type": "object",
+  "required": [
+    "channel",
+    "canary_pct",
+    "abort_failure_pct",
+    "pinned_devices"
+  ],
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

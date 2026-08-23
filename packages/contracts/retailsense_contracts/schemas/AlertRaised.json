@@ -1,0 +1,491 @@
+{
+  "$defs": {
+    "AckAction": {
+      "description": "What the shopkeeper did. On WhatsApp digit *i* maps to ``Alert.actions[i-1]``.",
+      "enum": [
+        "restocked",
+        "order",
+        "false_positive",
+        "opened_counter",
+        "ignore",
+        "checked",
+        "investigate"
+      ],
+      "title": "AckAction",
+      "type": "string"
+    },
+    "AckBy": {
+      "enum": [
+        "whatsapp",
+        "whatsapp_sim",
+        "board",
+        "auto",
+        "telegram"
+      ],
+      "title": "AckBy",
+      "type": "string"
+    },
+    "Alert": {
+      "additionalProperties": false,
+      "properties": {
+        "alert_id": {
+          "type": "string"
+        },
+        "store_id": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        },
+        "origin": {
+          "$ref": "#/$defs/Origin"
+        },
+        "kind": {
+          "$ref": "#/$defs/AlertKind"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "status": {
+          "$ref": "#/$defs/AlertStatus",
+          "default": "open"
+        },
+        "subject_id": {
+          "type": "string"
+        },
+        "title_en": {
+          "type": "string"
+        },
+        "title_hi": {
+          "type": "string"
+        },
+        "message_en": {
+          "type": "string"
+        },
+        "message_hi": {
+          "type": "string"
+        },
+        "details": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StockoutAlert"
+            },
+            {
+              "$ref": "#/$defs/QueueAlertDetails"
+            },
+            {
+              "$ref": "#/$defs/CameraAlertDetails"
+            },
+            {
+              "$ref": "#/$defs/SyncAlertDetails"
+            },
+            {
+              "$ref": "#/$defs/DeviceAlertDetails"
+            },
+            {
+              "$ref": "#/$defs/ShrinkAlertDetails"
+            },
+            {
+              "$ref": "#/$defs/FootfallAlertDetails"
+            }
+          ]
+        },
+        "impact": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ImpactInr"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "actions": {
+          "items": {
+            "$ref": "#/$defs/AckAction"
+          },
+          "type": "array"
+        },
+        "raised_ts": {
+          "type": "number"
+        },
+        "acked_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "resolved_ts": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ack_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AckAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ack_by": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AckBy"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "alert_id",
+        "store_id",
+        "device_id",
+        "origin",
+        "kind",
+        "severity",
+        "status",
+        "subject_id",
+        "title_en",
+        "title_hi",
+        "message_en",
+        "message_hi",
+        "details",
+        "impact",
+        "actions",
+        "raised_ts",
+        "acked_ts",
+        "resolved_ts",
+        "ack_action",
+        "ack_by"
+      ],
+      "title": "Alert",
+      "type": "object"
+    },
+    "AlertKind": {
+      "enum": [
+        "shelf_gap",
+        "queue_long",
+        "queue_forecast",
+        "camera_down",
+        "sync_backlog",
+        "device_offline",
+        "shrink_suspect",
+        "footfall_spike"
+      ],
+      "title": "AlertKind",
+      "type": "string"
+    },
+    "AlertStatus": {
+      "enum": [
+        "open",
+        "acked",
+        "resolved"
+      ],
+      "title": "AlertStatus",
+      "type": "string"
+    },
+    "CameraAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "last_frame_age_s": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "camera_id",
+        "status",
+        "last_frame_age_s"
+      ],
+      "title": "CameraAlertDetails",
+      "type": "object"
+    },
+    "DeviceAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "last_seen_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "device_id",
+        "last_seen_ts"
+      ],
+      "title": "DeviceAlertDetails",
+      "type": "object"
+    },
+    "FootfallAlertDetails": {
+      "additionalProperties": false,
+      "description": "Details for kind=footfall_spike (P1).",
+      "properties": {
+        "count": {
+          "type": "integer"
+        },
+        "baseline": {
+          "type": "number"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "window_min": {
+          "default": 15,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count",
+        "baseline",
+        "factor",
+        "window_min"
+      ],
+      "title": "FootfallAlertDetails",
+      "type": "object"
+    },
+    "ImpactInr": {
+      "additionalProperties": false,
+      "description": "Rupee impact with its derivation. Produced only by ``impact.py``.",
+      "properties": {
+        "lost_sales_inr": {
+          "type": "number"
+        },
+        "lost_margin_inr": {
+          "type": "number"
+        },
+        "basis": {
+          "type": "string"
+        },
+        "factor": {
+          "type": "number"
+        },
+        "source": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lost_sales_inr",
+        "lost_margin_inr",
+        "basis",
+        "factor",
+        "source"
+      ],
+      "title": "ImpactInr",
+      "type": "object"
+    },
+    "Origin": {
+      "enum": [
+        "edge",
+        "cloud"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "QueueAlertDetails": {
+      "additionalProperties": false,
+      "description": "Details for kind=queue_long / queue_forecast.",
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "counter_name": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer"
+        },
+        "est_wait_s": {
+          "type": "number"
+        },
+        "forecast": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "horizon_min": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "threshold": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "counter_id",
+        "counter_name",
+        "count",
+        "est_wait_s",
+        "forecast",
+        "horizon_min",
+        "threshold"
+      ],
+      "title": "QueueAlertDetails",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "info",
+        "warn",
+        "high",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "ShrinkAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "sku_name": {
+          "type": "string"
+        },
+        "visual_units": {
+          "type": "integer"
+        },
+        "system_units": {
+          "type": "integer"
+        },
+        "delta_units": {
+          "type": "integer"
+        },
+        "delta_inr": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "sku_id",
+        "sku_name",
+        "visual_units",
+        "system_units",
+        "delta_units",
+        "delta_inr"
+      ],
+      "title": "ShrinkAlertDetails",
+      "type": "object"
+    },
+    "StockoutAlert": {
+      "additionalProperties": false,
+      "description": "Details for kind=shelf_gap.",
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sku_name": {
+          "type": "string"
+        },
+        "gap_minutes": {
+          "type": "number"
+        },
+        "coverage": {
+          "type": "number"
+        },
+        "facings": {
+          "type": "integer"
+        },
+        "min_facings": {
+          "type": "integer"
+        },
+        "consecutive_empty_scans": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "shelf_id",
+        "sku_id",
+        "sku_name",
+        "gap_minutes",
+        "coverage",
+        "facings",
+        "min_facings",
+        "consecutive_empty_scans"
+      ],
+      "title": "StockoutAlert",
+      "type": "object"
+    },
+    "SyncAlertDetails": {
+      "additionalProperties": false,
+      "properties": {
+        "backlog": {
+          "type": "integer"
+        },
+        "down_since_ts": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "backlog",
+        "down_since_ts"
+      ],
+      "title": "SyncAlertDetails",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "alert.raised",
+      "default": "alert.raised",
+      "type": "string"
+    },
+    "alert": {
+      "$ref": "#/$defs/Alert"
+    }
+  },
+  "required": [
+    "type",
+    "alert"
+  ],
+  "title": "AlertRaised",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

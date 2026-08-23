@@ -1,0 +1,90 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "queue.snapshot",
+      "default": "queue.snapshot",
+      "type": "string"
+    },
+    "counter_id": {
+      "type": "string"
+    },
+    "zone_id": {
+      "type": "string"
+    },
+    "count": {
+      "type": "integer"
+    },
+    "avg_dwell_s": {
+      "type": "number"
+    },
+    "max_dwell_s": {
+      "type": "number"
+    },
+    "arrival_rate_pm": {
+      "type": "number"
+    },
+    "service_rate_pm": {
+      "type": "number"
+    },
+    "est_wait_s": {
+      "type": "number"
+    },
+    "method": {
+      "enum": [
+        "little_service",
+        "observed_wait",
+        "default_service"
+      ],
+      "type": "string"
+    },
+    "served_window": {
+      "type": "integer"
+    },
+    "abandoned_window": {
+      "type": "integer"
+    },
+    "window_s": {
+      "default": 300,
+      "type": "integer"
+    },
+    "served_total": {
+      "type": "integer"
+    },
+    "abandoned_total": {
+      "type": "integer"
+    },
+    "long_since_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "counter_id",
+    "zone_id",
+    "count",
+    "avg_dwell_s",
+    "max_dwell_s",
+    "arrival_rate_pm",
+    "service_rate_pm",
+    "est_wait_s",
+    "method",
+    "served_window",
+    "abandoned_window",
+    "window_s",
+    "served_total",
+    "abandoned_total",
+    "long_since_ts"
+  ],
+  "title": "QueueSnapshot",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "sku_id": {
+      "type": "string"
+    },
+    "enrolled": {
+      "type": "integer"
+    },
+    "backend": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sku_id",
+    "enrolled",
+    "backend"
+  ],
+  "title": "SkuEnrolResponse",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

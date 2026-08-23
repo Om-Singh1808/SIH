@@ -1,0 +1,58 @@
+{
+  "additionalProperties": false,
+  "description": "Ground truth emitted by the synthetic store so tests can assert accuracy.",
+  "properties": {
+    "type": {
+      "const": "sim.truth",
+      "default": "sim.truth",
+      "type": "string"
+    },
+    "in_store": {
+      "type": "integer"
+    },
+    "queue_counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "shelf_units": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "shelf_facings": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "served_total": {
+      "type": "integer"
+    },
+    "abandoned_total": {
+      "type": "integer"
+    },
+    "footfall_in_total": {
+      "type": "integer"
+    },
+    "scenario": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "in_store",
+    "queue_counts",
+    "shelf_units",
+    "shelf_facings",
+    "served_total",
+    "abandoned_total",
+    "footfall_in_total",
+    "scenario"
+  ],
+  "title": "SimTruth",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

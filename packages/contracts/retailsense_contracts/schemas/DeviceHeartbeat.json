@@ -1,0 +1,145 @@
+{
+  "$defs": {
+    "CameraHealth": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "ok",
+            "stale",
+            "black",
+            "error"
+          ],
+          "type": "string"
+        },
+        "fps": {
+          "type": "number"
+        },
+        "last_frame_age_s": {
+          "type": "number"
+        },
+        "detector": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "camera_id",
+        "status",
+        "fps",
+        "last_frame_age_s",
+        "detector"
+      ],
+      "title": "CameraHealth",
+      "type": "object"
+    },
+    "LinkState": {
+      "enum": [
+        "up",
+        "down"
+      ],
+      "title": "LinkState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "const": "device.heartbeat",
+      "default": "device.heartbeat",
+      "type": "string"
+    },
+    "uptime_s": {
+      "type": "number"
+    },
+    "fps": {
+      "type": "number"
+    },
+    "infer_ms_p50": {
+      "type": "number"
+    },
+    "infer_ms_p95": {
+      "type": "number"
+    },
+    "detector": {
+      "type": "string"
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "backlog": {
+      "type": "integer"
+    },
+    "link": {
+      "$ref": "#/$defs/LinkState"
+    },
+    "cameras": {
+      "items": {
+        "$ref": "#/$defs/CameraHealth"
+      },
+      "type": "array"
+    },
+    "contracts_version": {
+      "type": "string"
+    },
+    "clock_factor": {
+      "default": 1.0,
+      "type": "number"
+    },
+    "sim_ts": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "cpu_pct": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "mem_mb": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "type",
+    "uptime_s",
+    "fps",
+    "infer_ms_p50",
+    "infer_ms_p95",
+    "detector",
+    "model_version",
+    "backlog",
+    "link",
+    "cameras",
+    "contracts_version",
+    "clock_factor",
+    "sim_ts",
+    "cpu_pct",
+    "mem_mb"
+  ],
+  "title": "DeviceHeartbeat",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

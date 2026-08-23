@@ -1,0 +1,122 @@
+{
+  "$defs": {
+    "Anchor": {
+      "description": "Which point of a track's bbox represents the person on the floor.",
+      "enum": [
+        "bottom_center",
+        "center"
+      ],
+      "title": "Anchor",
+      "type": "string"
+    },
+    "DetectorKind": {
+      "enum": [
+        "auto",
+        "synthetic",
+        "onnx",
+        "ultralytics",
+        "fake"
+      ],
+      "title": "DetectorKind",
+      "type": "string"
+    },
+    "HomographyConfig": {
+      "additionalProperties": false,
+      "description": ">= 4 image/floor point pairs; ``None`` on the camera means identity.",
+      "properties": {
+        "image_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "floor_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "image_points",
+        "floor_points"
+      ],
+      "title": "HomographyConfig",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "camera_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    },
+    "width": {
+      "default": 640,
+      "type": "integer"
+    },
+    "height": {
+      "default": 360,
+      "type": "integer"
+    },
+    "fps_sample": {
+      "default": 4.0,
+      "type": "number"
+    },
+    "detector": {
+      "$ref": "#/$defs/DetectorKind",
+      "default": "auto"
+    },
+    "anchor": {
+      "$ref": "#/$defs/Anchor",
+      "default": "bottom_center"
+    },
+    "shelf_scan_interval_s": {
+      "default": 60.0,
+      "type": "number"
+    },
+    "homography": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HomographyConfig"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "preview_blur_people": {
+      "default": true,
+      "type": "boolean"
+    },
+    "loop_file": {
+      "default": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "camera_id",
+    "source",
+    "width",
+    "height",
+    "fps_sample",
+    "detector",
+    "anchor",
+    "shelf_scan_interval_s",
+    "homography",
+    "preview_blur_people",
+    "loop_file"
+  ],
+  "title": "CameraConfig",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

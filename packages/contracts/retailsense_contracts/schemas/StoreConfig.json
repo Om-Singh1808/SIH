@@ -1,0 +1,1365 @@
+{
+  "$defs": {
+    "Anchor": {
+      "description": "Which point of a track's bbox represents the person on the floor.",
+      "enum": [
+        "bottom_center",
+        "center"
+      ],
+      "title": "Anchor",
+      "type": "string"
+    },
+    "CameraConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "camera_id": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string"
+        },
+        "width": {
+          "default": 640,
+          "type": "integer"
+        },
+        "height": {
+          "default": 360,
+          "type": "integer"
+        },
+        "fps_sample": {
+          "default": 4.0,
+          "type": "number"
+        },
+        "detector": {
+          "$ref": "#/$defs/DetectorKind",
+          "default": "auto"
+        },
+        "anchor": {
+          "$ref": "#/$defs/Anchor",
+          "default": "bottom_center"
+        },
+        "shelf_scan_interval_s": {
+          "default": 60.0,
+          "type": "number"
+        },
+        "homography": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/HomographyConfig"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "preview_blur_people": {
+          "default": true,
+          "type": "boolean"
+        },
+        "loop_file": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "camera_id",
+        "source",
+        "width",
+        "height",
+        "fps_sample",
+        "detector",
+        "anchor",
+        "shelf_scan_interval_s",
+        "homography",
+        "preview_blur_people",
+        "loop_file"
+      ],
+      "title": "CameraConfig",
+      "type": "object"
+    },
+    "Counter": {
+      "additionalProperties": false,
+      "properties": {
+        "counter_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "queue_zone_id": {
+          "type": "string"
+        },
+        "counter_line_id": {
+          "type": "string"
+        },
+        "max_queue": {
+          "default": 8,
+          "type": "integer"
+        },
+        "default_service_s": {
+          "default": 45.0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "counter_id",
+        "name",
+        "queue_zone_id",
+        "counter_line_id",
+        "max_queue",
+        "default_service_s"
+      ],
+      "title": "Counter",
+      "type": "object"
+    },
+    "DemoConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "clock_factor": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "default_scenario": {
+          "default": "baseline",
+          "type": "string"
+        },
+        "start_time": {
+          "default": "17:00",
+          "type": "string"
+        },
+        "seed_history_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "auto_calibrate_first_scan": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "title": "DemoConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "clock_factor",
+        "default_scenario",
+        "start_time",
+        "seed_history_days",
+        "auto_calibrate_first_scan"
+      ]
+    },
+    "DetectorKind": {
+      "enum": [
+        "auto",
+        "synthetic",
+        "onnx",
+        "ultralytics",
+        "fake"
+      ],
+      "title": "DetectorKind",
+      "type": "string"
+    },
+    "DeviceConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "type": "string"
+        },
+        "token": {
+          "default": "demo-token",
+          "type": "string"
+        },
+        "edge_port": {
+          "default": 8001,
+          "type": "integer"
+        },
+        "cloud_url": {
+          "default": "http://localhost:8000",
+          "type": "string"
+        },
+        "db_path": {
+          "default": "var/senseedge.db",
+          "type": "string"
+        },
+        "uplink": {
+          "$ref": "#/$defs/UplinkConfig",
+          "default": {
+            "mode": "http",
+            "batch_size": 500,
+            "interval_s": 2.0,
+            "heartbeat_s": 10.0,
+            "max_outbox_rows": 50000,
+            "mqtt": {
+              "host": "localhost",
+              "password": null,
+              "port": 1883,
+              "session_expiry_s": 604800,
+              "username": null,
+              "ws_port": 9001
+            }
+          }
+        }
+      },
+      "required": [
+        "device_id",
+        "token",
+        "edge_port",
+        "cloud_url",
+        "db_path",
+        "uplink"
+      ],
+      "title": "DeviceConfig",
+      "type": "object"
+    },
+    "Floorplan": {
+      "additionalProperties": false,
+      "properties": {
+        "width_px": {
+          "default": 640,
+          "type": "integer"
+        },
+        "height_px": {
+          "default": 360,
+          "type": "integer"
+        },
+        "scale_m_per_px": {
+          "default": 0.02,
+          "type": "number"
+        },
+        "image": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "heat_cell_px": {
+          "default": 20,
+          "type": "integer"
+        }
+      },
+      "title": "Floorplan",
+      "type": "object",
+      "required": [
+        "width_px",
+        "height_px",
+        "scale_m_per_px",
+        "image",
+        "heat_cell_px"
+      ]
+    },
+    "HomographyConfig": {
+      "additionalProperties": false,
+      "description": ">= 4 image/floor point pairs; ``None`` on the camera means identity.",
+      "properties": {
+        "image_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "floor_points": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "image_points",
+        "floor_points"
+      ],
+      "title": "HomographyConfig",
+      "type": "object"
+    },
+    "ImpactConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "lost_sale_factor": {
+          "default": 0.31,
+          "type": "number"
+        },
+        "lost_sale_source": {
+          "default": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
+          "type": "string"
+        },
+        "queue_abandon_factor": {
+          "default": 0.32,
+          "type": "number"
+        },
+        "queue_abandon_source": {
+          "default": "Retail queue studies: 32% abandon after long lines; tolerance 5-8 min",
+          "type": "string"
+        },
+        "atv_inr": {
+          "default": 180.0,
+          "type": "number"
+        },
+        "baseline_unattended_gap_min": {
+          "default": 120.0,
+          "type": "number"
+        }
+      },
+      "title": "ImpactConfig",
+      "type": "object",
+      "required": [
+        "lost_sale_factor",
+        "lost_sale_source",
+        "queue_abandon_factor",
+        "queue_abandon_source",
+        "atv_inr",
+        "baseline_unattended_gap_min"
+      ]
+    },
+    "IntegrationsConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "tally": {
+          "$ref": "#/$defs/TallyConfig",
+          "default": {
+            "enabled": false,
+            "url": "http://localhost:9000",
+            "company": null
+          }
+        },
+        "ondc": {
+          "$ref": "#/$defs/OndcConfig",
+          "default": {
+            "enabled": false,
+            "gateway_url": "http://localhost:8000/mock/ondc",
+            "bpp_id": "demo.bpp",
+            "signing": "none"
+          }
+        },
+        "whatsapp": {
+          "$ref": "#/$defs/WhatsAppConfig",
+          "default": {
+            "mode": "simulator",
+            "to": null,
+            "phone_number_id": null,
+            "token_env": "WHATSAPP_TOKEN",
+            "telegram_chat_id": null,
+            "telegram_token_env": "TELEGRAM_TOKEN"
+          }
+        }
+      },
+      "title": "IntegrationsConfig",
+      "type": "object",
+      "required": [
+        "tally",
+        "ondc",
+        "whatsapp"
+      ]
+    },
+    "Lang": {
+      "enum": [
+        "hi",
+        "en"
+      ],
+      "title": "Lang",
+      "type": "string"
+    },
+    "Line": {
+      "additionalProperties": false,
+      "description": "Directed line; +1 side (left of start->end, y down) is IN. See geometry.py.",
+      "properties": {
+        "line_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/LineKind"
+        },
+        "start": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "end": {
+          "items": {
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "line_id",
+        "camera_id",
+        "kind",
+        "start",
+        "end",
+        "name"
+      ],
+      "title": "Line",
+      "type": "object"
+    },
+    "LineKind": {
+      "enum": [
+        "entrance",
+        "counter",
+        "custom"
+      ],
+      "title": "LineKind",
+      "type": "string"
+    },
+    "MqttConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "host": {
+          "default": "localhost",
+          "type": "string"
+        },
+        "port": {
+          "default": 1883,
+          "type": "integer"
+        },
+        "ws_port": {
+          "default": 9001,
+          "type": "integer"
+        },
+        "username": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "password": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "session_expiry_s": {
+          "default": 604800,
+          "type": "integer"
+        }
+      },
+      "title": "MqttConfig",
+      "type": "object",
+      "required": [
+        "host",
+        "port",
+        "ws_port",
+        "username",
+        "password",
+        "session_expiry_s"
+      ]
+    },
+    "OndcConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "gateway_url": {
+          "default": "http://localhost:8000/mock/ondc",
+          "type": "string"
+        },
+        "bpp_id": {
+          "default": "demo.bpp",
+          "type": "string"
+        },
+        "signing": {
+          "default": "none",
+          "enum": [
+            "none",
+            "ed25519"
+          ],
+          "type": "string"
+        }
+      },
+      "title": "OndcConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "gateway_url",
+        "bpp_id",
+        "signing"
+      ]
+    },
+    "PrivacyConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "preview_blur_people": {
+          "default": true,
+          "type": "boolean"
+        },
+        "shelf_thumbnails": {
+          "default": true,
+          "type": "boolean"
+        },
+        "retention": {
+          "$ref": "#/$defs/RetentionPolicy",
+          "default": {
+            "telemetry_hours": 24,
+            "aggregate_days": 30,
+            "thumbnails_days": 7,
+            "heatmap_days": 90,
+            "alerts_days": 365,
+            "sent_outbox_hours": 24
+          }
+        },
+        "statement": {
+          "default": "No face recognition; no raw video persisted; track IDs never leave the edge.",
+          "type": "string"
+        }
+      },
+      "title": "PrivacyConfig",
+      "type": "object",
+      "required": [
+        "preview_blur_people",
+        "shelf_thumbnails",
+        "retention",
+        "statement"
+      ]
+    },
+    "RetentionPolicy": {
+      "additionalProperties": false,
+      "description": "How long each data class lives before the purge job deletes it.",
+      "properties": {
+        "telemetry_hours": {
+          "default": 24,
+          "type": "integer"
+        },
+        "aggregate_days": {
+          "default": 30,
+          "type": "integer"
+        },
+        "thumbnails_days": {
+          "default": 7,
+          "type": "integer"
+        },
+        "heatmap_days": {
+          "default": 90,
+          "type": "integer"
+        },
+        "alerts_days": {
+          "default": 365,
+          "type": "integer"
+        },
+        "sent_outbox_hours": {
+          "default": 24,
+          "type": "integer"
+        }
+      },
+      "title": "RetentionPolicy",
+      "type": "object",
+      "required": [
+        "telemetry_hours",
+        "aggregate_days",
+        "thumbnails_days",
+        "heatmap_days",
+        "alerts_days",
+        "sent_outbox_hours"
+      ]
+    },
+    "RulesConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "shelf_partial_coverage": {
+          "default": 0.8,
+          "type": "number"
+        },
+        "shelf_empty_coverage": {
+          "default": 0.25,
+          "type": "number"
+        },
+        "persistence_scans": {
+          "default": 3,
+          "type": "integer"
+        },
+        "max_persistence_scans": {
+          "default": 6,
+          "type": "integer"
+        },
+        "queue_long_count": {
+          "default": 4,
+          "type": "integer"
+        },
+        "queue_long_s": {
+          "default": 60,
+          "type": "number"
+        },
+        "queue_resolve_s": {
+          "default": 30,
+          "type": "number"
+        },
+        "queue_forecast_threshold": {
+          "default": 6,
+          "type": "integer"
+        },
+        "queue_forecast_horizon_min": {
+          "default": 15,
+          "type": "integer"
+        },
+        "queue_min_age_s": {
+          "default": 5.0,
+          "type": "number"
+        },
+        "queue_window_s": {
+          "default": 600,
+          "type": "integer"
+        },
+        "snapshot_interval_s": {
+          "default": 10,
+          "type": "number"
+        },
+        "occupancy_interval_s": {
+          "default": 10,
+          "type": "number"
+        },
+        "heat_flush_s": {
+          "default": 60,
+          "type": "number"
+        },
+        "camera_down_s": {
+          "default": 15,
+          "type": "number"
+        },
+        "black_frame_std": {
+          "default": 3.0,
+          "type": "number"
+        },
+        "sync_backlog_warn": {
+          "default": 1000,
+          "type": "integer"
+        },
+        "sync_backlog_after_s": {
+          "default": 300,
+          "type": "number"
+        },
+        "shrink_min_units": {
+          "default": 3,
+          "type": "integer"
+        },
+        "shrink_min_inr": {
+          "default": 200,
+          "type": "number"
+        },
+        "occlusion_skip_overlap": {
+          "default": 0.3,
+          "type": "number"
+        },
+        "footfall_spike_factor": {
+          "default": 2.5,
+          "type": "number"
+        }
+      },
+      "title": "RulesConfig",
+      "type": "object",
+      "required": [
+        "shelf_partial_coverage",
+        "shelf_empty_coverage",
+        "persistence_scans",
+        "max_persistence_scans",
+        "queue_long_count",
+        "queue_long_s",
+        "queue_resolve_s",
+        "queue_forecast_threshold",
+        "queue_forecast_horizon_min",
+        "queue_min_age_s",
+        "queue_window_s",
+        "snapshot_interval_s",
+        "occupancy_interval_s",
+        "heat_flush_s",
+        "camera_down_s",
+        "black_frame_std",
+        "sync_backlog_warn",
+        "sync_backlog_after_s",
+        "shrink_min_units",
+        "shrink_min_inr",
+        "occlusion_skip_overlap",
+        "footfall_spike_factor"
+      ]
+    },
+    "SKU": {
+      "additionalProperties": false,
+      "properties": {
+        "sku_id": {
+          "type": "string"
+        },
+        "name_en": {
+          "type": "string"
+        },
+        "name_hi": {
+          "type": "string"
+        },
+        "mrp_inr": {
+          "type": "number"
+        },
+        "margin_pct": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "velocity_units_per_hr": {
+          "type": "number"
+        },
+        "units_per_facing": {
+          "default": 4,
+          "type": "integer"
+        },
+        "lead_time_days": {
+          "default": 2,
+          "type": "integer"
+        },
+        "tally_item_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "ondc_item_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "enrolled_images": {
+          "default": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sku_id",
+        "name_en",
+        "name_hi",
+        "mrp_inr",
+        "margin_pct",
+        "velocity_units_per_hr",
+        "units_per_facing",
+        "lead_time_days",
+        "tally_item_name",
+        "ondc_item_id",
+        "enrolled_images"
+      ],
+      "title": "SKU",
+      "type": "object"
+    },
+    "ShelfPolygon": {
+      "additionalProperties": false,
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "polygon": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "sku_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "capacity_facings": {
+          "default": 8,
+          "type": "integer"
+        },
+        "min_facings": {
+          "default": 2,
+          "type": "integer"
+        },
+        "facing_width_px": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "reference": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ShelfReference"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "shelf_id",
+        "camera_id",
+        "name",
+        "polygon",
+        "sku_id",
+        "capacity_facings",
+        "min_facings",
+        "facing_width_px",
+        "reference"
+      ],
+      "title": "ShelfPolygon",
+      "type": "object"
+    },
+    "ShelfReference": {
+      "additionalProperties": false,
+      "description": "Calibration snapshot of a full shelf (what 100 % coverage looks like).",
+      "properties": {
+        "shelf_id": {
+          "type": "string"
+        },
+        "calibrated_ts": {
+          "type": "number"
+        },
+        "raw_coverage_full": {
+          "type": "number"
+        },
+        "backing_bgr": {
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "number"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "method": {
+          "default": "classical",
+          "type": "string"
+        }
+      },
+      "required": [
+        "shelf_id",
+        "calibrated_ts",
+        "raw_coverage_full",
+        "backing_bgr",
+        "profile",
+        "method"
+      ],
+      "title": "ShelfReference",
+      "type": "object"
+    },
+    "StoreInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "store_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "lang": {
+          "$ref": "#/$defs/Lang",
+          "default": "hi"
+        },
+        "tz": {
+          "default": "Asia/Kolkata",
+          "type": "string"
+        },
+        "tier": {
+          "default": "kirana",
+          "enum": [
+            "kirana",
+            "mini",
+            "chain"
+          ],
+          "type": "string"
+        },
+        "owner_whatsapp": {
+          "type": "string"
+        },
+        "open_hours": {
+          "default": [
+            "08:00",
+            "22:00"
+          ],
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "address": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "store_id",
+        "name",
+        "lang",
+        "tz",
+        "tier",
+        "owner_whatsapp",
+        "open_hours",
+        "address"
+      ],
+      "title": "StoreInfo",
+      "type": "object"
+    },
+    "TallyConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "type": "boolean"
+        },
+        "url": {
+          "default": "http://localhost:9000",
+          "type": "string"
+        },
+        "company": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "TallyConfig",
+      "type": "object",
+      "required": [
+        "enabled",
+        "url",
+        "company"
+      ]
+    },
+    "UplinkConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "$ref": "#/$defs/UplinkMode",
+          "default": "http"
+        },
+        "batch_size": {
+          "default": 500,
+          "type": "integer"
+        },
+        "interval_s": {
+          "default": 2.0,
+          "type": "number"
+        },
+        "heartbeat_s": {
+          "default": 10.0,
+          "type": "number"
+        },
+        "max_outbox_rows": {
+          "default": 50000,
+          "type": "integer"
+        },
+        "mqtt": {
+          "$ref": "#/$defs/MqttConfig",
+          "default": {
+            "host": "localhost",
+            "port": 1883,
+            "ws_port": 9001,
+            "username": null,
+            "password": null,
+            "session_expiry_s": 604800
+          }
+        }
+      },
+      "title": "UplinkConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "batch_size",
+        "interval_s",
+        "heartbeat_s",
+        "max_outbox_rows",
+        "mqtt"
+      ]
+    },
+    "UplinkMode": {
+      "enum": [
+        "http",
+        "mqtt",
+        "none"
+      ],
+      "title": "UplinkMode",
+      "type": "string"
+    },
+    "WhatsAppConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "default": "simulator",
+          "enum": [
+            "simulator",
+            "cloud_api",
+            "telegram",
+            "none"
+          ],
+          "type": "string"
+        },
+        "to": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "phone_number_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "token_env": {
+          "default": "WHATSAPP_TOKEN",
+          "type": "string"
+        },
+        "telegram_chat_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "telegram_token_env": {
+          "default": "TELEGRAM_TOKEN",
+          "type": "string"
+        }
+      },
+      "title": "WhatsAppConfig",
+      "type": "object",
+      "required": [
+        "mode",
+        "to",
+        "phone_number_id",
+        "token_env",
+        "telegram_chat_id",
+        "telegram_token_env"
+      ]
+    },
+    "Zone": {
+      "additionalProperties": false,
+      "properties": {
+        "zone_id": {
+          "type": "string"
+        },
+        "camera_id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/ZoneKind"
+        },
+        "polygon": {
+          "items": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array"
+          },
+          "type": "array"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "zone_id",
+        "camera_id",
+        "kind",
+        "polygon",
+        "name"
+      ],
+      "title": "Zone",
+      "type": "object"
+    },
+    "ZoneKind": {
+      "enum": [
+        "aisle",
+        "queue",
+        "entrance",
+        "counter",
+        "store",
+        "custom"
+      ],
+      "title": "ZoneKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": 1,
+      "type": "integer"
+    },
+    "config_version": {
+      "default": 1,
+      "type": "integer"
+    },
+    "store": {
+      "$ref": "#/$defs/StoreInfo"
+    },
+    "device": {
+      "$ref": "#/$defs/DeviceConfig"
+    },
+    "floorplan": {
+      "$ref": "#/$defs/Floorplan",
+      "default": {
+        "width_px": 640,
+        "height_px": 360,
+        "scale_m_per_px": 0.02,
+        "image": null,
+        "heat_cell_px": 20
+      }
+    },
+    "cameras": {
+      "items": {
+        "$ref": "#/$defs/CameraConfig"
+      },
+      "type": "array"
+    },
+    "zones": {
+      "items": {
+        "$ref": "#/$defs/Zone"
+      },
+      "type": "array"
+    },
+    "lines": {
+      "items": {
+        "$ref": "#/$defs/Line"
+      },
+      "type": "array"
+    },
+    "counters": {
+      "items": {
+        "$ref": "#/$defs/Counter"
+      },
+      "type": "array"
+    },
+    "shelves": {
+      "items": {
+        "$ref": "#/$defs/ShelfPolygon"
+      },
+      "type": "array"
+    },
+    "skus": {
+      "items": {
+        "$ref": "#/$defs/SKU"
+      },
+      "type": "array"
+    },
+    "rules": {
+      "$ref": "#/$defs/RulesConfig",
+      "default": {
+        "shelf_partial_coverage": 0.8,
+        "shelf_empty_coverage": 0.25,
+        "persistence_scans": 3,
+        "max_persistence_scans": 6,
+        "queue_long_count": 4,
+        "queue_long_s": 60.0,
+        "queue_resolve_s": 30.0,
+        "queue_forecast_threshold": 6,
+        "queue_forecast_horizon_min": 15,
+        "queue_min_age_s": 5.0,
+        "queue_window_s": 600,
+        "snapshot_interval_s": 10.0,
+        "occupancy_interval_s": 10.0,
+        "heat_flush_s": 60.0,
+        "camera_down_s": 15.0,
+        "black_frame_std": 3.0,
+        "sync_backlog_warn": 1000,
+        "sync_backlog_after_s": 300.0,
+        "shrink_min_units": 3,
+        "shrink_min_inr": 200.0,
+        "occlusion_skip_overlap": 0.3,
+        "footfall_spike_factor": 2.5
+      }
+    },
+    "impact": {
+      "$ref": "#/$defs/ImpactConfig",
+      "default": {
+        "lost_sale_factor": 0.31,
+        "lost_sale_source": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
+        "queue_abandon_factor": 0.32,
+        "queue_abandon_source": "Retail queue studies: 32% abandon after long lines; tolerance 5-8 min",
+        "atv_inr": 180.0,
+        "baseline_unattended_gap_min": 120.0
+      }
+    },
+    "privacy": {
+      "$ref": "#/$defs/PrivacyConfig",
+      "default": {
+        "preview_blur_people": true,
+        "shelf_thumbnails": true,
+        "retention": {
+          "aggregate_days": 30,
+          "alerts_days": 365,
+          "heatmap_days": 90,
+          "sent_outbox_hours": 24,
+          "telemetry_hours": 24,
+          "thumbnails_days": 7
+        },
+        "statement": "No face recognition; no raw video persisted; track IDs never leave the edge."
+      }
+    },
+    "integrations": {
+      "$ref": "#/$defs/IntegrationsConfig",
+      "default": {
+        "tally": {
+          "company": null,
+          "enabled": false,
+          "url": "http://localhost:9000"
+        },
+        "ondc": {
+          "bpp_id": "demo.bpp",
+          "enabled": false,
+          "gateway_url": "http://localhost:8000/mock/ondc",
+          "signing": "none"
+        },
+        "whatsapp": {
+          "mode": "simulator",
+          "phone_number_id": null,
+          "telegram_chat_id": null,
+          "telegram_token_env": "TELEGRAM_TOKEN",
+          "to": null,
+          "token_env": "WHATSAPP_TOKEN"
+        }
+      }
+    },
+    "demo": {
+      "$ref": "#/$defs/DemoConfig",
+      "default": {
+        "enabled": false,
+        "clock_factor": 10.0,
+        "default_scenario": "baseline",
+        "start_time": "17:00",
+        "seed_history_days": 30,
+        "auto_calibrate_first_scan": true
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "config_version",
+    "store",
+    "device",
+    "floorplan",
+    "cameras",
+    "zones",
+    "lines",
+    "counters",
+    "shelves",
+    "skus",
+    "rules",
+    "impact",
+    "privacy",
+    "integrations",
+    "demo"
+  ],
+  "title": "StoreConfig",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

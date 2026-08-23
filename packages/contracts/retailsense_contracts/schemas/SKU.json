@@ -1,0 +1,74 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "sku_id": {
+      "type": "string"
+    },
+    "name_en": {
+      "type": "string"
+    },
+    "name_hi": {
+      "type": "string"
+    },
+    "mrp_inr": {
+      "type": "number"
+    },
+    "margin_pct": {
+      "default": 10.0,
+      "type": "number"
+    },
+    "velocity_units_per_hr": {
+      "type": "number"
+    },
+    "units_per_facing": {
+      "default": 4,
+      "type": "integer"
+    },
+    "lead_time_days": {
+      "default": 2,
+      "type": "integer"
+    },
+    "tally_item_name": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "ondc_item_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "enrolled_images": {
+      "default": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "sku_id",
+    "name_en",
+    "name_hi",
+    "mrp_inr",
+    "margin_pct",
+    "velocity_units_per_hr",
+    "units_per_facing",
+    "lead_time_days",
+    "tally_item_name",
+    "ondc_item_id",
+    "enrolled_images"
+  ],
+  "title": "SKU",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}

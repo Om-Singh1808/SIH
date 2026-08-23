@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    },
+    "message_id": {
+      "type": "string"
+    },
+    "item_id": {
+      "type": "string"
+    },
+    "available": {
+      "type": "boolean"
+    },
+    "ts": {
+      "type": "number"
+    },
+    "signed": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "ok",
+    "message_id",
+    "item_id",
+    "available",
+    "ts",
+    "signed"
+  ],
+  "title": "OndcAck",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft-07/schema#"
+}
