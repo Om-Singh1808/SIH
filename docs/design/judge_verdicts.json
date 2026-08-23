@@ -1,0 +1,134 @@
+[
+ {
+  "scores": [
+   {
+    "title": "RetailSense: Offline-first edge-AI that turns a kirana's existing CCTV into rupee-quantified shelf, queue and footfall intelligence on WhatsApp (Kirana Business + UX lens)",
+    "novelty": 8,
+    "complexity": 8,
+    "clarity": 9,
+    "feasibility_in_session": 6,
+    "demo_impact": 9,
+    "ux": 9,
+    "architecture_quality": 8,
+    "total": 57,
+    "best_ideas_to_keep": [
+     "impact_inr with a cited 'basis' string on every alert and KPI (rupee-first framing is exactly what a retail buyer responds to)",
+     "WhatsApp-first 1-tap ops loop (1=bhar diya, 2=order, 3=galat alert) with an on-stage WhatsApp simulator panel and feedback that auto-lowers per-shelf sensitivity",
+     "Transactional outbox inserted in the same SQLite WAL transaction as events, per-topic-class expiry table, alerts/txn never expire, and a replay proof test asserting 500 unique events with strictly increasing seq",
+     "'Cable kaat do' red toggle + 'N/N replayed, seq ordered' badge as the offline demo beat",
+     "3-scan persistence filter and Shelf Gap Duration as a first-class KPI (kills flicker false positives)",
+     "--detector=synthetic colour-blob mode so the full track/zone/rule pipeline runs on synthetic sprites without weights or GPU, with real YOLO on the same frames when available",
+     "Classical coverage estimator (edge density + colour variance vs calibrated full reference) as the fallback for shelf gaps",
+     "Visual-vs-Tally shrink reconciliation table in rupees, with a Tally XML mock server",
+     "Frozen contracts package with pydantic -> JSON Schema -> TS type generation for the frontend",
+     "Festival + salary-week features in the queue/footfall forecaster with live MAE on the board",
+     "Zero-hardware onboarding wizard with a visible timer",
+     "Privacy: 96x96 shelf-polygon-only thumbnails, no people crops, DPDP retention purge"
+    ],
+    "weaknesses": [
+     "Scope is far too wide for one session with 12 agents: CLIP SKU few-shot, fine-tuned shelf YOLO, LightGBM, ONDC Ed25519, Zoho, Tally XML, TTS voice notes, 4 languages, 5 dashboard pages, fleet/FMCG tier; at least a third must be stubbed or cut",
+     "Embedded amqtt broker is unmaintained and flaky on Python 3.11/Windows; the 'HTTP fallback' should be the primary demo sync path with MQTT as optional",
+     "Relies on pretrained/fine-tuned ONNX weights being vendored ('git-lfs or fetch') \u2014 no fine-tuned shelf-gap model exists at session start, so the shelf story must lean on the classical estimator",
+     "14 agent slots are listed but the task says 12; cv is split across three agents sharing one package directory, which violates the 'don't touch each other's files' rule unless sub-modules are strictly partitioned",
+     "Windows-specific gaps: pyttsx3/edge-tts voice, webcam via OpenCV, npm dev server spawned from a Python supervisor, process killing on Ctrl+C \u2014 none addressed",
+     "Little's Law formula given is actually count/arrival_rate without service-rate fallback; abandonment needs counter_line crossing which synthetic sprites must explicitly simulate",
+     "31% lost-sales multiplier is asserted without a source in the doc; judges from HUL will ask for the citation",
+     "No explicit time budget / MVP cut-line: which features are demo-critical vs stretch is not declared",
+     "Shared db.py between edge SQLite and cloud Postgres with JSON columns and composite PKs will bite on dialect differences",
+     "FMCG share-of-shelf and chain ranking are described but have no data producer in the simulator"
+    ],
+    "demo_impact_note": "Strong 3-minute script with a clear emotional arc (onboard -> rush -> stockout in rupees -> cable cut -> reconnect -> shrink)."
+   }
+  ],
+  "winner": "RetailSense: Offline-first edge-AI that turns a kirana's existing CCTV into rupee-quantified shelf, queue and footfall intelligence on WhatsApp (Kirana Business + UX lens)",
+  "synthesis_advice": "Only one proposal was submitted, so it wins by default, but it must be trimmed to be buildable in one session. Keep intact: the contracts package (freeze it first, generate TS types), the synthetic simulator + sprite video generator with --detector=synthetic, the transactional outbox + link toggle + replay proof test, impact_inr on every alert, the WhatsApp simulator phone panel, the 3-scan shelf state machine with the classical coverage fallback, and the Tally mock + shrink table. Cut or stub for the session: CLIP SKU enrolment (replace with config-tagged shelf polygons and a stub SkuEmbedder returning the tagged SKU), fine-tuned shelf YOLO (classical estimator only), ONDC/Zoho (single mocked on_update POST without Ed25519), voice TTS, Tamil/Telugu (ship hi + en only), fleet/FMCG pages (fold into /chain as a simple table). Make HTTP batch sync (POST /v1/ingest/batch with the same outbox cursor) the primary demo path and keep paho MQTT as an optional uplink behind a flag; do not depend on amqtt starting on Windows. Re-partition to 12 agents with one directory each: contracts+common, sim, cv-detect/track+source, cv-shelf (own file set), analytics, rules+i18n, edgestore, sync, forecasting (sklearn GradientBoosting, LightGBM optional), integrations (tally mock + whatsapp sim + reconcile), senseedge+sensecloud apps, senseboard. Declare a written MVP cut-line and the demo script as the integration acceptance test, and have the integrator own tools/demo.py plus /tests from the start so the end-to-end path is proven before stretch features land. Cite the 31% lost-sales basis (or make the multiplier a config value shown on the alert) before a HUL judge asks."
+ },
+ {
+  "scores": [
+   {
+    "title": "RetailSense: Offline-first edge-AI that turns a kirana's existing CCTV into rupee-quantified shelf, queue and footfall intelligence on WhatsApp (lens: INDIAN KIRANA BUSINESS + UX)",
+    "novelty": 7,
+    "complexity": 9,
+    "clarity": 8,
+    "feasibility_in_session": 4,
+    "demo_impact": 9,
+    "ux": 9,
+    "architecture_quality": 7,
+    "total": 53,
+    "best_ideas_to_keep": [
+     "Frozen contracts package first, with pydantic -> JSON Schema -> TS generation so frontend types and vitest share one source of truth",
+     "Transactional outbox: events + outbox rows written in the same SQLite WAL transaction; per-class expiry table; idempotent cloud ingest on event_id with per-device monotonic seq, and a replay proof test (cut, 500 events, restore, assert ordered)",
+     "Synthetic source as a first-class FrameSource ('synthetic:<scenario>') with a '--detector=synthetic' colour-blob detector so tracking/zone/queue logic is exercised without weights or GPU, with real YOLO running on the same frames when available",
+     "Classical coverage fallback for shelf gaps (edge density + colour variance vs per-shelf calibrated 'full' reference) plus 3-consecutive-scan persistence filter and gap-duration as a first-class KPI",
+     "impact_inr with a human-readable 'basis' string on every alert (rupee-first, auditable assumptions)",
+     "WhatsApp simulator with digit replies flowing back to /alerts/{id}/ack; same adapter interface for real Meta API / Telegram",
+     "LinkController exposed as both REST (/demo/link) and a board toggle, with buffered-event counter visible on the SyncBadge",
+     "Scenario buttons (evening_rush, stockout_parleg, cable_cut) driving the simulator at accelerated clock \u2014 a scripted 3-minute demo table",
+     "Privacy: 96x96 shelf-polygon-only thumbnails, no people crops, track purge retention job",
+     "Per-package ownership map with integration tests isolated in /tests"
+    ],
+    "weaknesses": [
+     "Scope is far beyond one session: 14 agents, CLIP few-shot SKU ID, fine-tuned shelf-gap YOLO, ByteTrack numpy port, LightGBM forecasting, Tally XML, ONDC Beckn + Ed25519, Zoho, TTS voice notes, i18n in 4 languages, 5 dashboard pages. Integration risk is high and nothing is marked P0/P1/cut.",
+     "Hand-wavy CV claims: 'sprites are also detectable by YOLO when rendered from a small sprite sheet of person silhouettes' is unsupported; COCO-trained YOLO11n on flat silhouettes on a floorplan will be unreliable. The synthetic-detector path is the only credible one and should be stated as such.",
+     "The shelf gap detector 'fine-tuned YOLO11n (empty / front-empty)' has no training data source; train_shelf.py is a placeholder. Only the classical coverage estimator is buildable in-session, and it needs a calibration step the demo script doesn't show.",
+     "CLIP ViT-B/32 ONNX export plus few-shot matching is a multi-hour task with model download issues; 'no internet' constraint conflicts with fetching weights at first run \u2014 weights must be vendored or the feature cut.",
+     "Little's Law misapplied: est_wait = count / arrival_rate is L/lambda = W only under steady state; with service rate absent it overstates wait when no one is arriving and divides by eps. Should use a service-rate estimate from counter_line crossings.",
+     "The 0.31 'shoppers buy elsewhere' constant is asserted, not sourced; a CV professor will ask for the citation. Keep the basis string but label it an assumption with a config knob.",
+     "Abandonment definition (exit queue polygon without crossing counter_line) is fragile with track ID switches from ByteTrack on occluded synthetic blobs; no mention of re-ID mitigation or minimum track age.",
+     "Shared SQLAlchemy models for SQLite edge and Postgres/Timescale cloud with JSON payload columns will hit dialect differences (JSON type, ON CONFLICT syntax); should pin to SQLite for demo and use dialect-neutral upserts.",
+     "Embedded amqtt broker on Python 3.11 is unmaintained and flaky; HTTP batch fallback should be the primary demo path with MQTT optional.",
+     "14 parallel agents but the supervisor (tools/demo.py / senseedge main.py) is the single integration point owned by one agent late in the session; there is no stub/mock strategy so other agents can test against contracts before it exists.",
+     "Heatmap, power hours, STAR, bounce rate, chain ranking, FMCG share-of-shelf are listed without defining the aggregation queries or how STAR/bounce are derived from tracks.",
+     "No explicit pytest/vitest list per package or CI-style 'make test' gating; tests are mentioned only for two integration scenarios and three components."
+    ]
+   }
+  ],
+  "winner": "RetailSense: Offline-first edge-AI that turns a kirana's existing CCTV into rupee-quantified shelf, queue and footfall intelligence on WhatsApp (lens: INDIAN KIRANA BUSINESS + UX)",
+  "synthesis_advice": "Only one proposal was submitted, so it wins by default, but it must be cut down to be buildable in one session by 12 agents on Windows. Keep the skeleton (contracts-first, monorepo, transactional outbox, synthetic FrameSource + synthetic detector, scenario-driven simulator, link-cut toggle, WhatsApp simulator, rupee impact with basis string) and apply these changes. (1) Tier the scope: P0 = contracts, sim (store model + video gen), cv (source abstraction, YOLO11n ONNX person detection with vendored weights, simple IoU/centroid tracker rather than a full ByteTrack port, classical shelf coverage), analytics (zones, queue, shelf state machine, impact), rules, edgestore+outbox, sync via HTTP batch with MQTT optional, SenseEdge API, SenseCloud API, SenseBoard with /owner and /ops only, demo supervisor. P1 = forecasting with sklearn GradientBoosting (LightGBM optional), heatmap, /insights. Cut or stub behind interfaces: CLIP SKU ID, fine-tuned shelf YOLO, ONDC/Ed25519, Zoho, TTS, Tamil/Telugu (ship hi/en). (2) Be honest in the docs about the CV: synthetic sprites are detected by the colour-blob detector; real YOLO is for file/RTSP/webcam input. Do not claim YOLO detects sprites. (3) Fix the queue math: estimate service rate from counter_line crossings and compute wait = count / service_rate, with arrival rate only for forecasting; enforce a minimum track age before counting abandonment. (4) Mark the 0.31 lost-sale factor as a configurable assumption. (5) Reduce to 12 agents: merge cv detect/track/shelf into one agent with sku stubbed, merge integrations into 'whatsapp sim + tally mock' only, keep forecasting as one agent with a synthetic 30-day training set. (6) Give every package a contract-conformant fake (FakeFrameSource, FakeUplink, in-memory EdgeDB) in contracts/testing.py on day 0 so agents can pytest independently before the supervisor exists. (7) Pin the demo DB to SQLite on both edge and cloud with dialect-neutral insert-or-ignore; keep Postgres only in docker-compose. (8) Make 'python -m retailsense demo' the single entry and have it write a DEMO_SCRIPT.md-driven scenario sequence so the 3-minute table is reproducible."
+ },
+ {
+  "scores": [
+   {
+    "title": "RetailSense: Offline-first edge-AI kirana CCTV intelligence on WhatsApp (Kirana Business + UX lens)",
+    "novelty": 8,
+    "complexity": 5,
+    "clarity": 8,
+    "feasibility_in_session": 5,
+    "demo_impact": 9,
+    "ux": 9,
+    "architecture_quality": 8,
+    "total": 52,
+    "best_ideas_to_keep": [
+     "Frozen contracts package (pydantic events/alerts/config, topic table with per-class expiry, shared SQLAlchemy models, exported JSON Schema -> TS types) as the day-0 artifact every agent imports",
+     "Transactional outbox written in the same SQLite WAL transaction as events, with monotonic per-device seq and idempotent ON CONFLICT(event_id) cloud consumer; tests/test_offline_replay.py as the 'pull the cable' proof",
+     "LinkController exposed as POST /demo/link plus a red board toggle; buffered-event counter that drains on restore",
+     "impact_inr with a human-readable basis string on every alert (rupee-first KPIs)",
+     "WhatsApp simulator with 1-tap digit replies routed back to /alerts/{id}/ack \u2014 avoids needing Meta API approval on stage",
+     "--detector=synthetic colour-blob mode so the full track/zone/rule pipeline runs on the synthetic video with no weights or GPU; real YOLO on the same frames when available",
+     "3-scan persistence filter with classical coverage fallback (edge density + colour variance vs calibrated 'full' reference) so shelf story works without fine-tuned weights",
+     "Simulator scenarios (evening_rush, stockout_parleg, cable_cut) as both test oracle and demo buttons",
+     "Edge LAN FastAPI :8001 serving dashboard + WS with no internet; board connects to edge first, cloud as fallback",
+     "Single supervisor (python -m retailsense demo) with startup ordering and HTTP fallback if broker fails",
+     "Per-package ownership rule with integration tests only in /tests",
+     "Tally mock XML server + visual-vs-system reconciliation as a shrink story"
+    ],
+    "weaknesses": [
+     "Scope is too large for one session: 14 agents, CLIP SKU few-shot enrolment, ONDC Ed25519 signing, Zoho, TTS voice notes, i18n in 4 languages, onboarding wizard, Timescale \u2014 many of these will be stubs and risk dragging integration",
+     "Only one proposal means no comparative pressure; several modules (sku.py, ondc.py, zoho.py, /onboard polygon drawing, audio summary) should be explicitly cut to optional/stretch",
+     "amqtt embedded broker is a real integration risk on Windows with Python 3.11 (asyncio quirks, maintenance state); the HTTP fallback must be the tested primary path for the demo, not a fallback",
+     "YOLO11n ONNX weights and CLIP ONNX weights must be vendored or downloaded at setup; CUDAExecutionProvider in onnxruntime requires onnxruntime-gpu plus matching CUDA/cuDNN \u2014 likely CPU-only on the day; claimed '18 ms/frame on GPU' is unverified",
+     "ByteTrack 'pure numpy port' is non-trivial to write correctly in-session; needs lapx/scipy linear_sum_assignment and a simplified IoU tracker fallback",
+     "Synthetic sprite shoppers being detected by a real YOLO person model is speculative; the demo path should default to the synthetic detector",
+     "Edge and cloud sharing one SQLAlchemy declarative model set across SQLite and Postgres is fine, but JSON/ULID/composite PK details are unspecified and will cause cross-agent friction",
+     "Contracts section names many models (Observation, KpiToday, ShelfState, ReorderSuggestion, Track) that are not defined \u2014 the contracts agent must finish before others start, which is a serial bottleneck",
+     "Forecasting trained on 30 synthetic days at boot with LightGBM adds a pip install and 2 s+ startup; sklearn GradientBoosting should be the default",
+     "Frontend has 5 pages plus phone mock, heatmap, onboarding wizard \u2014 too much for one agent; Owner + Ops + DemoControls should be the mandatory subset",
+     "No explicit process model for the edge (threads vs asyncio vs multiprocessing); CV loop, FastAPI, MQTT client and WS fan-out in one process on Windows needs a defined queue-based design",
+     "HLC clock, retention purger, fleet LWT, FMCG share-of-shelf are nice-to-have and dilute agent focus"
+    ]
+   }
+  ],
+  "winner": "RetailSense: Offline-first edge-AI kirana CCTV intelligence on WhatsApp (Kirana Business + UX lens)",
+  "synthesis_advice": "Only one proposal was submitted, so it wins by default; the job is to trim it to what 12 agents can actually integrate in one session on Windows. Concrete plan: (1) Agent 1 writes packages/contracts FIRST and fully \u2014 including every model referenced but undefined (Observation, Track, ShelfState, KpiToday, ReorderSuggestion, LinkState, DemoScenario), the WS message envelope, and a tools/gen_ts_types.py run that commits src/api/types.ts \u2014 and nobody else starts until it lands; add a tiny in-memory fake for each interface (FakeDetector, FakeOutbox, FakeUplink) inside contracts so agents can unit test without each other. (2) Make HTTP batch sync (POST /v1/ingest/batch with seq + event_id idempotency) the primary, tested store-and-forward path; keep paho MQTT as an optional uplink behind the same Uplink protocol and drop the embedded amqtt broker from the demo boot (reference it only in docker-compose with Mosquitto). (3) Default the edge to --detector=synthetic on the synthetic video; real YOLO11n ONNX on CPU EP with a vendored weights download script is the second path; replace the hand-written ByteTrack with a simple IoU/Hungarian tracker via scipy.optimize.linear_sum_assignment, with ByteTrack as stretch. (4) Cut to stretch/stub: CLIP SKU enrolment, ONDC signing, Zoho, TTS voice notes, Tamil/Telugu, /onboard polygon wizard, /chain page, FMCG share-of-shelf, HLC. Keep Hindi+English only. (5) Define the edge process model explicitly: one thread for CV loop pushing Observations onto a queue.Queue, asyncio FastAPI/uvicorn main loop consuming it, WS broadcast via a single manager; sync runs as an asyncio task polling the outbox. (6) Reassign agents: contracts+common, sim (store model + video gen + scenarios), cv (source+synthetic detector+tracker), cv-yolo (ONNX detector + classical shelf coverage), analytics, rules+i18n+impact, edgestore+outbox, sync+link, forecasting (sklearn default), integrations (Tally mock + WhatsApp simulator + reconcile), senseedge app, sensecloud app, senseboard (Owner, Ops, DemoControls, SyncBadge, WhatsAppPhone only), and a final integrator who owns tools/demo.py, Makefile, tests/test_e2e_synthetic.py and test_offline_replay.py. (7) Keep the excellent demo script but make every beat map to a scenario button that hits POST /demo/scenario, and make the cable-cut counter and '312/312 replayed, seq ordered' badge the centerpiece since it is the most credible engineering proof."
+ }
+]
