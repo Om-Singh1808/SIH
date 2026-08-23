@@ -287,7 +287,8 @@ def test_messages_hi_en_contain_inr_and_menu(cfg, engine):
     q = engine.on_queue(queue_snap("counter-1", 6, long_since_ts=T0 - 100, est_wait_s=150), None, T0)[0].payload.alert
     # max(0, 6-4+1)=3 x 0.32 x 180 = 172.8 -> "₹173"
     for msg in (q.message_en, q.message_hi):
-        assert "₹173" in msg and "1 =" in msg and "2 =" in msg and "Main counter" in msg and "?" not in msg
+        assert "₹173" in msg and "1 =" in msg and "2 =" in msg and "Main counter" in msg
+        assert "?" not in msg.replace("counter?", "").replace("खोलें?", "")  # only the template's own question mark
     assert "2.5" in q.message_en  # ~2.5 min wait
 
 
@@ -297,7 +298,8 @@ def test_all_kinds_render_without_placeholders(cfg, engine):
     engine.on_sync(sync_status(LinkState.DOWN, backlog=2000, down_since_ts=T0 - 1000), T0)
     for a in engine.open_alerts():
         for text in (a.title_en, a.title_hi, a.message_en, a.message_hi):
-            assert text and "?" not in text and "{" not in text, (a.kind, text)
+            assert text and "{" not in text, (a.kind, text)
+            assert "?" not in text.replace("counter?", "").replace("खोलें?", ""), (a.kind, text)
 
 
 # ---------------------------------------------------------------- restore

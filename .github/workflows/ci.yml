@@ -1,0 +1,94 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHONIOENCODING: utf-8
+  PYTHONUTF8: "1"
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+
+jobs:
+  python:
+    name: pytest (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install every package (editable) + dev extras
+        run: |
+          python -m pip install -U pip
+          python -m pip install -e ".[dev]"
+          python tools/setup_dev.py --no-npm --dev
+      - name: pytest (fast lane)
+        run: python -m pytest -m "not slow and not gpu" -q
+      - name: demo smoke (boot cloud + edge headless, verify, exit)
+        # Skips cleanly (exit 0) until apps/senseedge + apps/sensecloud exist; otherwise must pass.
+        shell: bash
+        run: |
+          if python -c "import senseedge, sensecloud" 2>/dev/null; then
+            python -m retailsense demo --smoke --no-board --timeout 90
+          else
+            echo "apps not installed yet - smoke skipped"
+          fi
+
+  ruff:
+    name: ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install ruff
+      - run: ruff check .
+      - run: ruff format --check . || true  # formatting is advisory; lint is the gate
+
+  types-drift:
+    name: TS types drift
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: python -m pip install -e packages/contracts
+      - name: Regenerate schemas/types and fail on diff
+        run: python tools/gen_ts_types.py --check
+
+  board:
+    name: senseboard (vitest + build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/senseboard/package-lock.json
+      - name: Skip until the board exists
+        id: board
+        run: |
+          if [ -f apps/senseboard/package.json ]; then echo "present=true" >> "$GITHUB_OUTPUT"; else echo "present=false" >> "$GITHUB_OUTPUT"; fi
+      - if: steps.board.outputs.present == 'true'
+        run: npm ci --workspace apps/senseboard || npm install --workspace apps/senseboard
+      - if: steps.board.outputs.present == 'true'
+        run: npm run test --workspace apps/senseboard -- --run
+      - if: steps.board.outputs.present == 'true'
+        run: npm run build --workspace apps/senseboard

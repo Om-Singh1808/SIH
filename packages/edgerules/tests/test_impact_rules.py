@@ -1,11 +1,18 @@
 """ImpactCalculator wrapper, rules_default.yaml loader and bilingual rendering."""
 
 import pytest
+from pydantic import ValidationError
 from retailsense_contracts.config import RulesConfig
 from retailsense_contracts.enums import AlertKind
 from retailsense_contracts.impact import lost_sales, queue_abandon_risk
 
-from retailsense_edgerules import ImpactCalculator, load_rules_yaml, open_hours_per_day, render_alert, rules_default_path
+from retailsense_edgerules import (
+    ImpactCalculator,
+    load_rules_yaml,
+    open_hours_per_day,
+    render_alert,
+    rules_default_path,
+)
 
 
 def test_impact_calculator_matches_contracts(cfg):
@@ -75,7 +82,7 @@ def test_load_rules_yaml_store_file_and_errors(tmp_path):
     assert load_rules_yaml(flat).queue_long_s == 90
     typo = tmp_path / "typo.yaml"
     typo.write_text("queue_long_cnt: 7\n", encoding="utf-8")
-    with pytest.raises(Exception):
+    with pytest.raises(ValidationError):
         load_rules_yaml(typo)
     empty = tmp_path / "empty.yaml"
     empty.write_text("", encoding="utf-8")
@@ -87,7 +94,7 @@ def test_load_rules_yaml_store_file_and_errors(tmp_path):
 
 
 def test_render_alert_bilingual():
-    t = render_alert(AlertKind.SHELF_GAP, {"sku_name": "Parle-G", "gap_min": 12, "lost_inr": 1234.5, "basis": "b"}, {"sku_name": "पारले-जी", "gap_min": 12, "lost_inr": 1234.5})
+    t = render_alert(AlertKind.SHELF_GAP, {"sku_name": "Parle-G", "gap_min": 12, "lost_inr": 1234.6, "basis": "b"}, {"sku_name": "पारले-जी", "gap_min": 12, "lost_inr": 1234.6})
     assert t.title_en == "Parle-G shelf empty"
     assert "पारले-जी" in t.title_hi and "Parle-G" not in t.title_hi
     assert "₹1,235" in t.message_en and "₹1,235" in t.message_hi

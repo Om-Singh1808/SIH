@@ -123,10 +123,10 @@ def test_heatmap_accumulate_and_flush_deltas(make_engine, cfg):
     cell = cfg.floorplan.heat_cell_px
     flush_s = cfg.rules.heat_flush_s
     n = int(flush_s / DT)  # frames until the first flush is due
-    # One track sits still at (200,120); a second moves one cell to the right every 8 frames.
+    # One track sits still at (200,120); a second moves one cell to the right every 16 frames.
     ups = []
     for i in range(n + 1):
-        x2 = 300.0 + (i // 8) * cell
+        x2 = 300.0 + (i // 16) * cell  # 300..600 px: stays inside the 640 px floorplan
         ups.append(eng.update([track(1, *INSIDE), track(2, x2, 300.0)], T0 + i * DT))
     heats = [u.heat for u in ups if u.heat is not None]
     assert len(heats) == 1 and ups[-1].heat is heats[0]
@@ -138,7 +138,7 @@ def test_heatmap_accumulate_and_flush_deltas(make_engine, cfg):
     still = next(t for t in h.tiles if (t.cell_x, t.cell_y) == (200 // cell, 120 // cell))
     assert still.visits == 1 and abs(still.dwell_s - n * DT) < 1e-6
     moving = [t for t in h.tiles if t.cell_y == 300 // cell]
-    assert sum(t.visits for t in moving) == (n // 8) + 1  # one visit per cell change
+    assert sum(t.visits for t in moving) == (n // 16) + 1  # one visit per cell change
     assert all(t.hour_bucket == int(T0 // 3600) for t in h.tiles)
 
     # Deltas: the next flush only contains what accumulated after the first one.

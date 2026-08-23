@@ -9,7 +9,9 @@ shelf backing. Two cheap cues capture this on both synthetic and real frames:
 * **colour distance** - the CIE-Lab distance (ΔE) between a pixel and the shelf
   *backing* colour. Packaged goods are rarely the same colour as the board or
   the wall behind them.
-* **local texture** - the standard deviation of lightness in a 5×5 window.
+* **local texture** - the standard deviation of Lab colour in a 5×5 window
+  (root of the summed per-channel variances, so both print contrast and
+  colour texture count).
   Products carry print, edges and specular highlights; an empty backing is
   flat. This cue catches products whose *mean* colour happens to match the
   backing.
@@ -108,6 +110,11 @@ def local_std(x: np.ndarray, k: int = 5) -> np.ndarray:
     return np.sqrt(var)
 
 
+def local_lab_std(lab: np.ndarray, k: int = 5) -> np.ndarray:
+    """Combined L/a/b local standard deviation: sqrt(var_L + var_a + var_b) in a k×k window."""
+    return np.sqrt(sum(local_std(lab[..., c], k) ** 2 for c in range(3)))
+
+
 def productness(
     lab: np.ndarray,
     backing_lab: np.ndarray,
@@ -123,7 +130,7 @@ def productness(
     * ``ΔE > colour_tau``  -> product (clearly a different colour);
     * ``ΔE <= backing_tol`` -> backing (indistinguishable from the board, even if
       the local window is textured because a neighbour is product);
-    * in between -> product only if the 5×5 lightness std exceeds ``std_tau``.
+    * in between -> product only if the 5×5 Lab std exceeds ``std_tau``.
 
     The middle band is what lets a textured product of roughly backing colour be
     seen, while the inner band keeps 2-px gaps between facings *uncovered* (their
@@ -131,7 +138,7 @@ def productness(
     Returns ``(product_mask, delta_e, std)``.
     """
     delta_e = np.sqrt(((lab - backing_lab) ** 2).sum(axis=2))
-    std = local_std(lab[..., 0])
+    std = local_lab_std(lab)
     product = (delta_e > colour_tau) | ((delta_e > backing_tol) & (std > std_tau))
     return product, delta_e, std
 
@@ -192,7 +199,7 @@ class ClassicalCoverageEstimator:
 
     Parameters
     ----------
-    std_tau : lightness std (5×5 window) above which a pixel is textured.
+    std_tau : Lab std (5×5 window) above which a pixel is textured.
     colour_tau : ΔE above which a pixel is clearly not backing.
     covered_col_frac : share of product pixels for a column to count as covered.
     backing_bgr : force a backing colour (overrides reference and auto-detect).
@@ -226,7 +233,7 @@ class ClassicalCoverageEstimator:
         palette colour; texture alone will then classify the pixels as product.
         """
         palette = tuple(int(v) for v in SyntheticPalette.SHELF_BACKING)
-        std = local_std(lab[..., 0])
+        std = local_lab_std(lab)
         flat = crop.mask & (std <= self.std_tau)
         if not flat.any():
             return palette, True
@@ -326,6 +333,7 @@ __all__ = [
     "bgr_tuple_to_lab",
     "count_facings_from_runs",
     "crop_shelf",
+    "local_lab_std",
     "local_std",
     "productness",
 ]

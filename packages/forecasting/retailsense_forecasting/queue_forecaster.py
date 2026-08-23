@@ -51,6 +51,10 @@ from .features import (
 log = logging.getLogger("retailsense.forecasting.queue")
 
 HOLDOUT_DAYS = 3
+QUIET_KEEP_EVERY = 4
+"""Training-row thinning: overnight minutes where the queue, every lag and the target are all zero carry
+no information beyond "closed shop = empty queue"; keeping 1 in 4 of them roughly halves fit time on a
+month of history without changing holdout accuracy (the holdout itself is never thinned)."""
 DEFAULT_MODEL_FILE = "queue_forecaster.joblib"
 
 
@@ -67,6 +71,18 @@ def _split_holdout(df: pd.DataFrame, holdout_days: int) -> tuple[pd.DataFrame, p
     if train.empty or hold.empty:  # too little history -> evaluate in-sample (still reported honestly)
         return df, df
     return train, hold
+
+
+def _thin_quiet_rows(train: pd.DataFrame, y_cols: list[str], keep_every: int) -> pd.DataFrame:
+    """Drop most all-zero rows (see ``QUIET_KEEP_EVERY``); deterministic (position based)."""
+    if keep_every <= 1:
+        return train
+    lag_cols = [c for c in train.columns if c.startswith("queue_lag_")]
+    cols = ["queue_count", *lag_cols, *y_cols]
+    quiet = (train[cols].fillna(0.0).abs().sum(axis=1) == 0).to_numpy()
+    pos = np.arange(len(train))
+    keep = ~quiet | (pos % keep_every == 0)
+    return train[keep]
 
 
 class QueueForecaster:
@@ -102,6 +118,8 @@ class QueueForecaster:
         t0 = time.perf_counter()
         feat = make_queue_features(history, with_targets=True, horizons=self.horizons, tz=self.tz)
         train, hold = _split_holdout(feat, self.holdout_days)
+        y_cols = [target_column(h) for h in self.horizons]
+        train = _thin_quiet_rows(train, y_cols, QUIET_KEEP_EVERY)
 
         self.models, self.mae_by_horizon, self.baseline_by_horizon = {}, {}, {}
         for h in self.horizons:
@@ -231,4 +249,4 @@ class QueueForecaster:
         return obj
 
 
-__all__ = ["DEFAULT_MODEL_FILE", "HOLDOUT_DAYS", "QueueForecaster", "default_model_dir"]
+__all__ = ["DEFAULT_MODEL_FILE", "HOLDOUT_DAYS", "QUIET_KEEP_EVERY", "QueueForecaster", "default_model_dir"]
