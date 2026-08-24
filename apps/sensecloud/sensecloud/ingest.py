@@ -22,6 +22,8 @@ Performance: 500 events = one validation pass + two chunked multi-row inserts +
 a handful of single-row upserts - well under 300 ms on SQLite.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import Any
 

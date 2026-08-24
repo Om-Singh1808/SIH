@@ -139,7 +139,10 @@ class EdgeStore:
         self.device_id = cfg.device.device_id
         self.tz = cfg.store.tz
         self.db_path = str(db_path if db_path is not None else cfg.device.db_path)
-        self._clock = clock or time.time
+        if clock is not None and hasattr(clock, "now") and callable(getattr(clock, "now")):
+            self._clock = clock.now
+        else:
+            self._clock = clock or time.time
         self._write_lock = threading.RLock()  # belt-and-braces: we *are* single-writer, but cheap to enforce
         self._hlc = HLC(self.device_id, _CallableClock(self._clock))
         self._kpi_cache: tuple[float, KpiToday] | None = None

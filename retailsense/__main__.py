@@ -112,6 +112,7 @@ def run_tool(script: str, argv: Sequence[str]) -> int:
         spec = importlib.util.spec_from_file_location(f"retailsense_tool_{path.stem}", path)
         assert spec and spec.loader
         module = importlib.util.module_from_spec(spec)
+        sys.modules[spec.name] = module
         os.environ.setdefault("PYTHONIOENCODING", "utf-8")
         try:
             spec.loader.exec_module(module)

@@ -21,7 +21,8 @@ export type TParams = Record<string, string | number | null | undefined>;
 export type TFn = (key: string, params?: TParams) => string;
 
 export function translate(lang: Lang, key: string, params?: TParams): string {
-  const template = DICTS[lang][key] ?? DICTS.en[key] ?? key;
+  const fallback = typeof params?.defaultValue === "string" ? (params.defaultValue as string) : key;
+  const template = DICTS[lang]?.[key] ?? DICTS.en?.[key] ?? fallback;
   if (!params) return template;
   return template.replace(/\{(\w+)\}/g, (_, name: string) => {
     const v = params[name];

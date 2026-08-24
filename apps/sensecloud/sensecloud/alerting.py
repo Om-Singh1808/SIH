@@ -18,6 +18,8 @@ the contracts' partial unique index and honoured here by superseding the older
 open alert before inserting a new one.
 """
 
+from __future__ import annotations
+
 from dataclasses import dataclass, field
 
 from sqlalchemy import and_, select
