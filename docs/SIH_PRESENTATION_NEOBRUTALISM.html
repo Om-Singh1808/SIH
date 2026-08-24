@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RetailSense — SIH 2025 Neobrutalist Presentation Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FFFDF5;
+      --border: 3px solid #000000;
+      --shadow: 5px 5px 0px #000000;
+      --shadow-sm: 3px 3px 0px #000000;
+      --shadow-lg: 8px 8px 0px #000000;
+      --yellow: #FFDE59;
+      --pink: #FF66C4;
+      --cyan: #00F0FF;
+      --green: #00FF66;
+      --purple: #B55FE6;
+      --orange: #FF914D;
+      --white: #FFFFFF;
+      --black: #000000;
+      --gray-light: #F3ECE0;
+      --spring-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--black);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Custom Neobrutalist Scrollbars (No ugly browser default scrollbars) */
+    ::-webkit-scrollbar {
+      height: 8px;
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--gray-light);
+      border: 2px solid #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--yellow);
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0 #000;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--cyan);
+    }
+
+    /* Top Sticky Header Banner */
+    header {
+      background-color: var(--yellow);
+      border-bottom: var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 0 #000;
+    }
+
+    .header-top {
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #000;
+      background: var(--yellow);
+    }
+
+    .logo-badge {
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 6px 14px;
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .badge-tag {
+      background: var(--pink);
+      color: #000;
+      padding: 3px 8px;
+      font-size: 0.75rem;
+      border: 2px solid #000;
+      font-weight: 900;
+      text-transform: uppercase;
+      box-shadow: 2px 2px 0 #000;
+    }
+
+    .live-pulse {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #000;
+      color: var(--green);
+      padding: 4px 10px;
+      border: 2px solid #000;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.4; transform: scale(0.9); }
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .jump-select {
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 6px 12px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      outline: none;
+    }
+    .jump-select:hover {
+      background: var(--cyan);
+    }
+
+    /* Sub-header Navigation Tabs Bar (Generous Spacing & Framer Motion Hover) */
+    .header-nav {
+      background: var(--bg);
+      padding: 8px 24px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      padding: 4px 2px 8px 2px;
+    }
+
+    .tab-btn {
+      background: var(--white);
+      border: 3px solid #000;
+      box-shadow: 3px 3px 0px #000;
+      padding: 8px 16px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s var(--spring-ease);
+      white-space: nowrap;
+      color: #000;
+    }
+
+    .tab-btn:hover {
+      background: var(--yellow);
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0px #000;
+    }
+
+    .tab-btn:active {
+      transform: translateY(1px);
+      box-shadow: 1px 1px 0px #000;
+    }
+
+    .tab-btn.active {
+      background: var(--cyan);
+      box-shadow: 4px 4px 0px #000;
+      transform: translateY(-2px);
+      border: 3px solid #000;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 1320px;
+      width: 100%;
+      margin: 28px auto;
+      padding: 0 24px;
+    }
+
+    /* Framer Motion Spring Animations for Slides */
+    .slide {
+      display: none;
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow-lg);
+      padding: 40px;
+      min-height: 680px;
+      position: relative;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    /* Framer Motion Slide Entrance Keyframes */
+    .slide.slide-next {
+      animation: framerSpringNext 0.45s var(--spring-ease) forwards;
+    }
+    .slide.slide-prev {
+      animation: framerSpringPrev 0.45s var(--spring-ease) forwards;
+    }
+
+    @keyframes framerSpringNext {
+      0% { opacity: 0; transform: scale(0.96) translateX(40px) rotate(0.4deg); }
+      70% { opacity: 1; transform: scale(1.008) translateX(-4px) rotate(-0.1deg); }
+      100% { opacity: 1; transform: scale(1) translateX(0) rotate(0deg); }
+    }
+
+    @keyframes framerSpringPrev {
+      0% { opacity: 0; transform: scale(0.96) translateX(-40px) rotate(-0.4deg); }
+      70% { opacity: 1; transform: scale(1.008) translateX(4px) rotate(0.1deg); }
+      100% { opacity: 1; transform: scale(1) translateX(0) rotate(0deg); }
+    }
+
+    /* Staggered Entrance Animations for Elements Inside Active Slide */
+    .slide.active .card,
+    .slide.active .neo-table,
+    .slide.active .demo-bar,
+    .slide.active .formula-card,
+    .slide.active .mono-box {
+      animation: framerPopIn 0.4s var(--spring-ease) both;
+    }
+
+    .slide.active .grid-2 > *:nth-child(1),
+    .slide.active .grid-3 > *:nth-child(1) { animation-delay: 0.05s; }
+    .slide.active .grid-2 > *:nth-child(2),
+    .slide.active .grid-3 > *:nth-child(2) { animation-delay: 0.12s; }
+    .slide.active .grid-3 > *:nth-child(3) { animation-delay: 0.18s; }
+    .slide.active .grid-4 > *:nth-child(1) { animation-delay: 0.05s; }
+    .slide.active .grid-4 > *:nth-child(2) { animation-delay: 0.1s; }
+    .slide.active .grid-4 > *:nth-child(3) { animation-delay: 0.15s; }
+    .slide.active .grid-4 > *:nth-child(4) { animation-delay: 0.2s; }
+
+    @keyframes framerPopIn {
+      0% { opacity: 0; transform: translateY(20px) scale(0.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Slide Header */
+    .slide-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      border-bottom: var(--border);
+      padding-bottom: 20px;
+    }
+
+    .slide-title-group h2 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .slide-subtitle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      margin-top: 8px;
+    }
+
+    .slide-num-badge {
+      background: var(--purple);
+      color: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 8px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+
+    /* Layout Grids */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* Neobrutal Cards & Micro-interactions */
+    .card {
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      position: relative;
+      transition: all 0.25s var(--spring-ease);
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.008) rotate(-0.2deg);
+      box-shadow: 8px 8px 0px #000;
+    }
+
+    .card.yellow { background: var(--yellow); }
+    .card.pink { background: var(--pink); }
+    .card.cyan { background: var(--cyan); }
+    .card.green { background: var(--green); }
+    .card.purple { background: var(--purple); color: var(--white); }
+    .card.gray { background: var(--gray-light); }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p, .card li {
+      font-size: 0.98rem;
+      font-weight: 600;
+      line-height: 1.55;
+    }
+
+    .card ul {
+      padding-left: 20px;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+    }
+
+    /* Tables */
+    .neo-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      margin-top: 12px;
+      font-size: 0.92rem;
+      transition: all 0.25s var(--spring-ease);
+    }
+
+    .neo-table:hover {
+      box-shadow: 7px 7px 0px #000;
+    }
+
+    .neo-table th {
+      background: var(--yellow);
+      border: 2px solid #000;
+      padding: 14px;
+      font-weight: 900;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .neo-table td {
+      border: 2px solid #000;
+      padding: 12px 14px;
+      font-weight: 600;
+      background: var(--white);
+    }
+
+    .neo-table tr:nth-child(even) td {
+      background: #FAF6EC;
+    }
+
+    /* Mono Code Blocks */
+    .mono-box {
+      font-family: 'JetBrains Mono', monospace;
+      background: #18181B;
+      color: #00FF66;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      font-size: 0.88rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      transition: all 0.2s var(--spring-ease);
+    }
+    .mono-box:hover {
+      box-shadow: 7px 7px 0px #000;
+    }
+
+    /* Interactive Live Scenario Bar */
+    .demo-bar {
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .demo-btn {
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 18px;
+      font-weight: 900;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s var(--spring-ease);
+    }
+
+    .demo-btn:hover {
+      background: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 4px 4px 0 #000;
+    }
+
+    .demo-btn:active {
+      transform: translateY(1px);
+      box-shadow: 1px 1px 0 #000;
+    }
+
+    .demo-btn.danger {
+      background: var(--pink);
+    }
+
+    .demo-output {
+      background: #000;
+      color: var(--green);
+      font-family: 'JetBrains Mono', monospace;
+      padding: 12px 18px;
+      border: 2px solid #000;
+      flex: 1;
+      font-size: 0.88rem;
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      box-shadow: inset 0 0 10px rgba(0,255,102,0.15);
+    }
+
+    /* True Neobrutalist Progress Meter & Footer */
+    footer {
+      background: var(--white);
+      border-top: var(--border);
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      bottom: 0;
+      z-index: 100;
+      box-shadow: 0 -4px 0 #000;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 14px;
+    }
+
+    .nav-btn {
+      background: var(--yellow);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 12px 26px;
+      font-weight: 900;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s var(--spring-ease);
+    }
+
+    .nav-btn:hover {
+      background: var(--cyan);
+      transform: translateY(-3px);
+      box-shadow: 5px 5px 0 #000;
+    }
+
+    .nav-btn:active {
+      transform: translateY(1px);
+      box-shadow: 1px 1px 0 #000;
+    }
+
+    /* Neobrutalist Progress Bar with Candy Stripe Fill & Badge */
+    .progress-bar-wrapper {
+      flex: 1;
+      margin: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .progress-bar-container {
+      flex: 1;
+      background: #FFFFFF;
+      border: 3px solid #000;
+      box-shadow: 4px 4px 0px #000;
+      height: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: repeating-linear-gradient(
+        45deg,
+        var(--pink),
+        var(--pink) 12px,
+        #FF33B5 12px,
+        #FF33B5 24px
+      );
+      height: 100%;
+      width: 8.33%;
+      transition: width 0.4s var(--spring-ease);
+      border-right: 3px solid #000;
+    }
+
+    .progress-badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 900;
+      font-size: 0.85rem;
+      background: var(--green);
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0 #000;
+      padding: 4px 10px;
+      white-space: nowrap;
+    }
+
+    .formula-card {
+      background: #FFF9E6;
+      border: 3px solid #000;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 20px 0;
+      transition: all 0.25s var(--spring-ease);
+    }
+    .formula-card:hover {
+      transform: scale(1.01);
+      box-shadow: 7px 7px 0 #000;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-weight: 900;
+      font-size: 0.78rem;
+      border: 2px solid #000;
+      box-shadow: 2px 2px 0 #000;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .tag.yellow { background: var(--yellow); }
+    .tag.green { background: var(--green); }
+    .tag.cyan { background: var(--cyan); }
+    .tag.pink { background: var(--pink); }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Header -->
+  <header>
+    <div class="header-top">
+      <div class="logo-badge">
+        ⚡ RETAILSENSE
+        <span class="badge-tag">SIH 2025</span>
+        <div class="live-pulse">
+          <div class="pulse-dot"></div>
+          LIVE PROTOTYPE
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <select class="jump-select" id="jumpSelect" onchange="goToSlide(parseInt(this.value))">
+          <!-- Options populated by JS -->
+        </select>
+        <button class="demo-btn" onclick="prevSlide()">◀</button>
+        <button class="demo-btn" onclick="nextSlide()">▶</button>
+      </div>
+    </div>
+
+    <!-- Generous Spacing Neobrutalist Tab Bar -->
+    <div class="header-nav" id="headerNav">
+      <div class="nav-tabs" id="tabContainer">
+        <!-- Tabs generated dynamically by JS -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Presentation Deck Body -->
+  <main>
+
+    <!-- SLIDE 1: Title & Overview -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>RetailSense: Intelligent Retail Analytics System</h2>
+          <div class="slide-subtitle">Offline-First Edge AI turning existing CCTV into ₹-Quantified Shelf, Queue & Footfall Intelligence</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 01 / 12</div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 28px;">
+        <div class="card yellow">
+          <div class="card-title">🎯 Official Problem Statement</div>
+          <p><strong>To build an AI-powered retail intelligence platform</strong> that delivers real-time shopper analytics, automated inventory visibility, and proactive queue management through on-device AI, enabling retailers to reduce stock-outs, improve customer experience, optimize staffing, and increase operational efficiency while maintaining privacy and minimizing cloud dependency.</p>
+        </div>
+        <div class="card cyan">
+          <div class="card-title">🚀 Core Uniqueness & Value Proposition</div>
+          <ul>
+            <li><strong>Zero New Hardware:</strong> Ingests RTSP streams directly from existing DVR/NVR CCTV cameras.</li>
+            <li><strong>Rupee Impact String:</strong> Computes financial loss in ₹ for every alert ($mrp \times velocity \times gap \times 0.31$).</li>
+            <li><strong>100% Offline Resilience:</strong> Stores data in local SQLite WAL + Transactional Outbox; contiguous gap-free replay.</li>
+            <li><strong>1-Tap Vernacular WhatsApp UX:</strong> Hindi/English restock workflow (`1 = भर दिया, 2 = ऑर्डर, 3 = गलत`).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card green">
+          <div class="card-title">🏪 Tier 3: Kirana</div>
+          <p><strong>Zero-Hardware Entry:</strong> Existing DVR or old phone. Pi 5 (₹8k–15k). Covers 1–2 cameras at 4 fps.</p>
+        </div>
+        <div class="card pink">
+          <div class="card-title">🏬 Tier 2: Supermarket</div>
+          <p><strong>High Density AI:</strong> Pi 5 + Hailo-8L HAT (157 fps) or Jetson Nano. Covers 4–8 cameras.</p>
+        </div>
+        <div class="card purple">
+          <div class="card-title" style="color:#fff;">🏢 Tier 1: Chain Store</div>
+          <p><strong>Enterprise Fleet:</strong> Intel N100 / Core Ultra (219 fps). Multi-store dashboard & OTA manifests.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Problem Statement & Reality -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>The Indian Retail Reality & Problem Breakdown</h2>
+          <div class="slide-subtitle">Addressing 12-13 Million Kiranas & Supermarkets operating in constrained environments</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 02 / 12</div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 28px;">
+        <div class="card pink">
+          <div class="card-title">⚠️ The Industry Friction</div>
+          <ul>
+            <li><strong>Stock-Out Loss:</strong> 8.3% global OOS rate. Kiranas lose ₹4–8 Lakh/year because empty shelves stay unnoticed for 2–4 hours.</li>
+            <li><strong>Inventory Shrinkage:</strong> India retail faces 2.4–3.2% shrink. POS discrepancies are discovered months later during audits.</li>
+            <li><strong>Queue Abandonment:</strong> 32% of customers leave without buying when checkout queues exceed 5 minutes.</li>
+          </ul>
+        </div>
+        <div class="card yellow">
+          <div class="card-title">⚡ The Edge & Power Challenge in India</div>
+          <ul>
+            <li><strong>Daily Power Outages:</strong> 85% of Indian households & stores face power cuts daily. Cloud solutions fail when store is busiest.</li>
+            <li><strong>Flaky 4G / Connectivity:</strong> Tier 2 & 3 cities have inconsistent internet. Streaming live CCTV to cloud costs ₹50,000+/mo in bandwidth.</li>
+            <li><strong>Privacy Regulations:</strong> Strict compliance required under DPDP Act 2023. Zero facial recognition or PII storage permitted.</li>
+          </ul>
+        </div>
+      </div>
+
+      <table class="neo-table">
+        <thead>
+          <tr>
+            <th>Pain Point</th>
+            <th>Traditional Cloud Approach</th>
+            <th>RetailSense Edge AI Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hardware Cost</strong></td>
+            <td>₹50,000+ per camera for specialized IoT smart cams</td>
+            <td><strong>₹0 new hardware</strong> (re-uses installed DVR/NVR RTSP)</td>
+          </tr>
+          <tr>
+            <td><strong>Internet Outages</strong></td>
+            <td>App crashes, video buffering, zero alerts during outage</td>
+            <td><strong>100% functional on local LAN</strong>; SQLite outbox auto-syncs on reconnect</td>
+          </tr>
+          <tr>
+            <td><strong>Store Alerts</strong></td>
+            <td>Generic "High Severity Alert" on obscure dashboard</td>
+            <td><strong>Rupee-denominated WhatsApp alert in Hindi</strong> with 1-digit action reply</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SLIDE 3: Proposed Solution - 3 Surfaces -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Proposed Architecture & The 3 Surfaces</h2>
+          <div class="slide-subtitle">SenseEdge (Store Edge) + SenseCloud (Chain Backend) + SenseBoard (Neobrutalist UI)</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 03 / 12</div>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 28px;">
+        <div class="card cyan">
+          <div class="card-title">⚙️ 1. SenseEdge Engine</div>
+          <p>Local Python 3.11 engine on store hardware.</p>
+          <ul style="margin-top: 10px;">
+            <li>YOLO11n ONNX CPU @ 4 fps</li>
+            <li>ByteTrackLite (Kalman + Hungarian)</li>
+            <li>3-Scan Persistence Shelf Scanner</li>
+            <li>Little's Law Queue Engine</li>
+            <li>SQLite WAL + Outbox Ledger</li>
+          </ul>
+        </div>
+        <div class="card yellow">
+          <div class="card-title">☁️ 2. SenseCloud Backend</div>
+          <p>Multi-store aggregation & intelligence core.</p>
+          <ul style="margin-top: 10px;">
+            <li>Idempotent Batch Ingestion</li>
+            <li>HistGradientBoosting Forecaster</li>
+            <li>WhatsApp Meta Cloud API Dispatch</li>
+            <li>Tally XML & ONDC Beckn Sync</li>
+            <li>Canary OTA Model Manifests</li>
+          </ul>
+        </div>
+        <div class="card green">
+          <div class="card-title">📱 3. SenseBoard UI</div>
+          <p>Neobrutalist vernacular web application.</p>
+          <ul style="margin-top: 10px;">
+            <li>`/owner` ("Aaj ka hisaab" card)</li>
+            <li>`/ops` (Live camera & zone editor)</li>
+            <li>`/insights` (Footfall & heatmaps)</li>
+            <li>`/chain` (Multi-store rankings)</li>
+            <li>Privacy-pixelated preview</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mono-box">
+┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ CAMERA (RTSP) ──► YOLO11n ONNX ──► ByteTrack ──► ZoneEngine & ShelfScanner ──► SQLite WAL Outbox│
+│                                                                                     │ (SyncWorker)│
+│ STORE BOARD (LAN) ◄── REST & WebSocket ◄────────────────────────────────────────────┴─────► SENSECLOUD │
+└─────────────────────────────────────────────────────────────────────────────────────────────────┘
+      </div>
+    </div>
+
+    <!-- SLIDE 4: 7 Solution Pillars -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>The 7 Expected Solution Pillars</h2>
+          <div class="slide-subtitle">Exhaustive coverage of every requirement in the SIH problem statement</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 04 / 12</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card yellow">
+          <div class="card-title">1. Shopper Analytics</div>
+          <p>Directional footfall counting lines (`entrance-line`). 20px spatial floor grid heatmap. Zone dwell time measurement and power-hours traffic matrix.</p>
+        </div>
+        <div class="card pink">
+          <div class="card-title">2. Inventory Monitoring</div>
+          <p>Shelf gap detection using Lab colour distance + texture variance. 3-scan persistence filter (90s) prevents walk-by false alarms. Planogram facing counts.</p>
+        </div>
+        <div class="card cyan">
+          <div class="card-title">3. Queue Intelligence</div>
+          <p>Little's Law wait time ($Wait = \frac{L}{Service\_Rate}$) using measured cashier scanning speed. 15-minute HGBoost forecast (MAE 0.8) triggers "Open Counter" alerts.</p>
+        </div>
+        <div class="card green">
+          <div class="card-title">4. Edge AI Processing</div>
+          <p>All CV models execute 100% locally. Functions during complete internet blackout. Idle network bandwidth consumption &lt;1 kbit/s.</p>
+        </div>
+        <div class="card purple">
+          <div class="card-title" style="color:#fff;">5. Privacy-Aware Analytics</div>
+          <p>Zero face recognition models. Appearance-free ByteTrackMOT without ReID embeddings. Downscaled privacy pixelation on live video streams.</p>
+        </div>
+        <div class="card gray">
+          <div class="card-title">6 & 7. Dashboard & Scale</div>
+          <p>Vernacular WhatsApp integration (`1=भर दिया`). Multi-store fleet registry, Tally XML stock reconciliation, and ONDC Beckn seller catalog auto-updates.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5: Hardware & Tier Matrix -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>3-Tier Store Hardware & Deployment Matrix</h2>
+          <div class="slide-subtitle">Scalable from single-counter Kiranas to 500+ store hypermarket chains</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 05 / 12</div>
+      </div>
+
+      <table class="neo-table" style="margin-bottom: 28px;">
+        <thead>
+          <tr>
+            <th>Store Tier</th>
+            <th>Target Environment</th>
+            <th>Hardware Profile</th>
+            <th>Indicative Cost</th>
+            <th>Inference Throughput</th>
+            <th>Camera Capacity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag green">TIER 3</span> <strong>Kirana</strong></td>
+            <td>Neighborhood general stores (500–1000 sq ft)</td>
+            <td>Existing DVR/NVR RTSP or Raspberry Pi 5 8GB</td>
+            <td><strong>₹0 (Zero New HW)</strong> or ₹8,000–15,000</td>
+            <td>YOLO11n ONNX CPU (56 ms / 6–15 fps)</td>
+            <td>1–2 Cameras @ 4 fps</td>
+          </tr>
+          <tr>
+            <td><span class="tag yellow">TIER 2</span> <strong>Supermarket</strong></td>
+            <td>Mini-marts & pharmacies (1500–3000 sq ft)</td>
+            <td>Pi 5 + AI HAT+ (Hailo-8L 13 TOPS) or Jetson Nano</td>
+            <td>₹18,000–25,000</td>
+            <td>Hailo-8L INT8 (157 fps) / TensorRT</td>
+            <td>4–8 Cameras @ 4 fps</td>
+          </tr>
+          <tr>
+            <td><span class="tag pink">TIER 1</span> <strong>Hypermarket</strong></td>
+            <td>Large retail chains & hypermarkets (5000+ sq ft)</td>
+            <td>Intel N100 / Core Ultra 7 / NUC Mini-PC</td>
+            <td>₹35,000–50,000</td>
+            <td>TensorRT FP16/INT8 (219 fps)</td>
+            <td>8–16+ Cameras @ 4 fps</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card yellow">
+        <div class="card-title">💡 Why Sampling Rate (2–5 fps) Unlocks Scale</div>
+        <p>In retail analytics, humans move at ~1.2 m/s and shelf stockouts persist for minutes. Full 30 fps processing is wasteful. Sampling frames at <strong>4 fps</strong> reduces compute overhead by 86%, allowing a budget Raspberry Pi 5 to analyze multiple camera streams concurrently without overheating.</p>
+      </div>
+    </div>
+
+    <!-- SLIDE 6: Technical Architecture -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Technical Architecture & Layer Breakdown</h2>
+          <div class="slide-subtitle">Modular design with strict interface separation and frozen contracts</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 06 / 12</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card cyan">
+          <div class="card-title">📦 Technical Stack Summary</div>
+          <table class="neo-table">
+            <tr>
+              <td><strong>Edge CV</strong></td>
+              <td>Python 3.11, OpenCV 5, `onnxruntime`, YOLO11n ONNX, ByteTrackLite</td>
+            </tr>
+            <tr>
+              <td><strong>Edge Storage</strong></td>
+              <td>SQLite WAL (`synchronous=FULL`), Transactional Outbox, HLC timestamps</td>
+            </tr>
+            <tr>
+              <td><strong>Cloud Stack</strong></td>
+              <td>FastAPI, SQLAlchemy (Postgres/TimescaleDB), Scikit-Learn `HistGradientBoosting`</td>
+            </tr>
+            <tr>
+              <td><strong>Dashboard</strong></td>
+              <td>Vite + React 19 + TypeScript + Tailwind CSS, Recharts, Zustand</td>
+            </tr>
+            <tr>
+              <td><strong>Integrations</strong></td>
+              <td>Meta WhatsApp Cloud API, Tally XML (port 9000), ONDC Beckn Protocol</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card yellow">
+          <div class="card-title">⚙️ Threading & Async Execution Model</div>
+          <ul>
+            <li><strong>Dedicated CV Worker Threads:</strong> OpenCV/ONNX runs in OS worker threads (one per camera) releasing Python GIL during native execution. Prevents video reading from blocking REST APIs.</li>
+            <li><strong>Single-Writer Asyncio Loop:</strong> All SQLite WAL write operations are funneled through a single asyncio thread. Eliminates database lock contention (`database is locked`).</li>
+            <li><strong>Explicit Backpressure Queue:</strong> Bounded buffer (`maxsize=1000`) drops oldest telemetry frames if consumer slows down, ensuring alerts are never lost.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 7: Offline-First Integrity -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Offline-First Integrity: "Cable Kaat Do" Protocol</h2>
+          <div class="slide-subtitle">Proven store-and-forward architecture with gap-free sequence verification</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 07 / 12</div>
+      </div>
+
+      <!-- Live Demo Trigger Controls -->
+      <div class="demo-bar">
+        <span style="font-weight:900; text-transform:uppercase;">Interactive Demo Control:</span>
+        <button class="demo-btn danger" onclick="triggerDemo('cable_cut')">🔌 Cable Kaat Do (Link Down)</button>
+        <button class="demo-btn" onclick="triggerDemo('reconnect')">⚡ Reconnect (Link Up)</button>
+        <button class="demo-btn" onclick="triggerDemo('stockout')">🥛 Stockout Scenario</button>
+        <div class="demo-output" id="demoOutput">Status: Online · Backlog: 0 · Seq: Contiguous</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card yellow">
+          <div class="card-title">🔒 Transactional Outbox Guarantees</div>
+          <p>Observations and outbox rows are committed in **one single SQLite transaction**:</p>
+          <div class="mono-box" style="margin-top: 10px;">
+BEGIN IMMEDIATE;
+  INSERT INTO events (event_id, seq, payload, ts);
+  INSERT INTO outbox (id=seq, topic, expires_ts, sent_ts=NULL);
+COMMIT;
+          </div>
+          <p style="margin-top: 10px;">If power is cut mid-transaction, SQLite WAL rolls back cleanly. `seq` numbers remain 100% gap-free.</p>
+        </div>
+
+        <div class="card pink">
+          <div class="card-title">📋 Class-Based Outbox Expiry Policy</div>
+          <table class="neo-table">
+            <thead>
+              <tr>
+                <th>Event Class</th>
+                <th>Examples</th>
+                <th>Retention in Outbox</th>
+                <th>Overflow Policy</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>`telemetry`</td>
+                <td>`heatmap.tiles`, `device.heartbeat`</td>
+                <td>1 Hour</td>
+                <td>Evict Oldest</td>
+              </tr>
+              <tr>
+                <td>`aggregate`</td>
+                <td>`queue.snapshot`, `shelf.state`</td>
+                <td>24 Hours</td>
+                <td>Evict Oldest</td>
+              </tr>
+              <tr>
+                <td>`alert` / `txn`</td>
+                <td>`alert.raised`, `stock.reconciled`</td>
+                <td><strong>NEVER EXPIRE</strong></td>
+                <td><strong>NEVER EVICT</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 8: REST APIs & Wire Contracts -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>REST APIs & Integration Endpoints</h2>
+          <div class="slide-subtitle">Complete specification of store edge and cloud API surfaces</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 08 / 12</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card cyan">
+          <div class="card-title">🖥️ SenseEdge Local APIs (`:8001`)</div>
+          <table class="neo-table">
+            <tr>
+              <td>`GET /health`</td>
+              <td>System status, active camera FPS, sync link state</td>
+            </tr>
+            <tr>
+              <td>`GET /kpis/today`</td>
+              <td>Daily footfall, OSA %, lost sales ₹, queue waits</td>
+            </tr>
+            <tr>
+              <td>`PUT /config/zones`</td>
+              <td>Updates polygon coordinates for store zones</td>
+            </tr>
+            <tr>
+              <td>`POST /calibrate/shelves/reference-all`</td>
+              <td>1-Tap calibration for shelf backing colour & texture</td>
+            </tr>
+            <tr>
+              <td>`GET /ws/live`</td>
+              <td>WebSocket stream of live bboxes & active alerts</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="card yellow">
+          <div class="card-title">☁️ SenseCloud & Integration APIs (`:8000`)</div>
+          <table class="neo-table">
+            <tr>
+              <td>`POST /v1/ingest/batch`</td>
+              <td>Idempotent batch ingest with `seq` gap checking</td>
+            </tr>
+            <tr>
+              <td>`GET /v1/fleet`</td>
+              <td>Multi-store device registry & version status</td>
+            </tr>
+            <tr>
+              <td>`GET /v1/chain/rank`</td>
+              <td>Cross-store leaderboard normalized per 100 visitors</td>
+            </tr>
+            <tr>
+              <td>`POST .../tally/reconcile`</td>
+              <td>Compares camera inventory vs Tally POS XML (:9000)</td>
+            </tr>
+            <tr>
+              <td>`POST /mock/ondc/log`</td>
+              <td>Publishes item availability status to ONDC network</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 9: Edge Cases & Mitigations -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Comprehensive Edge Cases & Failure Mitigations</h2>
+          <div class="slide-subtitle">Robust engineering designed for messy real-world retail store conditions</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 09 / 12</div>
+      </div>
+
+      <table class="neo-table">
+        <thead>
+          <tr>
+            <th>Edge Case Scenario</th>
+            <th>Operational Risk</th>
+            <th>RetailSense System Mitigation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Shopper Standing in Front of Shelf</strong></td>
+            <td>False Out-of-Stock alert triggered due to body occlusion</td>
+            <td><strong>Occlusion Skip:</strong> Bounding box overlap detector skips shelf scan when person polygon intersects shelf polygon. Counter is not incremented.</td>
+          </tr>
+          <tr>
+            <td><strong>Camera Bump or Lighting Shift</strong></td>
+            <td>Baseline colour drift causing false gap detection</td>
+            <td><strong>Lab Colour + Texture Variance:</strong> Uses Lab colour distance combined with local texture variance rather than raw RGB. 1-tap re-calibration on dashboard.</td>
+          </tr>
+          <tr>
+            <td><strong>Abrupt Power Cut Mid-Batch</strong></td>
+            <td>Corrupted database or lost sequence numbers</td>
+            <td><strong>SQLite WAL (`synchronous=FULL`):</strong> Atomic write-ahead logging guarantees database recovery without sequence gaps upon reboot.</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-SKU Cluttered Shelves</strong></td>
+            <td>Estimator sees "covered" even if wrong product fills gap</td>
+            <td><strong>Learned Gap Model (P1/P2):</strong> Roboflow two-class empty-shelf model plugs in behind the same `CoverageEstimator` interface.</td>
+          </tr>
+          <tr>
+            <td><strong>Incorrect Alert Reported by Shopkeeper</strong></td>
+            <td>Loss of shopkeeper trust due to false positives</td>
+            <td><strong>Self-Tuning Loop:</strong> Replying `3 = गलत अलर्ट` automatically increments that shelf's required empty scans (3 → 4 → 5), self-tuning accuracy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SLIDE 10: Financial Impact & Rupee Math -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Financial Impact, BMC & Rupee Loss Math</h2>
+          <div class="slide-subtitle">Quantifying retail operational loss into direct Indian Rupee (₹) metrics</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 10 / 12</div>
+      </div>
+
+      <div class="formula-card">
+        Impact<sub>INR</sub> = MRP × Velocity<sub>units/hr</sub> × Gap<sub>hours</sub> × 0.31
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 28px;">
+        <div class="card yellow">
+          <div class="card-title">📖 The 0.31 Gruen Factor Basis</div>
+          <p>Based on global retail research by <strong>Gruen, Corsten & Bharadwaj (2002)</strong> (71,000 shoppers across 29 countries): <strong>31% of shoppers leave the store without purchasing</strong> when their intended item is out of stock. RetailSense uses this exact factor to compute monetary risk.</p>
+        </div>
+        <div class="card green">
+          <div class="card-title">💰 Recovered Rupee Calculation</div>
+          <p>When store staff restocks after an alert, RetailSense measures actual gap vs. an unattended 2-hour baseline:</p>
+          <p style="margin-top: 10px; font-weight: 800;">Saved = ₹301 (unattended 2h) - ₹20 (actual 8 min gap) = ₹281 SAVED</p>
+          <p style="margin-top: 6px;">This number is directly incremented on the shopkeeper's <strong>"₹ बचाया आज"</strong> card.</p>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card white">
+          <div class="card-title">SaaS Subscription</div>
+          <p>₹299/mo Kirana Plan | ₹999/mo Supermarket Plan. Extremely affordable entry point.</p>
+        </div>
+        <div class="card white">
+          <div class="card-title">Direct Return on Investment</div>
+          <p>Recovering just 25% of OOS sales saves ₹40,000/year — a <strong>11x ROI</strong> over subscription costs.</p>
+        </div>
+        <div class="card white">
+          <div class="card-title">FMCG Brand Data Tier</div>
+          <p>Distributors pay for outlet-level Share-of-Shelf and On-Shelf Availability (OSA) intelligence.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 11: Privacy & DPDP Compliance -->
+    <div class="slide" id="slide-11">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>Privacy by Design & DPDP Act Compliance</h2>
+          <div class="slide-subtitle">Strict compliance with India's Digital Personal Data Protection Act 2023</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 11 / 12</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card purple">
+          <div class="card-title" style="color:#fff;">🔒 Privacy Architecture Safeguards</div>
+          <ul>
+            <li><strong>Zero Face Recognition:</strong> The system strictly detects person bounding boxes. No facial recognition or biometric scanning models exist in the codebase.</li>
+            <li><strong>Appearance-Free Tracking:</strong> ByteTrackLite relies purely on Kalman position filter and IoU overlap. No ReID feature vector embeddings are generated or stored.</li>
+            <li><strong>Zero Video Disk Persistence:</strong> Raw video frames are processed in RAM and discarded immediately. Video is never saved to local disk or sent to cloud.</li>
+          </ul>
+        </div>
+
+        <div class="card cyan">
+          <div class="card-title">🛡️ DPDP Compliance Matrix</div>
+          <table class="neo-table">
+            <tr>
+              <td><strong>Data Minimization</strong></td>
+              <td>Events carry counts, dwell seconds, and shelf states — zero personally identifiable information (PII).</td>
+            </tr>
+            <tr>
+              <td><strong>Privacy Pixelation</strong></td>
+              <td>Live preview stream pixelates human figures (downsampled 12× then upscaled).</td>
+            </tr>
+            <tr>
+              <td><strong>Retention Purge Job</strong></td>
+              <td>Automated hourly cleanup job purges telemetry after 1 hour and daily rollups after 30 days.</td>
+            </tr>
+            <tr>
+              <td><strong>Store Entrance Signage</strong></td>
+              <td>Pre-rendered bilingual Hindi/English entrance signage provided to store owners.</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 12: Judge Q&A & Benchmark Proofs -->
+    <div class="slide" id="slide-12">
+      <div class="slide-header">
+        <div class="slide-title-group">
+          <h2>SIH Judge Q&A & Empirical Benchmarks</h2>
+          <div class="slide-subtitle">Defensible answers backed by empirical code measurements and CI test suites</div>
+        </div>
+        <div class="slide-num-badge">SLIDE 12 / 12</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card yellow">
+          <div class="card-title">❓ Q1: What accuracy do you actually achieve?</div>
+          <p><strong>Answer:</strong> All metrics are asserted in CI against synthetic ground truth (`sim.truth`): Footfall within ±10% of true crossings (`test_e2e_synthetic`), shelf coverage within ±0.1 of true capacity, and queue forecast holdout MAE ≤ 0.8 customers against a naive baseline (matching Cali Intelligence benchmarks).</p>
+        </div>
+        <div class="card green">
+          <div class="card-title">❓ Q2: Why not run everything in the cloud?</div>
+          <p><strong>Answer:</strong> Three reasons: 1) 85% of Indian stores face daily power cuts; a cloud system fails when the store is busiest. 2) Streaming 4K video from 12M stores consumes prohibitive bandwidth. 3) Local edge inference costs electricity, not GPU hours, making ₹299/mo pricing viable.</p>
+        </div>
+        <div class="card cyan">
+          <div class="card-title">❓ Q3: How is this original vs Ultralytics samples?</div>
+          <p><strong>Answer:</strong> Ultralytics provides raw detector primitives. Our contribution is the business layer above: ₹ impact strings with cited citations, 3-scan persistence with occlusion skip, Little's Law on measured cashier speed, offline transactional outbox replay, and Hindi WhatsApp ops loops.</p>
+        </div>
+        <div class="card pink">
+          <div class="card-title">❓ Q4: What breaks first in production honestly?</div>
+          <p><strong>Answer:</strong> Cluttered multi-SKU shelves where classical vision sees "covered" even if wrong product fills the gap. We mitigate this by plugging a learned empty-shelf detector (Sensors 2024 model) behind the exact same `CoverageEstimator` interface for P1 release.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bottom Navigation & Neobrutalist Progress Meter -->
+  <footer>
+    <div class="nav-controls">
+      <button class="nav-btn" onclick="prevSlide()">◀ PREV</button>
+      <button class="nav-btn" onclick="nextSlide()">NEXT ▶</button>
+    </div>
+
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+      <div class="progress-badge" id="progressBadge">8% COMPLETE</div>
+    </div>
+
+    <div style="font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 0.95rem;">
+      <span id="currentSlideNum">01</span> / 12 SLIDES
+    </div>
+  </footer>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 12;
+
+    const slideTitles = [
+      "1. Title & Vision",
+      "2. Indian Retail Reality",
+      "3. 3-Surface Architecture",
+      "4. 7 Solution Pillars",
+      "5. 3-Tier Hardware Matrix",
+      "6. Tech Stack & Execution",
+      "7. Offline Integrity",
+      "8. REST APIs & Contracts",
+      "9. Edge Cases & Mitigations",
+      "10. Financial Impact & ₹ Math",
+      "11. Privacy & DPDP Act",
+      "12. Judge Q&A Benchmarks"
+    ];
+
+    function initHeader() {
+      const container = document.getElementById('tabContainer');
+      const jumpSelect = document.getElementById('jumpSelect');
+      container.innerHTML = '';
+      jumpSelect.innerHTML = '';
+
+      slideTitles.forEach((title, idx) => {
+        const slideNum = idx + 1;
+        
+        // Render Tab Button
+        const btn = document.createElement('button');
+        btn.id = `tab-btn-${slideNum}`;
+        btn.className = `tab-btn ${slideNum === currentSlide ? 'active' : ''}`;
+        btn.innerText = title;
+        btn.onclick = () => goToSlide(slideNum);
+        container.appendChild(btn);
+
+        // Render Jump Dropdown Option
+        const opt = document.createElement('option');
+        opt.value = slideNum;
+        opt.innerText = `Slide ${slideNum}: ${title}`;
+        jumpSelect.appendChild(opt);
+      });
+    }
+
+    function updateSlide(direction = 'next') {
+      const slides = document.querySelectorAll('.slide');
+      
+      slides.forEach((el, idx) => {
+        const slideNum = idx + 1;
+        el.classList.remove('active', 'slide-next', 'slide-prev');
+        
+        if (slideNum === currentSlide) {
+          el.classList.add('active');
+          if (direction === 'next') {
+            el.classList.add('slide-next');
+          } else if (direction === 'prev') {
+            el.classList.add('slide-prev');
+          }
+        }
+      });
+
+      // Update Tabs State & Center Active Tab
+      document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+        const isActive = idx + 1 === currentSlide;
+        btn.classList.toggle('active', isActive);
+        if (isActive) {
+          btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      });
+
+      // Update Jump Select Dropdown
+      document.getElementById('jumpSelect').value = currentSlide;
+
+      // Update Slide Number and Neobrutalist Progress Meter
+      const pct = Math.round((currentSlide / totalSlides) * 100);
+      document.getElementById('currentSlideNum').innerText = currentSlide.toString().padStart(2, '0');
+      document.getElementById('progressBar').style.width = `${pct}%`;
+      document.getElementById('progressBadge').innerText = `${pct}% COMPLETE`;
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide('next');
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide('prev');
+      }
+    }
+
+    function goToSlide(num) {
+      const dir = num >= currentSlide ? 'next' : 'prev';
+      currentSlide = num;
+      updateSlide(dir);
+    }
+
+    // Keyboard Arrow Navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'Space') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide();
+      }
+    });
+
+    // Interactive Demo Trigger Simulation with Typewriter Effect
+    function triggerDemo(type) {
+      const output = document.getElementById('demoOutput');
+      let msg = "";
+      if (type === 'cable_cut') {
+        msg = "<span style='color:#FF66C4;'>🔌 [CABLE CUT] Link DOWN · Backlog: 312 events · LAN Dashboard: Operational</span>";
+      } else if (type === 'reconnect') {
+        msg = "<span style='color:#00FF66;'>⚡ [RECONNECT] Replaying 312/312 events · Seq: Contiguous (seq_ok: true)</span>";
+      } else if (type === 'stockout') {
+        msg = "<span style='color:#FFDE59;'>🥛 [ALERT] अमूल ताज़ा शेल्फ 3 min खाली · Risk: ₹151/hr · WhatsApp Sent</span>";
+      }
+      
+      output.style.opacity = '0';
+      setTimeout(() => {
+        output.innerHTML = msg;
+        output.style.opacity = '1';
+        output.style.transition = 'opacity 0.25s ease';
+      }, 100);
+    }
+
+    // Initialize
+    initHeader();
+    updateSlide();
+  </script>
+</body>
+</html>

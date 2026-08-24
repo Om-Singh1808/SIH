@@ -22,7 +22,6 @@
           "type": "string"
         },
         "payload": {
-          "additionalProperties": true,
           "type": "object"
         },
         "created_ts": {

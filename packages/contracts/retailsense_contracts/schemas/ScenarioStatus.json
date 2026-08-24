@@ -8,7 +8,6 @@
       "type": "number"
     },
     "params": {
-      "additionalProperties": true,
       "type": "object"
     },
     "available": {

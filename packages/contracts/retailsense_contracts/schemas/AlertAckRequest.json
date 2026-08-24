@@ -32,7 +32,11 @@
       "$ref": "#/$defs/AckAction"
     },
     "by": {
-      "$ref": "#/$defs/AckBy",
+      "allOf": [
+        {
+          "$ref": "#/$defs/AckBy"
+        }
+      ],
       "default": "board"
     },
     "note": {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import { useT } from "@/i18n/useT";
 import { useSettings } from "@/store/settings";
-import { useLive, selectOpenAlerts, selectEdgeOnline } from "@/store/live";
+import { useLive, selectEdgeOnline } from "@/store/live";
 
 export function NavBar() {
   const { t, lang } = useT();
@@ -13,24 +13,33 @@ export function NavBar() {
   const sync = useLive((s) => s.sync);
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900 border-b border-slate-800 text-slate-100 shadow-md">
+    <header className="sticky top-0 z-50 bg-white border-b-[2.5px] border-slate-900 shadow-[0_3px_0_#0F172A] text-slate-900">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-5">
+          {/* Brand Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center font-bold text-white shadow">
+            <div className="w-9 h-9 rounded-lg bg-[#FEF08A] border-[2.5px] border-slate-900 shadow-[2px_2px_0px_#0F172A] flex items-center justify-center font-black text-slate-900 text-sm">
               RS
             </div>
-            <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-orange-400 to-amber-200 bg-clip-text text-transparent">
-              RetailSense
-            </span>
+            <div className="flex flex-col">
+              <span className="font-extrabold text-xl tracking-tight text-slate-900">
+                RetailSense
+              </span>
+              <span className="text-[9px] font-mono font-bold tracking-widest text-slate-500 uppercase -mt-1">
+                ✦ AI Operations Board
+              </span>
+            </div>
           </div>
 
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Navigation Items (Soothing Muted Tabs) */}
+          <nav className="hidden md:flex items-center gap-1.5 bg-[#FAF7F2] p-1 rounded-xl border border-slate-300">
             <NavLink
               to="/owner"
               className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm font-semibold transition ${
-                  isActive ? "bg-orange-500/20 text-orange-400 border border-orange-500/30" : "text-slate-300 hover:bg-slate-800"
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 ${
+                  isActive
+                    ? "bg-[#FEF3C7] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-white border border-transparent"
                 }`
               }
             >
@@ -39,14 +48,16 @@ export function NavBar() {
             <NavLink
               to="/ops"
               className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm font-semibold transition flex items-center gap-2 ${
-                  isActive ? "bg-orange-500/20 text-orange-400 border border-orange-500/30" : "text-slate-300 hover:bg-slate-800"
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 flex items-center gap-2 ${
+                  isActive
+                    ? "bg-[#FEF3C7] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-white border border-transparent"
                 }`
               }
             >
               <span>{t("nav.ops", { defaultValue: "ऑप्स" })}</span>
               {openAlerts.length > 0 && (
-                <span className="px-1.5 py-0.5 text-xs rounded-full bg-rose-500 text-white font-bold animate-pulse">
+                <span className="px-1.5 py-0.2 text-[10px] font-bold rounded-full bg-[#E11D48] text-white border border-slate-900">
                   {openAlerts.length}
                 </span>
               )}
@@ -54,8 +65,10 @@ export function NavBar() {
             <NavLink
               to="/insights"
               className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm font-semibold transition ${
-                  isActive ? "bg-orange-500/20 text-orange-400 border border-orange-500/30" : "text-slate-300 hover:bg-slate-800"
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 ${
+                  isActive
+                    ? "bg-[#FEF3C7] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-white border border-transparent"
                 }`
               }
             >
@@ -64,8 +77,10 @@ export function NavBar() {
             <NavLink
               to="/chain"
               className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm font-semibold transition ${
-                  isActive ? "bg-orange-500/20 text-orange-400 border border-orange-500/30" : "text-slate-300 hover:bg-slate-800"
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 ${
+                  isActive
+                    ? "bg-[#FEF3C7] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-white border border-transparent"
                 }`
               }
             >
@@ -74,8 +89,10 @@ export function NavBar() {
             <NavLink
               to="/zones"
               className={({ isActive }) =>
-                `px-3 py-1.5 rounded-md text-sm font-semibold transition ${
-                  isActive ? "bg-orange-500/20 text-orange-400 border border-orange-500/30" : "text-slate-300 hover:bg-slate-800"
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 ${
+                  isActive
+                    ? "bg-[#FEF3C7] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-white border border-transparent"
                 }`
               }
             >
@@ -84,18 +101,15 @@ export function NavBar() {
           </nav>
         </div>
 
+        {/* Right Header Status Controls */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-full px-3 py-1 text-xs">
+          <div className="flex items-center gap-2 bg-[#E2F1E7] text-slate-900 font-mono border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A] px-3 py-1 rounded-lg font-bold text-xs">
             <span
-              className={`w-2 h-2 rounded-full ${
-                sync?.link === "down"
-                  ? "bg-amber-400"
-                  : edgeOnline
-                  ? "bg-emerald-400 animate-ping"
-                  : "bg-emerald-500"
+              className={`w-2 h-2 rounded-full border border-slate-900 ${
+                sync?.link === "down" ? "bg-[#F59E0B]" : edgeOnline ? "bg-[#0284C7] animate-ping" : "bg-slate-900"
               }`}
             />
-            <span className="text-slate-300 font-medium">
+            <span>
               {sync?.link === "down"
                 ? "Offline · Store-and-Forward Active"
                 : "Live LAN Connection"}
@@ -104,7 +118,7 @@ export function NavBar() {
 
           <button
             onClick={toggleLang}
-            className="px-2.5 py-1 text-xs font-bold rounded-md bg-slate-800 hover:bg-slate-700 text-orange-400 border border-slate-700 transition"
+            className="px-3 py-1 text-xs font-bold rounded-lg bg-[#FFEDD5] hover:bg-[#FED7AA] text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all"
           >
             {lang === "hi" ? "ENG 🌐" : "हिंदी 🇮🇳"}
           </button>
@@ -135,32 +149,46 @@ export function OwnerPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <div className="bg-gradient-to-r from-slate-900 to-slate-800 border border-slate-700/80 rounded-2xl p-6 shadow-lg">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      {/* Soothing Hero Banner */}
+      <div className="bg-[#FEF3C7] border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 text-slate-900">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
           <div>
-            <h1 className="text-2xl font-extrabold text-white tracking-tight">
+            <div className="inline-block bg-white text-slate-900 border border-slate-900 font-mono font-bold text-xs px-2.5 py-0.5 rounded shadow-[1.5px_1.5px_0px_#0F172A] uppercase mb-2">
+              ✦ REAL-TIME RETAIL TELEMETRY ENGINE
+            </div>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">
               {t("owner.summary", { defaultValue: "आज का हिसाब — Ramesh General Store" })}
             </h1>
-            <p className="text-sm text-slate-400 mt-1">
-              Store ID: STR-DL-001 · Edge ID: EDGE-001 · CCTV RTSP Pipeline
+            <p className="text-xs font-mono font-bold text-slate-700 mt-1.5 flex flex-wrap items-center gap-2">
+              <span className="bg-white border border-slate-800 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                Store ID: <strong>STR-DL-001</strong>
+              </span>
+              <span className="bg-white border border-slate-800 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                Edge ID: <strong>EDGE-001</strong>
+              </span>
+              <span className="bg-[#E2F1E7] border border-slate-800 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                CCTV RTSP Pipeline
+              </span>
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+
+          {/* Scenario Buttons */}
+          <div className="flex flex-wrap gap-2.5">
             <button
               onClick={() => triggerScenario("evening_rush")}
-              className="px-3 py-1.5 rounded-lg bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold shadow transition"
+              className="px-3.5 py-2 rounded-xl bg-[#F59E0B] hover:bg-[#D97706] text-white border-[2px] border-slate-900 shadow-[3px_3px_0px_#0F172A] font-bold text-xs active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
             >
               🔥 Rush Hour Demo
             </button>
             <button
               onClick={() => triggerScenario("stockout", { shelf_id: "shelf-A" })}
-              className="px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-500 text-white text-xs font-bold shadow transition"
+              className="px-3.5 py-2 rounded-xl bg-[#E11D48] hover:bg-[#BE123C] text-white border-[2px] border-slate-900 shadow-[3px_3px_0px_#0F172A] font-bold text-xs active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
             >
               🥛 Amul Stockout Demo
             </button>
             <button
               onClick={() => triggerScenario("baseline")}
-              className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold transition"
+              className="px-3.5 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-900 border-[2px] border-slate-900 shadow-[3px_3px_0px_#0F172A] font-bold text-xs active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
             >
               ↺ Reset Scenario
             </button>
@@ -168,62 +196,81 @@ export function OwnerPage() {
         </div>
       </div>
 
-      {/* KPI Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+      {/* Soothing Muted Data Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {/* Card 1: Saved Revenue (Muted Sage) */}
+        <div className="bg-[#E2F1E7] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-5 hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0F172A] transition-all">
+          <div className="inline-block bg-white text-slate-900 font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-slate-900 shadow-[1px_1px_0px_#0F172A]">
             {t("owner.saved", { defaultValue: "₹ बचाया आज" })}
           </div>
-          <div className="text-3xl font-black text-emerald-400 mt-2">
+          <div className="text-4xl font-black text-slate-900 mt-2.5 tabular tracking-tight">
             ₹{kpi?.recovered_inr ?? 281}
           </div>
-          <p className="text-xs text-slate-400 mt-1">Prevented stockout & queue loss</p>
+          <p className="text-xs font-semibold text-slate-700 mt-1.5 font-sans">
+            Prevented stockout & queue loss
+          </p>
         </div>
 
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        {/* Card 2: Risk Amount (Soft Pastel Rose) */}
+        <div className="bg-[#FDE8E8] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-5 hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0F172A] transition-all">
+          <div className="inline-block bg-white text-rose-900 font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-slate-900 shadow-[1px_1px_0px_#0F172A]">
             {t("owner.lost", { defaultValue: "₹ नुकसान आज" })}
           </div>
-          <div className="text-3xl font-black text-rose-400 mt-2">
+          <div className="text-4xl font-black text-rose-900 mt-2.5 tabular tracking-tight">
             ₹{kpi?.lost_sales_inr ?? 173}
           </div>
-          <p className="text-xs text-slate-400 mt-1">Based on Corsten 0.31 stockout factor</p>
+          <p className="text-xs font-semibold text-slate-700 mt-1.5 font-sans">
+            Based on Corsten 0.31 stockout factor
+          </p>
         </div>
 
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        {/* Card 3: Footfall (Muted Sky Tint) */}
+        <div className="bg-[#E0F2FE] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-5 hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0F172A] transition-all">
+          <div className="inline-block bg-white text-slate-900 font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-slate-900 shadow-[1px_1px_0px_#0F172A]">
             {t("kpi.footfall", { defaultValue: "ग्राहक आए" })}
           </div>
-          <div className="text-3xl font-black text-blue-400 mt-2">
-            {kpi?.footfall_in ?? 142} <span className="text-sm font-normal text-slate-400">visitors</span>
+          <div className="text-4xl font-black text-slate-900 mt-2.5 tabular tracking-tight flex items-baseline gap-1.5">
+            <span>{kpi?.footfall_in ?? 142}</span>
+            <span className="text-xs font-bold text-slate-600 font-sans">visitors</span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">Real-time entrance line crossings</p>
+          <p className="text-xs font-semibold text-slate-700 mt-1.5 font-sans">
+            Real-time entrance line crossings
+          </p>
         </div>
 
-        <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-5 shadow">
-          <div className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+        {/* Card 4: OSA Shelf Fill (Soft Warm Sand) */}
+        <div className="bg-[#FEF3C7] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-5 hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#0F172A] transition-all">
+          <div className="inline-block bg-white text-slate-900 font-mono text-[10px] font-bold uppercase px-2 py-0.5 rounded border border-slate-900 shadow-[1px_1px_0px_#0F172A]">
             {t("kpi.osa", { defaultValue: "शेल्फ भरी" })}
           </div>
-          <div className="text-3xl font-black text-amber-400 mt-2">
+          <div className="text-4xl font-black text-slate-900 mt-2.5 tabular tracking-tight">
             {kpi?.osa_pct ?? 94.2}%
           </div>
-          <p className="text-xs text-slate-400 mt-1">3-scan temporal persistence active</p>
+          <p className="text-xs font-semibold text-slate-700 mt-1.5 font-sans">
+            3-scan temporal persistence active
+          </p>
         </div>
       </div>
 
-      {/* WhatsApp Simulator / Phone Panel View */}
+      {/* Main Content Layout Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow space-y-4">
-          <h2 className="text-lg font-bold text-slate-100 flex items-center gap-2">
-            <span>💬 Live WhatsApp Vernacular Alerts</span>
-            <span className="text-xs font-normal text-emerald-400 bg-emerald-950 border border-emerald-800 px-2.5 py-0.5 rounded-full">
+        {/* WhatsApp Vernacular Alerts Center */}
+        <div className="lg:col-span-2 bg-white border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 space-y-5">
+          <div className="flex items-center justify-between border-b border-slate-200 pb-3.5">
+            <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span>💬 Live WhatsApp Vernacular Alerts</span>
+            </h2>
+            <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 font-mono font-bold text-xs px-2.5 py-0.5 rounded-md shadow-[1px_1px_0px_#0F172A]">
               Meta Cloud API Ready
             </span>
-          </h2>
+          </div>
 
           {openAlerts.length === 0 ? (
-            <div className="p-8 text-center bg-slate-950/50 border border-dashed border-slate-800 rounded-xl">
-              <p className="text-slate-400 text-sm">
+            <div className="p-6 bg-[#FEF9C3] border border-slate-900 rounded-xl text-slate-900 shadow-[2px_2px_0px_#0F172A] font-medium text-center space-y-1.5">
+              <div className="w-9 h-9 rounded-full bg-[#E2F1E7] border border-slate-900 flex items-center justify-center mx-auto text-slate-900 font-extrabold text-base shadow-[1px_1px_0px_#0F172A]">
+                ✓
+              </div>
+              <p className="text-slate-900 text-sm font-semibold">
                 सब ठीक है! कोई सक्रिय अलर्ट नहीं (All systems normal. No active alerts).
               </p>
             </div>
@@ -232,29 +279,29 @@ export function OwnerPage() {
               {openAlerts.map((alert) => (
                 <div
                   key={alert.alert_id}
-                  className="bg-slate-950 border border-orange-500/30 rounded-xl p-4 space-y-3 shadow-md"
+                  className="bg-[#FAF7F2] border-[2px] border-slate-900 rounded-xl p-4 space-y-3 shadow-[3px_3px_0px_#0F172A]"
                 >
                   <div className="flex items-start justify-between">
                     <div>
-                      <span className="px-2 py-0.5 text-xs font-bold rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                      <span className="px-2.5 py-0.5 text-[10px] font-mono font-bold rounded uppercase bg-[#FDE8E8] text-rose-900 border border-slate-900">
                         {alert.kind}
                       </span>
-                      <h3 className="text-base font-bold text-white mt-1">
+                      <h3 className="text-base font-extrabold text-slate-900 mt-1.5">
                         {alert.rendered_hi ?? alert.rendered_en}
                       </h3>
                     </div>
                     {alert.impact && (
-                      <span className="text-sm font-extrabold text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-1 rounded">
+                      <span className="text-xs font-mono font-bold text-slate-900 bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
                         ₹{alert.impact.lost_sales_inr} at risk
                       </span>
                     )}
                   </div>
 
-                  <p className="text-xs text-slate-400 font-mono">
+                  <p className="text-xs font-mono text-slate-700 bg-white p-2.5 rounded border border-slate-300">
                     Basis: {alert.impact?.basis ?? "Little's Law calculation"}
                   </p>
 
-                  <div className="flex items-center gap-2 pt-2 border-t border-slate-800">
+                  <div className="flex items-center gap-2.5 pt-2 border-t border-slate-200">
                     <button
                       onClick={async () => {
                         setActiveReply(alert.alert_id);
@@ -264,7 +311,7 @@ export function OwnerPage() {
                           body: JSON.stringify({ alert_id: alert.alert_id, reply: "1" }),
                         });
                       }}
-                      className="px-3 py-1.5 rounded bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-bold transition"
+                      className="px-3.5 py-2 rounded-lg bg-[#E2F1E7] hover:bg-[#C8E6D0] text-slate-900 border-[2px] border-slate-900 shadow-[2.5px_2.5px_0px_#0F172A] font-bold text-xs active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all"
                     >
                       1 = भर दिया (Restocked)
                     </button>
@@ -276,7 +323,7 @@ export function OwnerPage() {
                           body: JSON.stringify({ alert_id: alert.alert_id, reply: "3" }),
                         });
                       }}
-                      className="px-3 py-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold transition"
+                      className="px-3.5 py-2 rounded-lg bg-white hover:bg-slate-50 text-slate-900 border-[2px] border-slate-900 shadow-[2.5px_2.5px_0px_#0F172A] font-bold text-xs active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all"
                     >
                       3 = गलत अलर्ट (False alert)
                     </button>
@@ -287,33 +334,50 @@ export function OwnerPage() {
           )}
         </div>
 
-        {/* Store Information Panel */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow space-y-4">
-          <h2 className="text-lg font-bold text-slate-100">📌 Store Overview</h2>
-          <div className="space-y-3 text-xs text-slate-300">
-            <div className="flex justify-between py-1.5 border-b border-slate-800">
-              <span className="text-slate-400">Store Name</span>
-              <span className="font-semibold text-white">Ramesh General Store</span>
+        {/* Store Overview Panel */}
+        <div className="bg-[#F3E8FF] border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 space-y-5">
+          <h2 className="text-lg font-bold text-slate-900 border-b border-slate-900/40 pb-3 flex items-center justify-between">
+            <span>📌 Store Overview</span>
+            <span className="bg-white text-slate-900 font-mono text-[11px] px-2 py-0.5 rounded border border-slate-900 font-bold shadow-[1px_1px_0px_#0F172A]">
+              ACTIVE
+            </span>
+          </h2>
+          <div className="space-y-3 text-xs font-mono text-slate-900 font-bold">
+            <div className="flex justify-between items-center py-2 border-b border-slate-300">
+              <span className="text-slate-600 font-sans">Store Name</span>
+              <span className="bg-white border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A] font-sans">
+                Ramesh General Store
+              </span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800">
-              <span className="text-slate-400">Location</span>
-              <span className="font-semibold text-white">Karol Bagh, Delhi</span>
+            <div className="flex justify-between items-center py-2 border-b border-slate-300">
+              <span className="text-slate-600 font-sans">Location</span>
+              <span className="bg-white border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A] font-sans">
+                Karol Bagh, Delhi
+              </span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800">
-              <span className="text-slate-400">Active Cameras</span>
-              <span className="font-semibold text-emerald-400">2 Streams (RTSP)</span>
+            <div className="flex justify-between items-center py-2 border-b border-slate-300">
+              <span className="text-slate-600 font-sans">Active Cameras</span>
+              <span className="bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                2 Streams (RTSP)
+              </span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800">
-              <span className="text-slate-400">Inference Device</span>
-              <span className="font-semibold text-white">Raspberry Pi 5 (CPU ONNX)</span>
+            <div className="flex justify-between items-center py-2 border-b border-slate-300">
+              <span className="text-slate-600 font-sans">Inference Device</span>
+              <span className="bg-white border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A] font-sans">
+                Raspberry Pi 5 (CPU ONNX)
+              </span>
             </div>
-            <div className="flex justify-between py-1.5 border-b border-slate-800">
-              <span className="text-slate-400">Tally Reconciliation</span>
-              <span className="font-semibold text-orange-400">Connected (:9000)</span>
+            <div className="flex justify-between items-center py-2 border-b border-slate-300">
+              <span className="text-slate-600 font-sans">Tally Reconciliation</span>
+              <span className="bg-[#FFEDD5] border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                Connected (:9000)
+              </span>
             </div>
-            <div className="flex justify-between py-1.5">
-              <span className="text-slate-400">ONDC Catalog Publisher</span>
-              <span className="font-semibold text-emerald-400">Active</span>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-slate-600 font-sans">ONDC Catalog Publisher</span>
+              <span className="bg-[#E0F2FE] border border-slate-900 px-2 py-0.5 rounded shadow-[1px_1px_0px_#0F172A]">
+                Active
+              </span>
             </div>
           </div>
         </div>
@@ -324,46 +388,67 @@ export function OwnerPage() {
 
 export function OpsPage() {
   const { t } = useT();
-  const openAlerts = useLive(selectOpenAlerts);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <h1 className="text-2xl font-bold text-white">Operations Console (/ops)</h1>
+      <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 pb-3.5">
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          Operations Console <span className="text-xs font-mono font-normal text-slate-600">(/ops)</span>
+        </h1>
+        <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 px-3 py-1 rounded-lg font-bold text-xs shadow-[2px_2px_0px_#0F172A]">
+          Real-time Edge Workers Active
+        </span>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow space-y-3">
-          <h2 className="text-base font-bold text-orange-400">Active Queue Intelligence</h2>
-          <p className="text-xs text-slate-400">Little's Law Wait Time Estimation & Forecasts</p>
-          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800 space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Counter 1 Queue Length</span>
-              <span className="font-bold text-white">4 Persons</span>
+        {/* Active Queue Intelligence */}
+        <div className="bg-[#E0F2FE] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-6 space-y-3.5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base font-extrabold text-slate-900 tracking-tight">Active Queue Intelligence</h2>
+            <span className="bg-white text-slate-900 font-mono text-[10px] px-2 py-0.5 rounded border border-slate-900 font-bold shadow-[1px_1px_0px_#0F172A]">
+              Little's Law
+            </span>
+          </div>
+          <p className="text-xs font-sans text-slate-700">Little's Law Wait Time Estimation & Forecasts</p>
+          
+          <div className="p-4 bg-white rounded-xl border border-slate-900 shadow-[2px_2px_0px_#0F172A] space-y-3 font-mono font-bold text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-600 font-sans">Counter 1 Queue Length</span>
+              <span className="bg-[#FEF3C7] border border-slate-900 px-2 py-0.5 rounded">4 Persons</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Estimated Wait Time</span>
-              <span className="font-bold text-emerald-400">~2.8 Minutes</span>
+            <div className="flex justify-between">
+              <span className="text-slate-600 font-sans">Estimated Wait Time</span>
+              <span className="bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded">~2.8 Minutes</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">15-Min Forecast (HGB Model)</span>
-              <span className="font-bold text-amber-400">↑ 6 Persons (MAE 0.8)</span>
+            <div className="flex justify-between pt-2.5 border-t border-slate-200">
+              <span className="text-slate-600 font-sans">15-Min Forecast (HGB Model)</span>
+              <span className="bg-[#FFEDD5] border border-slate-900 px-2 py-0.5 rounded">↑ 6 Persons (MAE 0.8)</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow space-y-3">
-          <h2 className="text-base font-bold text-orange-400">Active Shelf Monitoring</h2>
-          <p className="text-xs text-slate-400">Classical Coverage Estimator + 3-Scan Persistence</p>
-          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800 space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Shelf A (Amul Milk)</span>
-              <span className="font-bold text-emerald-400">Stocked (92% Coverage)</span>
+        {/* Active Shelf Monitoring */}
+        <div className="bg-[#FEF3C7] border-[2.5px] border-slate-900 shadow-[4px_4px_0px_#0F172A] rounded-2xl p-6 space-y-3.5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-base font-extrabold text-slate-900 tracking-tight">Active Shelf Monitoring</h2>
+            <span className="bg-white text-slate-900 font-mono text-[10px] px-2 py-0.5 rounded border border-slate-900 font-bold shadow-[1px_1px_0px_#0F172A]">
+              3-Scan Persistence
+            </span>
+          </div>
+          <p className="text-xs font-sans text-slate-700">Classical Coverage Estimator + 3-Scan Persistence</p>
+          
+          <div className="p-4 bg-white rounded-xl border border-slate-900 shadow-[2px_2px_0px_#0F172A] space-y-3 font-mono font-bold text-xs">
+            <div className="flex justify-between">
+              <span className="text-slate-600 font-sans">Shelf A (Amul Milk)</span>
+              <span className="bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded">Stocked (92% Coverage)</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Shelf B (Biscuits)</span>
-              <span className="font-bold text-emerald-400">Stocked (88% Coverage)</span>
+            <div className="flex justify-between">
+              <span className="text-slate-600 font-sans">Shelf B (Biscuits)</span>
+              <span className="bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded">Stocked (88% Coverage)</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-slate-300">Shelf C (Oil & Ghee)</span>
-              <span className="font-bold text-emerald-400">Stocked (95% Coverage)</span>
+            <div className="flex justify-between pt-2.5 border-t border-slate-200">
+              <span className="text-slate-600 font-sans">Shelf C (Oil & Ghee)</span>
+              <span className="bg-[#E2F1E7] border border-slate-900 px-2 py-0.5 rounded">Stocked (95% Coverage)</span>
             </div>
           </div>
         </div>
@@ -375,39 +460,68 @@ export function OpsPage() {
 export function InsightsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <h1 className="text-2xl font-bold text-white">Store Insights & Shrink (/insights)</h1>
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow">
-        <h2 className="text-lg font-bold text-orange-400 mb-2">Visual-vs-Tally Inventory Shrinkage</h2>
-        <p className="text-xs text-slate-400 mb-4">
-          Compares physical shelf facings observed by edge cameras against Tally ERP stock summary records.
-        </p>
-        <table className="w-full text-left text-xs text-slate-300 border-collapse">
-          <thead>
-            <tr className="border-b border-slate-800 text-slate-400">
-              <th className="py-2">Item Name</th>
-              <th className="py-2">Tally ERP Qty</th>
-              <th className="py-2">Camera Qty</th>
-              <th className="py-2">Discrepancy (Δ)</th>
-              <th className="py-2">Shrink Amount (₹)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="border-b border-slate-800/50">
-              <td className="py-2.5 font-semibold text-white">Amul Taaza 500ml</td>
-              <td className="py-2.5">48</td>
-              <td className="py-2.5">41</td>
-              <td className="py-2.5 text-rose-400 font-bold">-7</td>
-              <td className="py-2.5 text-rose-400 font-bold">₹189</td>
-            </tr>
-            <tr className="border-b border-slate-800/50">
-              <td className="py-2.5 font-semibold text-white">Parle-G 70g</td>
-              <td className="py-2.5">120</td>
-              <td className="py-2.5">120</td>
-              <td className="py-2.5 text-emerald-400 font-bold">0</td>
-              <td className="py-2.5 text-emerald-400">₹0</td>
-            </tr>
-          </tbody>
-        </table>
+      <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 pb-3.5">
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          Store Insights & Shrink <span className="text-xs font-mono font-normal text-slate-600">(/insights)</span>
+        </h1>
+        <span className="bg-[#E0F2FE] text-slate-900 border border-slate-900 px-3 py-1 rounded-lg font-bold text-xs shadow-[2px_2px_0px_#0F172A]">
+          Tally ERP Synchronized
+        </span>
+      </div>
+
+      <div className="bg-white border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 space-y-5">
+        <div>
+          <h2 className="text-lg font-bold text-slate-900">Visual-vs-Tally Inventory Shrinkage</h2>
+          <p className="text-xs font-sans text-slate-600 mt-1">
+            Compares physical shelf facings observed by edge cameras against Tally ERP stock summary records.
+          </p>
+        </div>
+
+        <div className="overflow-x-auto rounded-xl border border-slate-900 shadow-[2px_2px_0px_#0F172A]">
+          <table className="w-full text-left text-xs font-mono border-collapse">
+            <thead>
+              <tr className="bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
+                <th className="py-3 px-4 font-sans">Item Name</th>
+                <th className="py-3 px-4">Tally ERP Qty</th>
+                <th className="py-3 px-4">Camera Qty</th>
+                <th className="py-3 px-4">Discrepancy (Δ)</th>
+                <th className="py-3 px-4">Shrink Amount (₹)</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-200 font-bold bg-white text-slate-900">
+              <tr className="hover:bg-[#FEF9C3] transition">
+                <td className="py-3.5 px-4 font-semibold text-sm font-sans">Amul Taaza 500ml</td>
+                <td className="py-3.5 px-4">48</td>
+                <td className="py-3.5 px-4">41</td>
+                <td className="py-3.5 px-4">
+                  <span className="bg-[#FDE8E8] text-rose-900 border border-slate-900 px-2 py-0.5 rounded">
+                    -7
+                  </span>
+                </td>
+                <td className="py-3.5 px-4">
+                  <span className="bg-[#FDE8E8] text-rose-900 border border-slate-900 px-2 py-0.5 rounded">
+                    ₹189
+                  </span>
+                </td>
+              </tr>
+              <tr className="hover:bg-[#FEF9C3] transition">
+                <td className="py-3.5 px-4 font-semibold text-sm font-sans">Parle-G 70g</td>
+                <td className="py-3.5 px-4">120</td>
+                <td className="py-3.5 px-4">120</td>
+                <td className="py-3.5 px-4">
+                  <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 px-2 py-0.5 rounded">
+                    0
+                  </span>
+                </td>
+                <td className="py-3.5 px-4">
+                  <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 px-2 py-0.5 rounded">
+                    ₹0
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
@@ -416,21 +530,41 @@ export function InsightsPage() {
 export function ChainPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <h1 className="text-2xl font-bold text-white">Fleet & Multi-Store Chain View (/chain)</h1>
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow space-y-4">
-        <h2 className="text-base font-bold text-orange-400">Edge Fleet Status</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800">
-            <div className="text-xs text-slate-400">EDGE-001 (Karol Bagh, Delhi)</div>
-            <div className="text-sm font-bold text-emerald-400 mt-1">Online (3.99 fps)</div>
+      <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 pb-3.5">
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          Fleet & Multi-Store Chain View <span className="text-xs font-mono font-normal text-slate-600">(/chain)</span>
+        </h1>
+        <span className="bg-[#FEF3C7] text-slate-900 border border-slate-900 px-3 py-1 rounded-lg font-bold text-xs shadow-[2px_2px_0px_#0F172A]">
+          3 Devices Online
+        </span>
+      </div>
+
+      <div className="bg-white border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 space-y-5">
+        <h2 className="text-lg font-bold text-slate-900">Edge Fleet Status</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 font-mono">
+          <div className="p-4 bg-[#FAF7F2] rounded-xl border border-slate-900 shadow-[3px_3px_0px_#0F172A]">
+            <div className="text-xs font-bold text-slate-700 font-sans">EDGE-001 (Karol Bagh, Delhi)</div>
+            <div className="mt-2.5 flex items-center justify-between">
+              <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 font-bold px-2.5 py-0.5 text-xs rounded">
+                Online (3.99 fps)
+              </span>
+            </div>
           </div>
-          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800">
-            <div className="text-xs text-slate-400">EDGE-002 (Koramangala, BLR)</div>
-            <div className="text-sm font-bold text-emerald-400 mt-1">Online (4.12 fps)</div>
+          <div className="p-4 bg-[#FAF7F2] rounded-xl border border-slate-900 shadow-[3px_3px_0px_#0F172A]">
+            <div className="text-xs font-bold text-slate-700 font-sans">EDGE-002 (Koramangala, BLR)</div>
+            <div className="mt-2.5 flex items-center justify-between">
+              <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 font-bold px-2.5 py-0.5 text-xs rounded">
+                Online (4.12 fps)
+              </span>
+            </div>
           </div>
-          <div className="p-4 bg-slate-950 rounded-lg border border-slate-800">
-            <div className="text-xs text-slate-400">EDGE-003 (Andheri, Mumbai)</div>
-            <div className="text-sm font-bold text-emerald-400 mt-1">Online (3.95 fps)</div>
+          <div className="p-4 bg-[#FAF7F2] rounded-xl border border-slate-900 shadow-[3px_3px_0px_#0F172A]">
+            <div className="text-xs font-bold text-slate-700 font-sans">EDGE-003 (Andheri, Mumbai)</div>
+            <div className="mt-2.5 flex items-center justify-between">
+              <span className="bg-[#E2F1E7] text-slate-900 border border-slate-900 font-bold px-2.5 py-0.5 text-xs rounded">
+                Online (3.95 fps)
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -441,10 +575,18 @@ export function ChainPage() {
 export function ZonesPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      <h1 className="text-2xl font-bold text-white">Zone & Camera Calibration (/zones)</h1>
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow text-slate-300 text-sm space-y-3">
-        <p>Zero-Hardware Polygon Zone Editor for RTSP Camera Streams.</p>
-        <p className="text-xs text-slate-400">
+      <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 pb-3.5">
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+          Zone & Camera Calibration <span className="text-xs font-mono font-normal text-slate-600">(/zones)</span>
+        </h1>
+        <span className="bg-[#FFEDD5] text-slate-900 border border-slate-900 px-3 py-1 rounded-lg font-bold text-xs shadow-[2px_2px_0px_#0F172A]">
+          Interactive Polygon Editor
+        </span>
+      </div>
+
+      <div className="bg-[#FEF3C7] border-[2.5px] border-slate-900 shadow-[5px_5px_0px_#0F172A] rounded-2xl p-6 text-slate-900 space-y-2 font-mono font-bold">
+        <p className="text-sm font-extrabold uppercase">Zero-Hardware Polygon Zone Editor for RTSP Camera Streams.</p>
+        <p className="text-xs text-slate-700 font-sans font-normal">
           Draw entrance lines, counter polygons, and shelf regions over the live CCTV preview.
         </p>
       </div>
@@ -454,7 +596,7 @@ export function ZonesPage() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen bg-[#FAF7F2] text-slate-900 font-sans antialiased selection:bg-[#FEF08A] selection:text-slate-900">
       <NavBar />
       <main>
         <Routes>

@@ -1,5 +1,5 @@
 /* eslint-disable */
-// GENERATED FILE - do not edit. engine=npx contracts=1.0.0 schema=6ac7ae43beb5
+// GENERATED FILE - do not edit. engine=npx contracts=1.0.0 schema=119c4cc7368a
 // Regenerate: python tools/gen_ts_types.py   (source: packages/contracts/retailsense_contracts/*.py)
 
 export const CONTRACTS_VERSION = "1.0.0";
@@ -30,19 +30,12 @@ export type AlertDetails =
   | DeviceAlertDetails
   | ShrinkAlertDetails
   | FootfallAlertDetails;
-export type AckBy1 = "whatsapp" | "whatsapp_sim" | "board" | "auto" | "telegram";
-export type AlertStatus1 = "open" | "acked" | "resolved";
 /**
  * Which point of a track's bbox represents the person on the floor.
  */
 export type Anchor = "bottom_center" | "center";
 export type DetectorKind = "auto" | "synthetic" | "onnx" | "ultralytics" | "fake";
-/**
- * Which point of a track's bbox represents the person on the floor.
- */
-export type Anchor1 = "bottom_center" | "center";
 export type Lang = "hi" | "en";
-export type DetectorKind1 = "auto" | "synthetic" | "onnx" | "ultralytics" | "fake";
 export type UplinkMode = "http" | "mqtt" | "none";
 export type LinkState = "up" | "down";
 /**
@@ -90,8 +83,6 @@ export type Payload =
 export type LineKind = "entrance" | "counter" | "custom";
 export type ZoneKind = "aisle" | "queue" | "entrance" | "counter" | "store" | "custom";
 export type ShelfState = "stocked" | "partial" | "empty" | "unknown";
-export type UplinkMode1 = "http" | "mqtt" | "none";
-export type Lang1 = "hi" | "en";
 export type WsKind =
   "hello" | "event" | "alert" | "kpi" | "health" | "sync" | "scenario" | "notification" | "device" | "forecast";
 
@@ -108,7 +99,7 @@ export interface RetailSenseContracts {
   AlertKind?: AlertKind;
   AlertRaised?: AlertRaised;
   AlertResolved?: AlertResolved;
-  AlertStatus?: AlertStatus1;
+  AlertStatus?: AlertStatus;
   Anchor?: Anchor;
   CameraAlertDetails?: CameraAlertDetails;
   CameraConfig?: CameraConfig;
@@ -123,7 +114,7 @@ export interface RetailSenseContracts {
   DailySummary?: DailySummary;
   DeliveryReceipt?: DeliveryReceipt;
   DemoConfig?: DemoConfig;
-  DetectorKind?: DetectorKind1;
+  DetectorKind?: DetectorKind;
   DeviceAlertDetails?: DeviceAlertDetails;
   DeviceConfig?: DeviceConfig;
   DeviceHeartbeat?: DeviceHeartbeat;
@@ -166,10 +157,10 @@ export interface RetailSenseContracts {
   ModelIO?: ModelIO;
   ModelManifest?: ModelManifest;
   ModelStatus?: ModelStatus;
-  MqttConfig?: MqttConfig1;
+  MqttConfig?: MqttConfig;
   Observation?: Observation;
   OndcAck?: OndcAck;
-  OndcConfig?: OndcConfig1;
+  OndcConfig?: OndcConfig;
   OndcPublishRequest?: OndcPublishRequest;
   OrderRequested?: OrderRequested;
   Origin?: Origin;
@@ -184,8 +175,8 @@ export interface RetailSenseContracts {
   ReconcileReport?: ReconcileReport;
   ReconcileRow?: ReconcileRow;
   ReorderSuggestion?: ReorderSuggestion;
-  RetentionPolicy?: RetentionPolicy2;
-  RolloutPolicy?: RolloutPolicy1;
+  RetentionPolicy?: RetentionPolicy;
+  RolloutPolicy?: RolloutPolicy;
   RolloutRequest?: RolloutRequest;
   RulesConfig?: RulesConfig;
   SKU?: SKU;
@@ -211,10 +202,10 @@ export interface RetailSenseContracts {
   StoreInfo?: StoreInfo;
   SyncAlertDetails?: SyncAlertDetails;
   SyncStatus?: SyncStatus;
-  TallyConfig?: TallyConfig1;
-  UplinkConfig?: UplinkConfig1;
-  UplinkMode?: UplinkMode1;
-  WhatsAppConfig?: WhatsAppConfig1;
+  TallyConfig?: TallyConfig;
+  UplinkConfig?: UplinkConfig;
+  UplinkMode?: UplinkMode;
+  WhatsAppConfig?: WhatsAppConfig;
   WhatsAppReply?: WhatsAppReply;
   WsKind?: WsKind;
   WsMessage?: WsMessage;
@@ -230,7 +221,7 @@ export interface Alert {
   origin: Origin;
   kind: AlertKind;
   severity: Severity;
-  status: AlertStatus;
+  status: AlertStatus & string;
   subject_id: string;
   title_en: string;
   title_hi: string;
@@ -312,7 +303,7 @@ export interface ImpactInr {
 }
 export interface AlertAckRequest {
   action: AckAction;
-  by: AckBy1;
+  by: AckBy & string;
   note: string | null;
 }
 export interface AlertAcked {
@@ -340,8 +331,8 @@ export interface CameraConfig {
   width: number;
   height: number;
   fps_sample: number;
-  detector: DetectorKind;
-  anchor: Anchor1;
+  detector: DetectorKind & string;
+  anchor: Anchor & string;
   shelf_scan_interval_s: number;
   homography: HomographyConfig | null;
   preview_blur_people: boolean;
@@ -491,7 +482,7 @@ export interface DeviceConfig {
   uplink: UplinkConfig;
 }
 export interface UplinkConfig {
-  mode: UplinkMode;
+  mode: UplinkMode & string;
   batch_size: number;
   interval_s: number;
   heartbeat_s: number;
@@ -745,7 +736,7 @@ export interface HealthStatus {
 }
 export interface SyncStatus {
   link: LinkState;
-  uplink: UplinkMode1;
+  uplink: UplinkMode;
   cloud_reachable: boolean;
   backlog: number;
   backlog_by_class: {
@@ -909,14 +900,6 @@ export interface ModelStatus {
   update_available: boolean;
   assigned_version: string | null;
 }
-export interface MqttConfig1 {
-  host: string;
-  port: number;
-  ws_port: number;
-  username: string | null;
-  password: string | null;
-  session_expiry_s: number;
-}
 /**
  * What a producer hands to ``EdgeStore.append()``; not yet stamped.
  */
@@ -933,12 +916,6 @@ export interface OndcAck {
   available: boolean;
   ts: number;
   signed: boolean;
-}
-export interface OndcConfig1 {
-  enabled: boolean;
-  gateway_url: string;
-  bpp_id: string;
-  signing: "none" | "ed25519";
 }
 export interface OndcPublishRequest {
   sku_id: string;
@@ -987,20 +964,9 @@ export interface PrivacyManifest {
   thumbnail_scope: string;
   preview_blur_people: boolean;
   data_leaving_edge: string[];
-  retention: RetentionPolicy1;
+  retention: RetentionPolicy;
   lawful_basis: string;
   statement: string;
-}
-/**
- * How long each data class lives before the purge job deletes it.
- */
-export interface RetentionPolicy1 {
-  telemetry_hours: number;
-  aggregate_days: number;
-  thumbnails_days: number;
-  heatmap_days: number;
-  alerts_days: number;
-  sent_outbox_hours: number;
 }
 export interface QueueView {
   counter_id: string;
@@ -1038,25 +1004,6 @@ export interface ReorderSuggestion {
   suggest_qty: number;
   est_cost_inr: number;
   reason: string;
-}
-/**
- * How long each data class lives before the purge job deletes it.
- */
-export interface RetentionPolicy2 {
-  telemetry_hours: number;
-  aggregate_days: number;
-  thumbnails_days: number;
-  heatmap_days: number;
-  alerts_days: number;
-  sent_outbox_hours: number;
-}
-export interface RolloutPolicy1 {
-  channel: "canary" | "stable";
-  canary_pct: number;
-  abort_failure_pct: number;
-  pinned_devices: {
-    [k: string]: string;
-  };
 }
 export interface RolloutRequest {
   model_id: string;
@@ -1189,23 +1136,23 @@ export interface StoreConfig {
   config_version: number;
   store: StoreInfo;
   device: DeviceConfig;
-  floorplan: Floorplan1;
+  floorplan: Floorplan;
   cameras: CameraConfig[];
   zones: Zone[];
   lines: Line[];
   counters: Counter[];
   shelves: ShelfPolygon[];
   skus: SKU[];
-  rules: RulesConfig1;
-  impact: ImpactConfig1;
-  privacy: PrivacyConfig1;
-  integrations: IntegrationsConfig1;
-  demo: DemoConfig1;
+  rules: RulesConfig;
+  impact: ImpactConfig;
+  privacy: PrivacyConfig;
+  integrations: IntegrationsConfig;
+  demo: DemoConfig;
 }
 export interface StoreInfo {
   store_id: string;
   name: string;
-  lang: Lang1;
+  lang: Lang & string;
   tz: string;
   tier: "kirana" | "mini" | "chain";
   owner_whatsapp: string;
@@ -1216,91 +1163,12 @@ export interface StoreInfo {
   open_hours: [string, string];
   address: string | null;
 }
-export interface Floorplan1 {
-  width_px: number;
-  height_px: number;
-  scale_m_per_px: number;
-  image: string | null;
-  heat_cell_px: number;
-}
 export interface Zone {
   zone_id: string;
   camera_id: string;
   kind: ZoneKind;
   polygon: number[][];
   name: string | null;
-}
-export interface RulesConfig1 {
-  shelf_partial_coverage: number;
-  shelf_empty_coverage: number;
-  persistence_scans: number;
-  max_persistence_scans: number;
-  queue_long_count: number;
-  queue_long_s: number;
-  queue_resolve_s: number;
-  queue_forecast_threshold: number;
-  queue_forecast_horizon_min: number;
-  queue_min_age_s: number;
-  queue_window_s: number;
-  snapshot_interval_s: number;
-  occupancy_interval_s: number;
-  heat_flush_s: number;
-  camera_down_s: number;
-  black_frame_std: number;
-  sync_backlog_warn: number;
-  sync_backlog_after_s: number;
-  shrink_min_units: number;
-  shrink_min_inr: number;
-  occlusion_skip_overlap: number;
-  footfall_spike_factor: number;
-}
-export interface ImpactConfig1 {
-  lost_sale_factor: number;
-  lost_sale_source: string;
-  queue_abandon_factor: number;
-  queue_abandon_source: string;
-  atv_inr: number;
-  baseline_unattended_gap_min: number;
-}
-export interface PrivacyConfig1 {
-  preview_blur_people: boolean;
-  shelf_thumbnails: boolean;
-  retention: RetentionPolicy;
-  statement: string;
-}
-export interface IntegrationsConfig1 {
-  tally: TallyConfig;
-  ondc: OndcConfig;
-  whatsapp: WhatsAppConfig;
-}
-export interface DemoConfig1 {
-  enabled: boolean;
-  clock_factor: number;
-  default_scenario: string;
-  start_time: string;
-  seed_history_days: number;
-  auto_calibrate_first_scan: boolean;
-}
-export interface TallyConfig1 {
-  enabled: boolean;
-  url: string;
-  company: string | null;
-}
-export interface UplinkConfig1 {
-  mode: UplinkMode;
-  batch_size: number;
-  interval_s: number;
-  heartbeat_s: number;
-  max_outbox_rows: number;
-  mqtt: MqttConfig;
-}
-export interface WhatsAppConfig1 {
-  mode: "simulator" | "cloud_api" | "telegram" | "none";
-  to: string | null;
-  phone_number_id: string | null;
-  token_env: string;
-  telegram_chat_id: string | null;
-  telegram_token_env: string;
 }
 export interface WhatsAppReply {
   alert_id: string;

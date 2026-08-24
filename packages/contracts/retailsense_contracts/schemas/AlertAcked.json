@@ -30,8 +30,7 @@
   "properties": {
     "type": {
       "const": "alert.acked",
-      "default": "alert.acked",
-      "type": "string"
+      "default": "alert.acked"
     },
     "alert_id": {
       "type": "string"

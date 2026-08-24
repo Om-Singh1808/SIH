@@ -35,8 +35,7 @@
   "properties": {
     "type": {
       "const": "alert.resolved",
-      "default": "alert.resolved",
-      "type": "string"
+      "default": "alert.resolved"
     },
     "alert_id": {
       "type": "string"

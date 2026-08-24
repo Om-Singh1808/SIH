@@ -218,6 +218,18 @@ class EdgeState:
                 return src
         return None
 
+    def apply_scenario(self, name: str, params: dict[str, Any] | None = None) -> Any:
+        ctrl = self.synthetic_control()
+        if ctrl is not None:
+            return ctrl.apply_scenario(name, params or {})
+        return {"status": "ok", "scenario": name, "note": "real cameras running"}
+
+    def restock(self, shelf_id: str) -> Any:
+        ctrl = self.synthetic_control()
+        if ctrl is not None:
+            return ctrl.restock(shelf_id)
+        return {"status": "ok", "shelf_id": shelf_id}
+
     def cfg_view(self, camera_id: str) -> dict[str, Any]:
         """Geometry handed to the annotator (plain dict so any annotator can read it)."""
         cfg = self.cfg

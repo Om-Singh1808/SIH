@@ -47,7 +47,11 @@
           "$ref": "#/$defs/Severity"
         },
         "status": {
-          "$ref": "#/$defs/AlertStatus",
+          "allOf": [
+            {
+              "$ref": "#/$defs/AlertStatus"
+            }
+          ],
           "default": "open"
         },
         "subject_id": {
@@ -185,8 +189,7 @@
       "properties": {
         "type": {
           "const": "alert.acked",
-          "default": "alert.acked",
-          "type": "string"
+          "default": "alert.acked"
         },
         "alert_id": {
           "type": "string"
@@ -238,8 +241,7 @@
       "properties": {
         "type": {
           "const": "alert.raised",
-          "default": "alert.raised",
-          "type": "string"
+          "default": "alert.raised"
         },
         "alert": {
           "$ref": "#/$defs/Alert"
@@ -257,8 +259,7 @@
       "properties": {
         "type": {
           "const": "alert.resolved",
-          "default": "alert.resolved",
-          "type": "string"
+          "default": "alert.resolved"
         },
         "alert_id": {
           "type": "string"
@@ -389,8 +390,7 @@
       "properties": {
         "type": {
           "const": "config.applied",
-          "default": "config.applied",
-          "type": "string"
+          "default": "config.applied"
         },
         "config_version": {
           "type": "integer"
@@ -429,8 +429,7 @@
       "properties": {
         "type": {
           "const": "device.heartbeat",
-          "default": "device.heartbeat",
-          "type": "string"
+          "default": "device.heartbeat"
         },
         "uptime_s": {
           "type": "number"
@@ -538,8 +537,7 @@
       "properties": {
         "type": {
           "const": "dwell.sample",
-          "default": "dwell.sample",
-          "type": "string"
+          "default": "dwell.sample"
         },
         "zone_id": {
           "type": "string"
@@ -618,8 +616,7 @@
       "properties": {
         "type": {
           "const": "footfall.crossing",
-          "default": "footfall.crossing",
-          "type": "string"
+          "default": "footfall.crossing"
         },
         "line_id": {
           "type": "string"
@@ -680,8 +677,7 @@
       "properties": {
         "type": {
           "const": "heatmap.tiles",
-          "default": "heatmap.tiles",
-          "type": "string"
+          "default": "heatmap.tiles"
         },
         "cell_px": {
           "type": "integer"
@@ -761,8 +757,7 @@
       "properties": {
         "type": {
           "const": "order.requested",
-          "default": "order.requested",
-          "type": "string"
+          "default": "order.requested"
         },
         "sku_id": {
           "type": "string"
@@ -930,8 +925,7 @@
       "properties": {
         "type": {
           "const": "queue.forecast",
-          "default": "queue.forecast",
-          "type": "string"
+          "default": "queue.forecast"
         },
         "counter_id": {
           "type": "string"
@@ -980,8 +974,7 @@
       "properties": {
         "type": {
           "const": "queue.snapshot",
-          "default": "queue.snapshot",
-          "type": "string"
+          "default": "queue.snapshot"
         },
         "counter_id": {
           "type": "string"
@@ -1079,8 +1072,7 @@
       "properties": {
         "type": {
           "const": "shelf.scan",
-          "default": "shelf.scan",
-          "type": "string"
+          "default": "shelf.scan"
         },
         "shelf_id": {
           "type": "string"
@@ -1157,8 +1149,7 @@
       "properties": {
         "type": {
           "const": "shelf.state",
-          "default": "shelf.state",
-          "type": "string"
+          "default": "shelf.state"
         },
         "shelf_id": {
           "type": "string"
@@ -1269,8 +1260,7 @@
       "properties": {
         "type": {
           "const": "sim.truth",
-          "default": "sim.truth",
-          "type": "string"
+          "default": "sim.truth"
         },
         "in_store": {
           "type": "integer"
@@ -1325,8 +1315,7 @@
       "properties": {
         "type": {
           "const": "stock.reconciled",
-          "default": "stock.reconciled",
-          "type": "string"
+          "default": "stock.reconciled"
         },
         "sku_id": {
           "type": "string"
@@ -1459,8 +1448,7 @@
       "properties": {
         "type": {
           "const": "zone.occupancy",
-          "default": "zone.occupancy",
-          "type": "string"
+          "default": "zone.occupancy"
         },
         "zone_id": {
           "type": "string"

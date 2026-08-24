@@ -31,11 +31,19 @@
           "type": "number"
         },
         "detector": {
-          "$ref": "#/$defs/DetectorKind",
+          "allOf": [
+            {
+              "$ref": "#/$defs/DetectorKind"
+            }
+          ],
           "default": "auto"
         },
         "anchor": {
-          "$ref": "#/$defs/Anchor",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Anchor"
+            }
+          ],
           "default": "bottom_center"
         },
         "shelf_scan_interval_s": {
@@ -186,7 +194,11 @@
           "type": "string"
         },
         "uplink": {
-          "$ref": "#/$defs/UplinkConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/UplinkConfig"
+            }
+          ],
           "default": {
             "mode": "http",
             "batch_size": 500,
@@ -329,7 +341,11 @@
       "additionalProperties": false,
       "properties": {
         "tally": {
-          "$ref": "#/$defs/TallyConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/TallyConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "url": "http://localhost:9000",
@@ -337,7 +353,11 @@
           }
         },
         "ondc": {
-          "$ref": "#/$defs/OndcConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/OndcConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "gateway_url": "http://localhost:8000/mock/ondc",
@@ -346,7 +366,11 @@
           }
         },
         "whatsapp": {
-          "$ref": "#/$defs/WhatsAppConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/WhatsAppConfig"
+            }
+          ],
           "default": {
             "mode": "simulator",
             "to": null,
@@ -528,7 +552,11 @@
           "type": "boolean"
         },
         "retention": {
-          "$ref": "#/$defs/RetentionPolicy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RetentionPolicy"
+            }
+          ],
           "default": {
             "telemetry_hours": 24,
             "aggregate_days": 30,
@@ -928,7 +956,11 @@
           "$ref": "#/$defs/DeviceConfig"
         },
         "floorplan": {
-          "$ref": "#/$defs/Floorplan",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Floorplan"
+            }
+          ],
           "default": {
             "width_px": 640,
             "height_px": 360,
@@ -974,7 +1006,11 @@
           "type": "array"
         },
         "rules": {
-          "$ref": "#/$defs/RulesConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RulesConfig"
+            }
+          ],
           "default": {
             "shelf_partial_coverage": 0.8,
             "shelf_empty_coverage": 0.25,
@@ -1001,7 +1037,11 @@
           }
         },
         "impact": {
-          "$ref": "#/$defs/ImpactConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/ImpactConfig"
+            }
+          ],
           "default": {
             "lost_sale_factor": 0.31,
             "lost_sale_source": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
@@ -1012,7 +1052,11 @@
           }
         },
         "privacy": {
-          "$ref": "#/$defs/PrivacyConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/PrivacyConfig"
+            }
+          ],
           "default": {
             "preview_blur_people": true,
             "shelf_thumbnails": true,
@@ -1028,7 +1072,11 @@
           }
         },
         "integrations": {
-          "$ref": "#/$defs/IntegrationsConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/IntegrationsConfig"
+            }
+          ],
           "default": {
             "tally": {
               "company": null,
@@ -1052,7 +1100,11 @@
           }
         },
         "demo": {
-          "$ref": "#/$defs/DemoConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/DemoConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "clock_factor": 10.0,
@@ -1094,7 +1146,11 @@
           "type": "string"
         },
         "lang": {
-          "$ref": "#/$defs/Lang",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Lang"
+            }
+          ],
           "default": "hi"
         },
         "tz": {
@@ -1190,7 +1246,11 @@
       "additionalProperties": false,
       "properties": {
         "mode": {
-          "$ref": "#/$defs/UplinkMode",
+          "allOf": [
+            {
+              "$ref": "#/$defs/UplinkMode"
+            }
+          ],
           "default": "http"
         },
         "batch_size": {
@@ -1210,7 +1270,11 @@
           "type": "integer"
         },
         "mqtt": {
-          "$ref": "#/$defs/MqttConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MqttConfig"
+            }
+          ],
           "default": {
             "host": "localhost",
             "port": 1883,

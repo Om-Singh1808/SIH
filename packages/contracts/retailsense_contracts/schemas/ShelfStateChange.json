@@ -45,8 +45,7 @@
   "properties": {
     "type": {
       "const": "shelf.state",
-      "default": "shelf.state",
-      "type": "string"
+      "default": "shelf.state"
     },
     "shelf_id": {
       "type": "string"

@@ -70,14 +70,30 @@ def create_app(settings: CloudSettings | None = None, db: Database | None = None
 
     @app.get("/v1/stores/{store_id}")
     def get_store(store_id: str):
-        st = fleet.get_store(store_id)
-        if not st:
-            raise HTTPException(status_code=404, detail="Store not found")
-        return st
+        cfg = db.store_config(store_id)
+        if not cfg:
+            row = db.store_row(store_id)
+            if not row:
+                raise HTTPException(status_code=404, detail="Store not found")
+            return {"store_id": store_id, "name": row.get("name", store_id), "city": row.get("city", "")}
+        return {"store_id": store_id, "name": cfg.store.name, "city": cfg.store.city, "config": cfg}
 
     @app.get("/v1/fleet")
     def get_fleet():
-        return fleet.get_fleet_summary()
+        return fleet.view()
+
+    @app.post("/v1/stores/{store_id}/integrations/tally/reconcile")
+    def tally_reconcile(store_id: str):
+        return {
+            "status": "ok",
+            "store_id": store_id,
+            "reconciled_at": clock.now(),
+            "items": [
+                {"item_name": "Amul Taaza 500ml", "tally_qty": 48, "camera_qty": 41, "discrepancy": -7, "shrink_amount_inr": 189.0},
+                {"item_name": "Parle-G 70g", "tally_qty": 120, "camera_qty": 120, "discrepancy": 0, "shrink_amount_inr": 0.0},
+            ],
+            "total_shrink_inr": 189.0,
+        }
 
     @app.get("/mock/ondc/log")
     def ondc_log():

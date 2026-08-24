@@ -16,8 +16,7 @@
   "properties": {
     "type": {
       "const": "order.requested",
-      "default": "order.requested",
-      "type": "string"
+      "default": "order.requested"
     },
     "sku_id": {
       "type": "string"

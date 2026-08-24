@@ -52,7 +52,11 @@
       "type": "boolean"
     },
     "retention": {
-      "$ref": "#/$defs/RetentionPolicy",
+      "allOf": [
+        {
+          "$ref": "#/$defs/RetentionPolicy"
+        }
+      ],
       "default": {
         "telemetry_hours": 24,
         "aggregate_days": 30,

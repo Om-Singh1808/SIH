@@ -4,8 +4,7 @@
   "properties": {
     "type": {
       "const": "dwell.sample",
-      "default": "dwell.sample",
-      "type": "string"
+      "default": "dwell.sample"
     },
     "zone_id": {
       "type": "string"

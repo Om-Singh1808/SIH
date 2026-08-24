@@ -66,7 +66,11 @@
   "additionalProperties": false,
   "properties": {
     "mode": {
-      "$ref": "#/$defs/UplinkMode",
+      "allOf": [
+        {
+          "$ref": "#/$defs/UplinkMode"
+        }
+      ],
       "default": "http"
     },
     "batch_size": {
@@ -86,7 +90,11 @@
       "type": "integer"
     },
     "mqtt": {
-      "$ref": "#/$defs/MqttConfig",
+      "allOf": [
+        {
+          "$ref": "#/$defs/MqttConfig"
+        }
+      ],
       "default": {
         "host": "localhost",
         "port": 1883,

@@ -15,8 +15,7 @@
   "properties": {
     "type": {
       "const": "shelf.scan",
-      "default": "shelf.scan",
-      "type": "string"
+      "default": "shelf.scan"
     },
     "shelf_id": {
       "type": "string"

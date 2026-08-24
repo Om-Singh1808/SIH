@@ -18,7 +18,11 @@
       "type": "string"
     },
     "lang": {
-      "$ref": "#/$defs/Lang",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Lang"
+        }
+      ],
       "default": "hi"
     },
     "tz": {

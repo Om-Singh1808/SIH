@@ -423,7 +423,11 @@
           "$ref": "#/$defs/Severity"
         },
         "status": {
-          "$ref": "#/$defs/AlertStatus",
+          "allOf": [
+            {
+              "$ref": "#/$defs/AlertStatus"
+            }
+          ],
           "default": "open"
         },
         "subject_id": {
@@ -541,7 +545,11 @@
           "$ref": "#/$defs/AckAction"
         },
         "by": {
-          "$ref": "#/$defs/AckBy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/AckBy"
+            }
+          ],
           "default": "board"
         },
         "note": {
@@ -569,8 +577,7 @@
       "properties": {
         "type": {
           "const": "alert.acked",
-          "default": "alert.acked",
-          "type": "string"
+          "default": "alert.acked"
         },
         "alert_id": {
           "type": "string"
@@ -648,8 +655,7 @@
       "properties": {
         "type": {
           "const": "alert.raised",
-          "default": "alert.raised",
-          "type": "string"
+          "default": "alert.raised"
         },
         "alert": {
           "$ref": "#/$defs/Alert"
@@ -667,8 +673,7 @@
       "properties": {
         "type": {
           "const": "alert.resolved",
-          "default": "alert.resolved",
-          "type": "string"
+          "default": "alert.resolved"
         },
         "alert_id": {
           "type": "string"
@@ -790,11 +795,19 @@
           "type": "number"
         },
         "detector": {
-          "$ref": "#/$defs/DetectorKind",
+          "allOf": [
+            {
+              "$ref": "#/$defs/DetectorKind"
+            }
+          ],
           "default": "auto"
         },
         "anchor": {
-          "$ref": "#/$defs/Anchor",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Anchor"
+            }
+          ],
           "default": "bottom_center"
         },
         "shelf_scan_interval_s": {
@@ -1005,7 +1018,6 @@
           "type": "string"
         },
         "payload": {
-          "additionalProperties": true,
           "type": "object"
         },
         "created_ts": {
@@ -1027,8 +1039,7 @@
       "properties": {
         "type": {
           "const": "config.applied",
-          "default": "config.applied",
-          "type": "string"
+          "default": "config.applied"
         },
         "config_version": {
           "type": "integer"
@@ -1293,7 +1304,11 @@
           "type": "string"
         },
         "uplink": {
-          "$ref": "#/$defs/UplinkConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/UplinkConfig"
+            }
+          ],
           "default": {
             "mode": "http",
             "batch_size": 500,
@@ -1327,8 +1342,7 @@
       "properties": {
         "type": {
           "const": "device.heartbeat",
-          "default": "device.heartbeat",
-          "type": "string"
+          "default": "device.heartbeat"
         },
         "uptime_s": {
           "type": "number"
@@ -1543,8 +1557,7 @@
       "properties": {
         "type": {
           "const": "dwell.sample",
-          "default": "dwell.sample",
-          "type": "string"
+          "default": "dwell.sample"
         },
         "zone_id": {
           "type": "string"
@@ -1851,8 +1864,7 @@
       "properties": {
         "type": {
           "const": "footfall.crossing",
-          "default": "footfall.crossing",
-          "type": "string"
+          "default": "footfall.crossing"
         },
         "line_id": {
           "type": "string"
@@ -2151,8 +2163,7 @@
       "properties": {
         "type": {
           "const": "heatmap.tiles",
-          "default": "heatmap.tiles",
-          "type": "string"
+          "default": "heatmap.tiles"
         },
         "cell_px": {
           "type": "integer"
@@ -2392,7 +2403,11 @@
       "additionalProperties": false,
       "properties": {
         "tally": {
-          "$ref": "#/$defs/TallyConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/TallyConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "url": "http://localhost:9000",
@@ -2400,7 +2415,11 @@
           }
         },
         "ondc": {
-          "$ref": "#/$defs/OndcConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/OndcConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "gateway_url": "http://localhost:8000/mock/ondc",
@@ -2409,7 +2428,11 @@
           }
         },
         "whatsapp": {
-          "$ref": "#/$defs/WhatsAppConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/WhatsAppConfig"
+            }
+          ],
           "default": {
             "mode": "simulator",
             "to": null,
@@ -2432,15 +2455,12 @@
       "additionalProperties": false,
       "properties": {
         "tally": {
-          "additionalProperties": true,
           "type": "object"
         },
         "ondc": {
-          "additionalProperties": true,
           "type": "object"
         },
         "whatsapp": {
-          "additionalProperties": true,
           "type": "object"
         }
       },
@@ -2942,7 +2962,11 @@
           "type": "array"
         },
         "rollout": {
-          "$ref": "#/$defs/RolloutPolicy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RolloutPolicy"
+            }
+          ],
           "default": {
             "channel": "stable",
             "canary_pct": 10,
@@ -3203,8 +3227,7 @@
       "properties": {
         "type": {
           "const": "order.requested",
-          "default": "order.requested",
-          "type": "string"
+          "default": "order.requested"
         },
         "sku_id": {
           "type": "string"
@@ -3398,7 +3421,11 @@
           "type": "boolean"
         },
         "retention": {
-          "$ref": "#/$defs/RetentionPolicy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RetentionPolicy"
+            }
+          ],
           "default": {
             "telemetry_hours": 24,
             "aggregate_days": 30,
@@ -3465,7 +3492,11 @@
           "type": "array"
         },
         "retention": {
-          "$ref": "#/$defs/RetentionPolicy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RetentionPolicy"
+            }
+          ],
           "default": {
             "telemetry_hours": 24,
             "aggregate_days": 30,
@@ -3560,8 +3591,7 @@
       "properties": {
         "type": {
           "const": "queue.forecast",
-          "default": "queue.forecast",
-          "type": "string"
+          "default": "queue.forecast"
         },
         "counter_id": {
           "type": "string"
@@ -3610,8 +3640,7 @@
       "properties": {
         "type": {
           "const": "queue.snapshot",
-          "default": "queue.snapshot",
-          "type": "string"
+          "default": "queue.snapshot"
         },
         "counter_id": {
           "type": "string"
@@ -4186,7 +4215,6 @@
           "type": "string"
         },
         "params": {
-          "additionalProperties": true,
           "type": "object"
         }
       },
@@ -4207,7 +4235,6 @@
           "type": "number"
         },
         "params": {
-          "additionalProperties": true,
           "type": "object"
         },
         "available": {
@@ -4416,8 +4443,7 @@
       "properties": {
         "type": {
           "const": "shelf.scan",
-          "default": "shelf.scan",
-          "type": "string"
+          "default": "shelf.scan"
         },
         "shelf_id": {
           "type": "string"
@@ -4494,8 +4520,7 @@
       "properties": {
         "type": {
           "const": "shelf.state",
-          "default": "shelf.state",
-          "type": "string"
+          "default": "shelf.state"
         },
         "shelf_id": {
           "type": "string"
@@ -4734,8 +4759,7 @@
       "properties": {
         "type": {
           "const": "sim.truth",
-          "default": "sim.truth",
-          "type": "string"
+          "default": "sim.truth"
         },
         "in_store": {
           "type": "integer"
@@ -4811,8 +4835,7 @@
       "properties": {
         "type": {
           "const": "stock.reconciled",
-          "default": "stock.reconciled",
-          "type": "string"
+          "default": "stock.reconciled"
         },
         "sku_id": {
           "type": "string"
@@ -4981,7 +5004,11 @@
           "$ref": "#/$defs/DeviceConfig"
         },
         "floorplan": {
-          "$ref": "#/$defs/Floorplan",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Floorplan"
+            }
+          ],
           "default": {
             "width_px": 640,
             "height_px": 360,
@@ -5027,7 +5054,11 @@
           "type": "array"
         },
         "rules": {
-          "$ref": "#/$defs/RulesConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RulesConfig"
+            }
+          ],
           "default": {
             "shelf_partial_coverage": 0.8,
             "shelf_empty_coverage": 0.25,
@@ -5054,7 +5085,11 @@
           }
         },
         "impact": {
-          "$ref": "#/$defs/ImpactConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/ImpactConfig"
+            }
+          ],
           "default": {
             "lost_sale_factor": 0.31,
             "lost_sale_source": "Gruen, Corsten & Bharadwaj 2002 (GMA/FMI, 71k shoppers, 29 countries): 31% buy elsewhere, 9% abandon",
@@ -5065,7 +5100,11 @@
           }
         },
         "privacy": {
-          "$ref": "#/$defs/PrivacyConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/PrivacyConfig"
+            }
+          ],
           "default": {
             "preview_blur_people": true,
             "shelf_thumbnails": true,
@@ -5081,7 +5120,11 @@
           }
         },
         "integrations": {
-          "$ref": "#/$defs/IntegrationsConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/IntegrationsConfig"
+            }
+          ],
           "default": {
             "tally": {
               "company": null,
@@ -5105,7 +5148,11 @@
           }
         },
         "demo": {
-          "$ref": "#/$defs/DemoConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/DemoConfig"
+            }
+          ],
           "default": {
             "enabled": false,
             "clock_factor": 10.0,
@@ -5147,7 +5194,11 @@
           "type": "string"
         },
         "lang": {
-          "$ref": "#/$defs/Lang",
+          "allOf": [
+            {
+              "$ref": "#/$defs/Lang"
+            }
+          ],
           "default": "hi"
         },
         "tz": {
@@ -5337,7 +5388,11 @@
       "additionalProperties": false,
       "properties": {
         "mode": {
-          "$ref": "#/$defs/UplinkMode",
+          "allOf": [
+            {
+              "$ref": "#/$defs/UplinkMode"
+            }
+          ],
           "default": "http"
         },
         "batch_size": {
@@ -5357,7 +5412,11 @@
           "type": "integer"
         },
         "mqtt": {
-          "$ref": "#/$defs/MqttConfig",
+          "allOf": [
+            {
+              "$ref": "#/$defs/MqttConfig"
+            }
+          ],
           "default": {
             "host": "localhost",
             "port": 1883,
@@ -5520,7 +5579,6 @@
           "default": null
         },
         "data": {
-          "additionalProperties": true,
           "type": "object"
         }
       },
@@ -5593,8 +5651,7 @@
       "properties": {
         "type": {
           "const": "zone.occupancy",
-          "default": "zone.occupancy",
-          "type": "string"
+          "default": "zone.occupancy"
         },
         "zone_id": {
           "type": "string"

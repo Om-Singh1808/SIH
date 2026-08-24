@@ -4,8 +4,7 @@
   "properties": {
     "type": {
       "const": "sim.truth",
-      "default": "sim.truth",
-      "type": "string"
+      "default": "sim.truth"
     },
     "in_store": {
       "type": "integer"

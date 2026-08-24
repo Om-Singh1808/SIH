@@ -3,8 +3,7 @@
   "properties": {
     "type": {
       "const": "config.applied",
-      "default": "config.applied",
-      "type": "string"
+      "default": "config.applied"
     },
     "config_version": {
       "type": "integer"

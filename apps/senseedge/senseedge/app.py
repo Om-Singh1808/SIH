@@ -91,6 +91,11 @@ def create_app(
         state.restock(shelf_id)
         return {"status": "ok", "shelf_id": shelf_id}
 
+    @app.put("/config/zones")
+    @app.put("/config")
+    async def update_config(cfg: StoreConfig):
+        return await state.apply_config(cfg)
+
     @app.post("/calibrate/shelves/reference-all")
     def calibrate_shelves():
         return {"status": "ok", "calibrated": True}

@@ -3,8 +3,7 @@
   "properties": {
     "type": {
       "const": "queue.forecast",
-      "default": "queue.forecast",
-      "type": "string"
+      "default": "queue.forecast"
     },
     "counter_id": {
       "type": "string"

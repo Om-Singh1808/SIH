@@ -72,11 +72,19 @@
       "type": "number"
     },
     "detector": {
-      "$ref": "#/$defs/DetectorKind",
+      "allOf": [
+        {
+          "$ref": "#/$defs/DetectorKind"
+        }
+      ],
       "default": "auto"
     },
     "anchor": {
-      "$ref": "#/$defs/Anchor",
+      "allOf": [
+        {
+          "$ref": "#/$defs/Anchor"
+        }
+      ],
       "default": "bottom_center"
     },
     "shelf_scan_interval_s": {

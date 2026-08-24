@@ -5,8 +5,7 @@
       "properties": {
         "type": {
           "const": "queue.forecast",
-          "default": "queue.forecast",
-          "type": "string"
+          "default": "queue.forecast"
         },
         "counter_id": {
           "type": "string"
@@ -55,8 +54,7 @@
       "properties": {
         "type": {
           "const": "queue.snapshot",
-          "default": "queue.snapshot",
-          "type": "string"
+          "default": "queue.snapshot"
         },
         "counter_id": {
           "type": "string"

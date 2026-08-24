@@ -35,8 +35,7 @@
   "properties": {
     "type": {
       "const": "heatmap.tiles",
-      "default": "heatmap.tiles",
-      "type": "string"
+      "default": "heatmap.tiles"
     },
     "cell_px": {
       "type": "integer"

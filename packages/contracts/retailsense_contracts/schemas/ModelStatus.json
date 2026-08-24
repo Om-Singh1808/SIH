@@ -143,7 +143,11 @@
           "type": "array"
         },
         "rollout": {
-          "$ref": "#/$defs/RolloutPolicy",
+          "allOf": [
+            {
+              "$ref": "#/$defs/RolloutPolicy"
+            }
+          ],
           "default": {
             "channel": "stable",
             "canary_pct": 10,

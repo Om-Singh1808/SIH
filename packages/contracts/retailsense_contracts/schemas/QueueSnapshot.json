@@ -3,8 +3,7 @@
   "properties": {
     "type": {
       "const": "queue.snapshot",
-      "default": "queue.snapshot",
-      "type": "string"
+      "default": "queue.snapshot"
     },
     "counter_id": {
       "type": "string"

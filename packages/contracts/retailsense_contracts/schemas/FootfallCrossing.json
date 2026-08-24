@@ -23,8 +23,7 @@
   "properties": {
     "type": {
       "const": "footfall.crossing",
-      "default": "footfall.crossing",
-      "type": "string"
+      "default": "footfall.crossing"
     },
     "line_id": {
       "type": "string"

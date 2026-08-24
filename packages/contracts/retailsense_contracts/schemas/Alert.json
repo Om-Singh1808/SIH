@@ -336,7 +336,11 @@
       "$ref": "#/$defs/Severity"
     },
     "status": {
-      "$ref": "#/$defs/AlertStatus",
+      "allOf": [
+        {
+          "$ref": "#/$defs/AlertStatus"
+        }
+      ],
       "default": "open"
     },
     "subject_id": {

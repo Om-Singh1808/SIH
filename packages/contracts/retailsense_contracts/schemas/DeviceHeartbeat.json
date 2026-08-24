@@ -48,8 +48,7 @@
   "properties": {
     "type": {
       "const": "device.heartbeat",
-      "default": "device.heartbeat",
-      "type": "string"
+      "default": "device.heartbeat"
     },
     "uptime_s": {
       "type": "number"

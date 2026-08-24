@@ -3,8 +3,7 @@
   "properties": {
     "type": {
       "const": "stock.reconciled",
-      "default": "stock.reconciled",
-      "type": "string"
+      "default": "stock.reconciled"
     },
     "sku_id": {
       "type": "string"

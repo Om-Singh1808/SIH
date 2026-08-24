@@ -19,7 +19,6 @@
       "default": null
     },
     "data": {
-      "additionalProperties": true,
       "type": "object"
     }
   },

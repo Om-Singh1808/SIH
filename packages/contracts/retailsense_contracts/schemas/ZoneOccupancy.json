@@ -17,8 +17,7 @@
   "properties": {
     "type": {
       "const": "zone.occupancy",
-      "default": "zone.occupancy",
-      "type": "string"
+      "default": "zone.occupancy"
     },
     "zone_id": {
       "type": "string"

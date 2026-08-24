@@ -5,7 +5,6 @@
       "type": "string"
     },
     "params": {
-      "additionalProperties": true,
       "type": "object"
     }
   },

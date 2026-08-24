@@ -2,15 +2,12 @@
   "additionalProperties": false,
   "properties": {
     "tally": {
-      "additionalProperties": true,
       "type": "object"
     },
     "ondc": {
-      "additionalProperties": true,
       "type": "object"
     },
     "whatsapp": {
-      "additionalProperties": true,
       "type": "object"
     }
   },
