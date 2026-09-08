@@ -4,15 +4,16 @@ from __future__ import annotations
 
 from pathlib import Path
 from typing import Any
-from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
-from fastapi.responses import StreamingResponse
+
+from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
-
+from fastapi.responses import Response, StreamingResponse
+from retailsense_contracts.api import ScenarioRequest
 from retailsense_contracts.config import StoreConfig, load_store_config
-from retailsense_contracts.api import ScenarioRequest, ScenarioStatus, SyncStatus, HealthStatus
 
+from .preview import BOUNDARY, encode_image
 from .state import EdgeState
-from .wiring import Wiring, make_clock
+from .wiring import Wiring
 
 
 def create_app(
@@ -100,11 +101,24 @@ def create_app(
     def calibrate_shelves():
         return {"status": "ok", "calibrated": True}
 
+    def require_camera(camera_id: str) -> None:
+        if not any(camera.camera_id == camera_id for camera in state.cfg.cameras):
+            raise HTTPException(status_code=404, detail="Unknown camera")
+
+    @app.get("/preview/{camera_id}.jpg")
+    def preview_still(camera_id: str, annotate: bool = True):
+        require_camera(camera_id)
+        data, mime = encode_image(state.preview.still(camera_id, annotate=annotate))
+        return Response(data, media_type=mime, headers={"Cache-Control": "no-store"})
+
     @app.get("/preview/{camera_id}")
-    def preview_stream(camera_id: str, blur: bool = True):
+    @app.get("/preview/{camera_id}.mjpg")
+    def preview_stream(camera_id: str):
+        require_camera(camera_id)
         return StreamingResponse(
-            state.preview.mjpeg_generator(camera_id, blur=blur),
-            media_type="multipart/x-mixed-replace; boundary=frame",
+            state.preview.mjpeg(camera_id),
+            media_type=f"multipart/x-mixed-replace; boundary={BOUNDARY}",
+            headers={"Cache-Control": "no-store"},
         )
 
     @app.websocket("/ws/live")

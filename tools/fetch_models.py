@@ -5,6 +5,7 @@ Usage::
     python tools/fetch_models.py                 # yolo11n.pt -> models/yolo11n.onnx (opset 12, imgsz 640)
     python tools/fetch_models.py --yolox         # (P2) download yolox_nano.onnx, Apache-2.0 licence-clean alternative
     python tools/fetch_models.py --manifest-only # only refresh sha256/size for files already present
+    python tools/fetch_models.py --faces-only    # YuNet face pixelation weights, no Torch needed
 
 ``ultralytics`` (and torch) are heavy; they are imported *inside* ``export_yolo``
 so this file can be imported by tests and the CLI without pulling them in.
@@ -32,6 +33,9 @@ YOLO_WEIGHTS = "yolo11n.pt"
 YOLO_ONNX = "yolo11n.onnx"
 YOLOX_URL = "https://github.com/Megvii-BaseDetection/YOLOX/releases/download/0.1.1rc0/yolox_nano.onnx"
 YOLOX_ONNX = "yolox_nano.onnx"
+FACE_ONNX = "face_detection_yunet_2023mar.onnx"
+FACE_URL = f"https://media.githubusercontent.com/media/opencv/opencv_zoo/main/models/face_detection_yunet/{FACE_ONNX}"
+FACE_SHA256 = "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4"
 OPSET = 12
 IMGSZ = 640
 
@@ -75,6 +79,24 @@ def download_yolox(out_dir: Path = MODELS_DIR) -> Path:
     return target
 
 
+def download_faces(out_dir: Path = MODELS_DIR) -> Path:
+    """Fetch the pinned YuNet face localizer (OpenCV Zoo, MIT); no Torch needed."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    target = out_dir / FACE_ONNX
+    if target.is_file() and sha256_of(target) == FACE_SHA256:
+        return target
+    temporary = target.with_suffix(".onnx.download")
+    try:
+        urllib.request.urlretrieve(FACE_URL, temporary)
+        if sha256_of(temporary) != FACE_SHA256:
+            raise ValueError("YuNet checksum mismatch; existing face model left untouched")
+        temporary.replace(target)
+    finally:
+        temporary.unlink(missing_ok=True)
+    print(f"face model ready -> {target}")
+    return target
+
+
 def update_manifest(manifest_path: Path = MANIFEST, *, models_dir: Path = MODELS_DIR) -> dict:
     """Fill ``sha256``/``size_bytes`` for every manifest entry whose file exists; bump ``generated_ts``."""
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -107,16 +129,21 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--yolox", action="store_true", help="also download yolox_nano.onnx (Apache-2.0)")
     ap.add_argument("--manifest-only", action="store_true", help="skip export; just refresh sha256/size")
+    ap.add_argument("--faces-only", action="store_true", help="download only the face pixelation model (no Torch/export)")
     ap.add_argument("--imgsz", type=int, default=IMGSZ)
     ap.add_argument("--opset", type=int, default=OPSET)
     ap.add_argument("--out", type=Path, default=MODELS_DIR)
     args = ap.parse_args(argv)
 
+    if args.faces_only:
+        download_faces(args.out)
+        return 0
     if not args.manifest_only:
         target = export_yolo(args.out, args.imgsz, args.opset)
         print(f"exported -> {target}")
         if args.yolox:
             download_yolox(args.out)
+        download_faces(args.out)
     update_manifest(MANIFEST, models_dir=args.out)
     return 0
 

@@ -24,7 +24,6 @@ from typing import Any
 
 import cv2
 import numpy as np
-
 from retailsense_contracts.interfaces import Detection
 from retailsense_contracts.registry import Unavailable
 
@@ -66,7 +65,8 @@ def decode_yolov8(
     """Decode a YOLOv8-style head output into ``(boxes_xyxy[N,4], scores[N])`` in original-image px.
 
     ``output`` may be ``[1, 4+C, N]`` (ultralytics export) or ``[1, N, 4+C]``; both are handled.
-    Only ``person_class`` is kept - RetailSense never needs other COCO classes.
+    Only candidates whose highest-scoring class is ``person_class`` are kept,
+    matching Ultralytics' default single-label class filtering.
     """
     arr = np.asarray(output, dtype=np.float32)
     if arr.ndim == 3:
@@ -76,7 +76,13 @@ def decode_yolov8(
     if arr.shape[1] < 5 + person_class:
         raise ValueError(f"unexpected YOLO output shape {output.shape}")
     scores = arr[:, 4 + person_class]
-    keep = scores >= conf
+    keep = (
+        (scores > conf)
+        & (arr[:, 4:].argmax(axis=1) == person_class)
+        & np.isfinite(arr).all(axis=1)
+        & (arr[:, 2] > 0)
+        & (arr[:, 3] > 0)
+    )
     if not np.any(keep):
         return np.zeros((0, 4), dtype=np.float32), np.zeros((0,), dtype=np.float32)
     sel = arr[keep]

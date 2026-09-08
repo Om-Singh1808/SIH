@@ -6,11 +6,9 @@ in-memory copy of the frame.  It never touches disk: the privacy statement
 ("no raw video persisted") is enforced by construction - the only consumer is
 the MJPEG/JPEG preview endpoint.
 
-Privacy: when ``blur_people`` is set every person box is **pixelated**
-(downscale 12x, upscale with nearest-neighbour) *before* overlays are drawn,
-so an owner can see "someone is at shelf B" but never who.  Pixelation is
-confined to the track boxes - the test ``test_annotate_blur_changes_person_pixels_only``
-checks exactly that.
+Privacy: ``blur_people`` enables face detection and face-only pixelation before
+overlays are drawn. Bodies remain visible. If the face detector cannot run,
+preview pixels are withheld. The original frame remains available for analytics.
 
 ``cfg_view`` is a plain dict so the app can pass either pydantic config
 objects or JSON-ish dicts (e.g. from the zone editor before save)::
@@ -28,9 +26,10 @@ from typing import Any
 
 import cv2
 import numpy as np
-
 from retailsense_contracts.config import StoreConfig
 from retailsense_contracts.interfaces import Track
+
+from .faces import redact_faces
 
 PIXELATE_FACTOR = 12
 
@@ -158,9 +157,7 @@ def _draw_queue_counts(out: np.ndarray, zones: list[Any], counts: dict[str, Any]
 
 def annotate_frame(frame: np.ndarray, tracks: list[Track], cfg_view: dict[str, Any], *, blur_people: bool) -> np.ndarray:
     """Return an annotated *copy* of ``frame`` (the input is never modified, nothing is written to disk)."""
-    out = frame.copy()
-    if blur_people and tracks:
-        pixelate_boxes(out, [tr.bbox for tr in tracks])
+    out = redact_faces(frame, tracks) if blur_people else frame.copy()
     cfg_view = cfg_view or {}
     zones = list(cfg_view.get("zones", []))
     _draw_zones(out, zones)

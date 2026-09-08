@@ -271,7 +271,7 @@ class StoreModel:
             su.units = float(su.capacity_units)
         self.lines: list[Line] = list(cfg.lines)
         # scenario bookkeeping: the synthetic camera's "synthetic:<mode>" wins, then demo.default_scenario
-        cam = cfg.synthetic_camera()
+        cam = cfg.synthetic_camera
         initial = cam.scenario if cam and cam.scenario in SCENARIOS else None
         if initial is None and cfg.demo.default_scenario in SCENARIOS:
             initial = cfg.demo.default_scenario

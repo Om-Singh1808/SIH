@@ -21,7 +21,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "pytest-asyncio>=0.23", "ruff"]
-cv = ["opencv-python>=4.8"]
+cv = ["opencv-python>=4.8,<5"]
 
 [project.scripts]
 senseedge = "senseedge.main:main"

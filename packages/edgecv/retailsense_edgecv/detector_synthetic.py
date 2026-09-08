@@ -22,7 +22,6 @@ from dataclasses import dataclass
 
 import cv2
 import numpy as np
-
 from retailsense_contracts.interfaces import Detection
 from retailsense_contracts.synthetic import SHOPPER_SIZE_PX, SyntheticPalette
 
@@ -42,7 +41,7 @@ class SyntheticDetector:
 
     # Detector Protocol -----------------------------------------------------
     def detect(self, image: np.ndarray) -> list[Detection]:
-        if image is None or image.ndim != 3 or image.shape[2] != 3:
+        if image is None or image.ndim != 3 or image.shape[2] != 3 or image.size == 0:
             return []
         mask = self.mask(image)
         boxes = self.boxes_from_mask(mask)

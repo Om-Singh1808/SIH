@@ -1,10 +1,9 @@
 """Live preview: annotated stills and an MJPEG stream - never persisted.
 
 Privacy: when ``privacy.preview_blur_people`` (or the camera's own flag) is on,
-every tracked person's box is *pixelated* before encoding, so even the LAN
-preview carries no identifiable faces.  Pixelation is done here in numpy
-regardless of what the registry annotator does, so the guarantee does not
-depend on which annotator is installed.
+detected faces are pixelated before encoding. Detection runs independently of
+confirmed tracks. If face detection is unavailable, preview pixels are withheld.
+The cosmetic annotator receives an already-redacted copy.
 
 Encoding: OpenCV when available (JPEG); otherwise a tiny pure-Python PNG
 encoder (zlib + struct) keeps the endpoints working on a bare install.
@@ -21,8 +20,8 @@ from collections.abc import AsyncIterator
 from typing import Any
 
 import numpy as np
-
 from retailsense_contracts.interfaces import Track
+from retailsense_contracts.registry import resolve
 
 try:  # lazy, optional
     import cv2  # type: ignore
@@ -33,20 +32,8 @@ BOUNDARY = "senseedgeframe"
 
 
 def pixelate_tracks(image: np.ndarray, tracks: list[Track], block: int = 12) -> np.ndarray:
-    """Mosaic every track's bbox with ``block``-px cells (returns a copy)."""
-    out = image.copy()
-    h, w = out.shape[:2]
-    for tr in tracks:
-        x0, y0, x1, y1 = (int(round(v)) for v in tr.bbox)
-        x0, y0, x1, y1 = max(0, x0), max(0, y0), min(w, x1), min(h, y1)
-        if x1 - x0 < 2 or y1 - y0 < 2:
-            continue
-        region = out[y0:y1, x0:x1]
-        for by in range(0, region.shape[0], block):
-            for bx in range(0, region.shape[1], block):
-                cell = region[by : by + block, bx : bx + block]
-                cell[:] = cell.reshape(-1, 3).mean(axis=0).astype(np.uint8)
-    return out
+    """Legacy entry point: tracks guide face search; only detected faces are mosaicked."""
+    return resolve("preview_redactor")(image, tracks, factor=block)
 
 
 def encode_png(image: np.ndarray) -> bytes:
@@ -137,7 +124,7 @@ class PreviewStreamer:
         frame, tracks = got
         image = frame.image
         blur = self.blur_for(camera_id)
-        if blur and tracks:
+        if blur:
             image = pixelate_tracks(image, tracks)
         if annotate:
             try:

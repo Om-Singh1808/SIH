@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
 import { Routes, Route, NavLink, Navigate } from "react-router-dom";
 import { useT } from "@/i18n/useT";
 import { useSettings } from "@/store/settings";
 import { useLive, selectEdgeOnline } from "@/store/live";
+import { VisionDemoPage } from "@/pages/VisionDemoPage";
 
 export function NavBar() {
   const { t, lang } = useT();
@@ -98,6 +98,19 @@ export function NavBar() {
             >
               {t("nav.zones", { defaultValue: "ज़ोन" })}
             </NavLink>
+            <NavLink
+              to="/demo"
+              className={({ isActive }) =>
+                `px-3.5 py-1.5 rounded-lg text-xs font-bold tracking-tight transition-all duration-150 flex items-center gap-1.5 ${
+                  isActive
+                    ? "bg-cyan-200 text-slate-900 border-[2px] border-slate-900 shadow-[2px_2px_0px_#0F172A]"
+                    : "text-slate-700 hover:text-slate-900 hover:bg-cyan-50 border border-transparent"
+                }`
+              }
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan-500" />
+              Vision Lab
+            </NavLink>
           </nav>
         </div>
 
@@ -133,7 +146,6 @@ export function OwnerPage() {
   const kpi = useLive((s) => s.kpi);
   const alerts = useLive((s) => s.alerts);
   const openAlerts = Object.values(alerts).filter((a) => a.status !== "resolved");
-  const [activeReply, setActiveReply] = useState<string | null>(null);
 
   const triggerScenario = async (name: string, params: any = {}) => {
     try {
@@ -287,7 +299,7 @@ export function OwnerPage() {
                         {alert.kind}
                       </span>
                       <h3 className="text-base font-extrabold text-slate-900 mt-1.5">
-                        {alert.rendered_hi ?? alert.rendered_en}
+                        {alert.message_hi || alert.message_en}
                       </h3>
                     </div>
                     {alert.impact && (
@@ -304,7 +316,6 @@ export function OwnerPage() {
                   <div className="flex items-center gap-2.5 pt-2 border-t border-slate-200">
                     <button
                       onClick={async () => {
-                        setActiveReply(alert.alert_id);
                         await fetch("http://localhost:8001/demo/whatsapp/reply", {
                           method: "POST",
                           headers: { "Content-Type": "application/json" },
@@ -387,8 +398,6 @@ export function OwnerPage() {
 }
 
 export function OpsPage() {
-  const { t } = useT();
-
   return (
     <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
       <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 pb-3.5">
@@ -606,6 +615,8 @@ export default function App() {
           <Route path="/insights" element={<InsightsPage />} />
           <Route path="/chain" element={<ChainPage />} />
           <Route path="/zones" element={<ZonesPage />} />
+          <Route path="/demo" element={<VisionDemoPage />} />
+          <Route path="/vision-demo" element={<Navigate to="/demo" replace />} />
           <Route path="*" element={<Navigate to="/owner" replace />} />
         </Routes>
       </main>

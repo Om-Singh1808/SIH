@@ -8,7 +8,8 @@ Everything that turns pixels into tracks lives here:
 * :mod:`detector_ultralytics` - optional fallback that lazy-imports ``ultralytics``
 * :mod:`kalman` / :mod:`tracker` - ByteTrack-lite multi-object tracker (Kalman + Hungarian + centroid gate)
 * :mod:`homography`         - image -> floorplan ``PointMapper``
-* :mod:`annotate`           - privacy-preserving preview overlay (people pixelated, never written to disk)
+* :mod:`faces`              - YuNet face localization and face-only preview pixelation
+* :mod:`annotate`           - privacy-preserving preview overlay (faces pixelated, never written to disk)
 * :mod:`pipeline`           - ``CvPipeline`` thread loop producing ``FrameResult``
 * :mod:`models`             - ``ModelManager`` (manifest load / sha verify / OTA compare)
 

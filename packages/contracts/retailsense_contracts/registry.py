@@ -28,6 +28,7 @@ IMPLEMENTATIONS: dict[str, str] = {
     "tracker": "retailsense_edgecv.tracker:ByteTrackLite",
     "homography": "retailsense_edgecv.homography:Homography",
     "annotator": "retailsense_edgecv.annotate:annotate_frame",
+    "preview_redactor": "retailsense_edgecv.faces:redact_faces",
     "zone_engine": "retailsense_edgeanalytics.zones:ZoneEngine",
     "queue_analyzer": "retailsense_edgequeue.queue:QueueAnalyzer",
     "queue_forecaster.edge": "retailsense_edgequeue.forecast:TrendForecaster",
@@ -81,6 +82,7 @@ FAKES: dict[str, str] = {
     "reconcile": f"{_T}:fake_reconcile",
     # extra fakes for keys that have no protocol (keeps apps bootable with nothing installed)
     "annotator": f"{_T}:fake_annotate_frame",
+    "preview_redactor": "retailsense_contracts.preview:unavailable_preview",
     "shelf_thumb": f"{_T}:fake_shelf_thumbnail",
     "floorplan_renderer": f"{_T}:fake_render_floorplan",
     "retention": f"{_T}:FakeRetentionJob",

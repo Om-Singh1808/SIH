@@ -13,13 +13,14 @@ RetailSense counts, times and locates **people as anonymous moving boxes** and m
 | Raw camera frames | Yes — sampled at 2–5 fps, discarded after inference | **No** | **No** | `FrameSource.read()` → detector → frame reference dropped; `/preview` is generated live and never written to disk |
 | Person bounding boxes + confidence | Yes | No | No | Ephemeral `Detection` objects per frame |
 | Track IDs (integers) | Yes — ByteTrack-style Kalman + IoU association, **no appearance embedding, no ReID** | No (in-memory only) | **No** | `DwellSample` deliberately has no track id; ids are never reused and die with the process |
-| Faces / biometrics / gender / age / clothing | **Never computed** | No | No | No face detector or embedding model is present in the manifest (`task ∈ person_detect, shelf_gap, sku_embed`) |
+| Face rectangles | Yes, for preview pixelation only | No | No | YuNet localizes faces in RAM; see [face pixelation](FACE_PIXELATION.md) |
+| Biometric identities / gender / age / clothing attributes | **Never computed** | No | No | No recognition, embedding or attribute model |
 | Footfall crossings, zone occupancy, dwell durations | Yes | Yes (aggregates, 30 days) | Yes | Counts and seconds only |
 | Floor heatmap | Yes | Yes (20 px floor cells per hour, 90 days) | Yes | Aggregated per hour bucket; cannot reconstruct a path |
 | Queue snapshots / forecasts | Yes | Yes | Yes | Counts, rates, wait estimates |
 | Shelf coverage / facings / state | Yes | Yes | Yes | Numbers per shelf polygon |
 | Shelf thumbnails | Yes | Yes (7 days) | Yes (optional, `privacy.shelf_thumbnails`) | **96×96 JPEG of the shelf polygon only**, ≤ 16 KB; a scan is skipped entirely when a person overlaps the shelf polygon ≥ 30 % (`occlusion_skip_overlap`), so a thumbnail cannot contain a shopper |
-| Preview stream (`/preview/{cam}.mjpg`) | Yes | **No** | No | People pixelated (downscale 12× / upscale) when `preview_blur_people` is true (default); LAN only |
+| Preview stream (`/preview/{cam}.mjpg`) | Yes | **No** | No | Detected faces pixelated when `preview_blur_people` is true (default); preview withheld if face detection is unavailable; LAN only |
 | Alerts (Hindi/English text, ₹ impact) | Yes | Yes (365 days) | Yes | Contain SKU names and counts, no personal data |
 | Owner's WhatsApp number | – | Yes (config) | Yes (dispatcher) | The **store owner's** business contact, provided by the owner |
 | Device telemetry (fps, backlog, CPU) | Yes | 24 h | Yes | Operational only |
@@ -32,7 +33,7 @@ flowchart LR
     T["Track IDs<br/>(RAM, no ReID)"]:::ram
     A["Aggregates: counts,<br/>dwell seconds, queue length,<br/>shelf coverage, heat cells"]:::agg
     TH["Shelf thumbnail 96×96<br/>shelf polygon only,<br/>skipped if person in front"]:::agg
-    P["Preview MJPEG<br/>people pixelated,<br/>never written to disk"]:::ram
+    P["Preview MJPEG<br/>faces pixelated,<br/>never written to disk"]:::ram
     DB[("SQLite<br/>events + outbox<br/>retention purge hourly")]:::db
     F --> D --> T --> A
     F --> TH
@@ -44,7 +45,7 @@ flowchart LR
   P -. "LAN only" .-> LAN["Owner's phone / board<br/>on store Wi-Fi"]:::ui
   C --> WA["WhatsApp / Telegram<br/>text alert with ₹, no images"]:::ui
   X1["✗ raw video"]:::no
-  X2["✗ face / biometric"]:::no
+  X2["✗ face identity / biometric embedding"]:::no
   X3["✗ track IDs"]:::no
   Edge ~~~ X1
   Edge ~~~ X2
@@ -63,7 +64,7 @@ Dashed nodes exist only in RAM. Nothing marked ✗ exists at any stage.
 
 ## 2. Design commitments
 
-1. **No face recognition, ever.** The person detector outputs class-0 boxes only; no face, gender, age, emotion or re-identification model is in the OTA manifest, and adding one would require a manifest change reviewed in the fleet console.
+1. **No face recognition, ever.** The person detector outputs class-0 boxes only. A separate YuNet localizer supplies face rectangles solely for preview pixelation; no identity, gender, age, emotion or re-identification inference is performed. Face localization can miss faces and is not a guarantee of anonymity; see [limitations and setup](FACE_PIXELATION.md).
 2. **Appearance-free tracking.** ByteTrack-style association on motion and IoU only (EDGE_CV_STACK §Privacy: "only ephemeral integer track IDs; no biometric embedding ever computed"). `with_reid=False` is structural, not a flag.
 3. **Track IDs never leave the edge.** Every event type that crosses the network was designed without a track id; `DwellSample{zone_id, dwell_s, entered_ts, exited_ts}` is the canonical example.
 4. **No raw video persisted.** Frames live only in the worker thread; previews are rendered on request and pixelated; shelf thumbnails are masked to the shelf polygon and skipped when a person is in front.

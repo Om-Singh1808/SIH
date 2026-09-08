@@ -1329,14 +1329,12 @@ def fake_shelf_thumbnail(image: np.ndarray, shelf: ShelfPolygon) -> str | None:
 
 
 def fake_annotate_frame(frame: np.ndarray, tracks: list[Track], cfg_view: dict, *, blur_people: bool) -> np.ndarray:
-    """Draw 2-px boxes around tracks (and pixelate their interiors when ``blur_people``)."""
-    out = frame.copy()
+    """Draw boxes; withhold preview pixels if privacy is on without a real redactor."""
+    from .preview import unavailable_preview
+
+    out = unavailable_preview(frame, tracks) if blur_people else frame.copy()
     for tr in tracks:
         x0, y0, x1, y1 = (int(round(v)) for v in tr.bbox)
-        if blur_people and x1 > x0 and y1 > y0:
-            region = out[max(0, y0) : y1, max(0, x0) : x1]
-            if region.size:
-                region[:] = region.reshape(-1, 3).mean(axis=0).astype(np.uint8)
         for x in range(max(0, x0), min(out.shape[1], x1)):
             for yy in (y0, y1 - 1):
                 if 0 <= yy < out.shape[0]:

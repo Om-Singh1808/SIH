@@ -15,7 +15,7 @@ COPY packages/edgerules /app/packages/edgerules
 COPY packages/edgestore /app/packages/edgestore
 COPY packages/edgeuplink /app/packages/edgeuplink
 COPY apps/senseedge /app/apps/senseedge
-RUN pip install --no-cache-dir opencv-python-headless onnxruntime "uvicorn[standard]" paho-mqtt httpx \
+RUN pip install --no-cache-dir "opencv-python-headless>=4.8,<5" onnxruntime "uvicorn[standard]" paho-mqtt httpx \
  && for p in packages/contracts packages/sim packages/edgecv packages/edgeshelf packages/edgeanalytics \
              packages/edgequeue packages/edgerules packages/edgestore packages/edgeuplink apps/senseedge; do \
       pip install --no-cache-dir -e "$p"; done \

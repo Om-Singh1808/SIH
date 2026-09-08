@@ -3,9 +3,9 @@
 import numpy as np
 import pytest
 from conftest import render, shopper_box
-
 from retailsense_contracts.interfaces import Detector
 from retailsense_contracts.registry import Unavailable
+
 from retailsense_edgecv.detector_onnx import (
     OnnxPersonDetector,
     available_providers,
@@ -26,7 +26,7 @@ def _head_output(boxes_xyxy_padded, scores, n=8400, n_classes=80) -> np.ndarray:
         out[0, 2, i] = x1 - x0
         out[0, 3, i] = y1 - y0
         out[0, 4, i] = s  # class 0 = person
-        out[0, 5, i] = 0.9  # a strong non-person class score must be ignored
+        out[0, 5, i] = 0.1  # person is the winning class
     return out
 
 
@@ -64,6 +64,24 @@ def test_letterbox_non_square_scale():
     assert scale == 0.5 and pad == (0.0, 200.0)
     boxes, _ = decode_yolov8(_head_output([(100, 250, 200, 350)], [0.8]), 0.3, scale, pad)
     assert np.allclose(boxes[0], (200, 100, 400, 300))
+
+
+def test_non_person_winner_is_not_counted_as_person():
+    raw = _head_output([(20, 30, 80, 120), (120, 30, 180, 120)], [0.6, 0.8])
+    raw[0, 5, 0] = 0.95  # bicycle beats person, despite person exceeding confidence
+    boxes, scores = decode_yolov8(raw, 0.35, 1.0, (0.0, 0.0))
+    assert boxes.tolist() == [[120, 30, 180, 120]]
+    assert scores.tolist() == pytest.approx([0.8])
+
+
+def test_invalid_candidates_do_not_reach_nms():
+    raw = _head_output([(20, 30, 80, 120)] * 4, [0.8] * 4)
+    raw[0, 0, 0] = np.nan
+    raw[0, 2, 1] = -1
+    raw[0, 3, 2] = np.inf
+    boxes, scores = decode_yolov8(raw, 0.35, 1.0, (0.0, 0.0))
+    assert boxes.tolist() == [[20, 30, 80, 120]]
+    assert len(scores) == 1
 
 
 def test_nms():

@@ -1,9 +1,9 @@
 import numpy as np
 from conftest import render, shopper_box
-
 from retailsense_contracts.interfaces import Detector
 from retailsense_contracts.synthetic import SHOPPER_SIZE_PX, SyntheticPalette
 from retailsense_contracts.testing import draw_rect
+
 from retailsense_edgecv.detector_synthetic import SyntheticDetector
 
 
@@ -56,4 +56,4 @@ def test_small_specks_ignored_and_empty_frame():
     assert det.detect(img) == []
     assert det.detect(render([])) == []
     det.warmup()
-    assert det.detect(np.zeros((0, 0, 3), dtype=np.uint8)) == [] or True
+    assert det.detect(np.zeros((0, 0, 3), dtype=np.uint8)) == []
